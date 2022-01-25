@@ -1,12 +1,19 @@
 import mongoose from 'mongoose'
 
-const CanSchema = mongoose.Schema({
+const canSchema = mongoose.Schema({
+    arbId: {
+        type: Number,
+        default: -1,
+    },
+    payload: {
+        type: Number,
+        default: -1,
+    }
+})
+
+canSchema.pre('save', async function(next) {
     // ...
 })
 
-CanSchema.pre('save', async function(next) {
-    // ...
-})
-
-const CanData = mongoose.model('can', userSchema);
+const CanData = mongoose.model('can', canSchema);
 export default CanData;

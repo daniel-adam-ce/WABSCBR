@@ -2,6 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import userRoutes from './routes/user.js'
+import canRoutes from './routes/can.js'
 
 dotenv.config()
 
@@ -11,9 +13,8 @@ app.use(cors())
 app.use(express.json({limit: "50mb", extended: true}))
 app.use(express.urlencoded({limit: "50mb", extended: true}));
 
-// for routes later
-// app.use(...) 
-// app.use(...)
+app.use('/user', userRoutes)
+app.use('/can', canRoutes)
 
 const DB = process.env.MONGODB_URI
 const PORT = process.env.PORT || 5000
