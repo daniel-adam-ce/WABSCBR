@@ -8,6 +8,10 @@ const canSchema = mongoose.Schema({
     payload: {
         type: Number,
         default: -1,
+    },
+    dateReceived: {
+        type: Date,
+        default: Date.now()
     }
 })
 

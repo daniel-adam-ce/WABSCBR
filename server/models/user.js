@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import isStrongPassword from 'validator/lib/isStrongPassword.js'
 import isEmail from 'validator/lib/isEmail.js'
+import bcrypt from 'bcrypt'
 
 const userSchema = mongoose.Schema({
     email: {
