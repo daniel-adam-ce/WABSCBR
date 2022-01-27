@@ -1,11 +1,20 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import Fade from "react-bootstrap/Fade"
 
 const AuthPage = () => {
+    const [fadeState, setFadeState] = useState(false)
+    useEffect(()=>{
+        setFadeState(true)
+    }, [])
+
     return (
+        <Fade in={fadeState}>
         <div>
-            auth
-        </div>
+            Auth Page
+        </div>  
+        </Fade>
+        
     )
 }
 
