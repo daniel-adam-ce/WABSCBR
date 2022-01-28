@@ -12,6 +12,10 @@ const canSchema = mongoose.Schema({
     dateReceived: {
         type: Date,
         default: Date.now()
+    },
+    deviceSerial: {
+        type: Number,
+        required: true
     }
 })
 
