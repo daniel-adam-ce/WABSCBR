@@ -8,11 +8,20 @@ const RawPage = () => {
     const [loadState, setLoadState] = useState(false)
     const [numDisplayHex, setNumDisplayHex] = useState(false)
 
+    // temp for now until auth is configured
+    const deviceSerial = 123
+
     const displayTable = () => {
+
+        const formatDate = (date) => {
+            const d = new Date(date)
+            return (("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2))
+        }
+
         return table.map((item) => (
             
             <tr key={item._id}>
-                <td>{item.dateReceived}</td>
+                <td>{formatDate(item.dateReceived)}</td>
                 <td>{numDisplayHex ? item.arbId.toString(16) : item.arbId}</td>
                 <td>{numDisplayHex ? item.payload.toString(16) : item.payload}</td>
             </tr>
@@ -20,7 +29,7 @@ const RawPage = () => {
     }
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/can/?num=10&sort=1').then((res)=>{
+        axios.get(`http://localhost:5000/can/?num=15&sort=-1&deviceSerial=${deviceSerial}`).then((res)=>{
             setTable(res.data)
             setLoadState(true)
         }).catch((res)=>{
