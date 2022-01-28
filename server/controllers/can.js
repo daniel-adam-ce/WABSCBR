@@ -3,10 +3,9 @@ import {spawn} from 'child_process'
 
 export const getCAN = async (req, res) => {
     try {
-        console.log(req.query)
         let query = CanData.find()
         let num = 1
-        // 1 = ascending, -1 descending
+        // 1 = ascending, -1 descending (for dates -1 = newest first)
         let sortDir = 1
         if (req.query.id) {
             query.where("_id", `${req.query.id}`)
@@ -18,6 +17,9 @@ export const getCAN = async (req, res) => {
             if (req.query.sort == -1) {
                 sortDir = -1
             }
+        }
+        if (req.query.deviceSerial) {
+            query.where("deviceSerial", req.query.deviceSerial)
         }
         const can = await CanData.find(query).sort({'dateReceived': sortDir}).limit(num).exec()
         res.status(200).json(can)
@@ -56,6 +58,7 @@ export const createCAN = async (req, res) => {
         // })
         // --------------------------------------------------------------
 
+        can.dateReceived = new Date(Date.now())
         const newCAN = new CanData(can)
         await newCAN.save()
         res.status(200).json(newCAN)
