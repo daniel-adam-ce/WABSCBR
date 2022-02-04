@@ -38,7 +38,7 @@ export const deleteUser = async (req, res) => {
 }
 
 
-export const googleLogin = async (req, res) => {
+export const googleAuth = async (req, res) => {
     try {
         const { tokenId } = req.body
         const ticket = await client.verifyIdToken({idToken: tokenId, audience: process.env.GOOGLE_CLIENT_ID})
