@@ -2,15 +2,16 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
+import {useNavigate } from 'react-router-dom'
 
 const RawPage = () => {
     const [table, setTable] = useState([])
     const [loadState, setLoadState] = useState(false)
     const [numDisplayHex, setNumDisplayHex] = useState(false)
-
+    const navigate = useNavigate()
     // temp for now until auth is configured
     const deviceSerial = 123
-
+    
     const displayTable = () => {
 
         const formatDate = (date) => {
@@ -29,12 +30,27 @@ const RawPage = () => {
     }
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/can/?num=15&sort=-1&deviceSerial=${deviceSerial}`).then((res)=>{
-            setTable(res.data)
-            setLoadState(true)
-        }).catch((res)=>{
-            console.log(res.error)
-        })
+        const user = JSON.parse(localStorage.getItem('user'))
+        // console.log(user)
+        if (user == null) {
+            console.log('user is null')
+            navigate('/auth')
+        } else {
+            axios.post('http://localhost:5000/user/auth', {tokenId: user.token}).then((res)=>{
+                // console.log(res)
+                axios.get(`http://localhost:5000/can/?num=15&sort=-1&deviceSerial=${deviceSerial}`).then((res)=>{
+                    setTable(res.data)
+                    setLoadState(true)
+                }).catch((res)=>{
+                    console.log(res)
+            })
+            }).catch((res)=>{
+                navigate('/auth')
+                console.log(res)
+            })
+        }
+        
+        
     }, [])
 
     return (
