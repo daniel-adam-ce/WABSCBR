@@ -16,6 +16,11 @@ const canSchema = mongoose.Schema({
     deviceSerial: {
         type: Number,
         required: true
+    },
+    sentBy: {
+        type: mongoose.Schema.ObjectId,
+        default: null,
+        required: true
     }
 })
 
