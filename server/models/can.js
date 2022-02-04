@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+import isEmail from 'validator/lib/isEmail.js'
+
 const canSchema = mongoose.Schema({
     arbId: {
         type: Number,
@@ -18,9 +20,11 @@ const canSchema = mongoose.Schema({
         required: true
     },
     sentBy: {
-        type: mongoose.Schema.ObjectId,
-        default: null,
-        required: true
+        type: String,
+        lowercase: true,
+        required: [true, 'Email is required'],
+        unique: true,
+        validate: [isEmail, 'Enter a valid email']
     }
 })
 
