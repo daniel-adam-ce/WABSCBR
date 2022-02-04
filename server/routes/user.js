@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUser, deleteUser, getUser, updateUser } from '../controllers/user.js'
+import {deleteUser, getUser, googleAuth } from '../controllers/user.js'
 
 const router = express.Router()
 
@@ -11,9 +11,10 @@ router.get('', getUser)
 router.delete('', deleteUser)
 
 // POST requests
-router.post('', createUser)
+// router.post('', createUser)
+router.post('/auth', googleAuth)
 
 // PUT requests
-router.put('', updateUser)
+// router.put('', updateUser)
 
 export default router
