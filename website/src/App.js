@@ -9,7 +9,6 @@ import VehiclePage from './pages/vehicle.js'
 import DevicePage from './pages/device.js'
 import NotFoundPage from './pages/notFound.js'
 import NavBar from './components/navbar'
-import Container from "react-bootstrap/Container"
 import NotFoundRedirect from './components/notFoundRedirect.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,7 +17,7 @@ function App() {
     <div>
       
       <Router>
-          <NavBar/>
+      <NavBar/>
           <Routes>
             <Route path='/' exact element={<LandingPage/>}></Route>
             <Route path='/auth' element={<AuthPage/>}></Route>

@@ -7,8 +7,6 @@ import {GoogleLogin, GoogleLogout} from 'react-google-login'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-import { useContext } from 'react';
-
 const AuthPage = () => {
     const [fadeState, setFadeState] = useState(false)
     const navigate = useNavigate()
@@ -52,7 +50,7 @@ const AuthPage = () => {
                 <ListGroup variant="flush">
                     <ListGroup.Item>
                     <GoogleLogin
-                            clientId={`${"469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"}`}
+                            clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
                             buttonText="Login with Google"
                             onSuccess={googleSuccess}
                             onFailure={googleFailure}
@@ -61,9 +59,9 @@ const AuthPage = () => {
                     </ListGroup.Item>
                     <ListGroup.Item>
                     <GoogleLogout
-                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                    buttonText="Logout"
-                    onLogoutSuccess={()=> {localStorage.removeItem('user')}}
+                        clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
+                        buttonText="Logout"
+                        onLogoutSuccess={()=> {localStorage.removeItem('user')}}
                     >
                     </GoogleLogout>
                     </ListGroup.Item>
