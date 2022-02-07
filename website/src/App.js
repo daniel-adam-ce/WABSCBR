@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/landing.js'
 import AuthPage from './pages/auth.js'
 import RawPage from './pages/raw.js'
@@ -12,7 +12,7 @@ import NavBar from './components/navbar'
 import NotFoundRedirect from './components/notFoundRedirect.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
 export const AuthContext = React.createContext()
 
@@ -30,8 +30,6 @@ function useTokenVerify() {
             console.log(res)
         })
     }
-    
-    console.log(authState)
     return () => {
         source.cancel()
     }
