@@ -22,6 +22,12 @@ const LandingPage = () => {
         const timeout2 = setInterval(()=>{
             setFadeState2("fade-in")
         }, 1500)
+        
+        return () => {
+            clearTimeout(timeout)
+            clearTimeout(timeout2)
+        }
+
     }, [])
     const navigate = useNavigate()
 
