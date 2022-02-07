@@ -11,12 +11,43 @@ import NotFoundPage from './pages/notFound.js'
 import NavBar from './components/navbar'
 import NotFoundRedirect from './components/notFoundRedirect.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'
+import { useState, useEffect, useContext } from 'react'
+
+export const AuthContext = React.createContext()
+
+function useTokenVerify() {
+  const [authState, setAuthState] = useState(false)
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    const source = axios.CancelToken.source()
+    if (user === null) {
+        console.log('user is null')
+    } else {
+        axios.post('http://localhost:5000/user/auth', {tokenId: user.token}).then((res)=>{
+            setAuthState(true)
+        }).catch((res)=>{
+            console.log(res)
+        })
+    }
+    
+    console.log(authState)
+    return () => {
+        source.cancel()
+    }
+  }, [])
+  return [authState, setAuthState]
+}
 
 function App() {
+  
+  const [authState, setAuthState] = useTokenVerify()
+  
   return (
     <div>
       
       <Router>
+      <AuthContext.Provider value={[authState, setAuthState]}>
       <NavBar/>
           <Routes>
             <Route path='/' exact element={<LandingPage/>}></Route>
@@ -28,6 +59,7 @@ function App() {
             <Route path='/not-found' element={<NotFoundPage/>}></Route>
             <Route path='*' element={<NotFoundRedirect/>}></Route>
           </Routes>
+        </AuthContext.Provider>
       </Router> 
       
       

@@ -32,7 +32,8 @@ const RawPage = () => {
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem('user'))
         // console.log(user)
-        if (user == null) {
+        const source = axios.CancelToken.source()
+        if (user === null) {
             console.log('user is null')
             navigate('/auth')
         } else {
@@ -50,7 +51,9 @@ const RawPage = () => {
             })
         }
         
-        
+        return () => {
+            source.cancel()
+        }
     }, [])
 
     return (
