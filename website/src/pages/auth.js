@@ -1,21 +1,18 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
-import Fade from "react-bootstrap/Fade"
+import {useState, useEffect,  useContext} from 'react'
 import Card from "react-bootstrap/Card"
 import ListGroup from  "react-bootstrap/ListGroup"
 import {GoogleLogin, GoogleLogout} from 'react-google-login'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../App';
 
 const AuthPage = () => {
     const [fadeState, setFadeState] = useState(false)
+    const [authState, setAuthState] = useContext(AuthContext)
     const navigate = useNavigate()
-    useEffect(()=>{
-        setFadeState(true)
-    }, [])
 
     const googleSuccess = (res) => {
-        const result = res?.profileObj
         const token = res?.tokenId
         const user = {
             profileObj: res?.profileObj,
@@ -26,6 +23,7 @@ const AuthPage = () => {
             localStorage.setItem('user', JSON.stringify(user))
             axios.post('http://localhost:5000/user/auth', {tokenId: token}).then((res)=>{
                 console.log(res)
+                setAuthState(true)
                 navigate('/raw-can')
             }).catch((res)=>{
                 console.log(res)
@@ -33,7 +31,6 @@ const AuthPage = () => {
         } catch (err) {
             console.log(err)
         }
-        // console.log(res)
     }
 
     const googleFailure = (res) => {
@@ -42,8 +39,6 @@ const AuthPage = () => {
 
     return (
         
-        <Fade in={fadeState}>
-            
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '50vh'}}>
             <Card style={{width: '18rem'}}>
                 <Card.Header>Getting Started...</Card.Header>
@@ -61,7 +56,7 @@ const AuthPage = () => {
                     <GoogleLogout
                         clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
                         buttonText="Logout"
-                        onLogoutSuccess={()=> {localStorage.removeItem('user')}}
+                        onLogoutSuccess={()=> {localStorage.removeItem('user'); setAuthState(false)}}
                     >
                     </GoogleLogout>
                     </ListGroup.Item>
@@ -70,8 +65,6 @@ const AuthPage = () => {
             
 
         </div>  
-        
-        </Fade>
         
     )
 }
