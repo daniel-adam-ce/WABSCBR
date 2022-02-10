@@ -64,6 +64,35 @@ export const googleAuth = async (req, res) => {
     }
 }
 
+export const addVehicle = async (req, res) => { 
+    try {
+        let query = UserData.find()
+        let vehicleName = ''
+        if (req.query.email) {
+            query.where("email", req.query.email)
+        } else {
+            throw new Error('Email must be provided')
+        }
+        if (req.body.vehicleName) {
+            vehicleName = req.body.vehicleName
+        } else {
+            throw new Error('Must provide vehicle name')
+        }
+        let user = await UserData.findOne(query).exec()
+        if (user.vehicles.findIndex((element)=>(
+            element == vehicleName
+        )) == -1) {
+            user.vehicles.push(vehicleName)
+        } else {
+            throw new Error('Vehicle already registered')
+        }
+        await user.save()
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+}
+
 
 // **********************************************************************************
 // deprecated due to addition of google login

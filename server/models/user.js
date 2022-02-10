@@ -15,6 +15,13 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    vehicles: {
+        type: Array,
+        of: {
+            type: String,
+        },
+        default: []
+    }
     // depreciated due to addition of google login
     // password: {
     //     type: String, 
@@ -47,6 +54,7 @@ const userSchema = mongoose.Schema({
 //     }
 //     next();
 // })
+
 
 userSchema.set('validateBeforeSave', false);
 
