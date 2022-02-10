@@ -19,6 +19,10 @@ const canSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    vehicleName: {
+        type: String,
+        required: true,
+    },
     sentBy: {
         type: String,
         lowercase: true,

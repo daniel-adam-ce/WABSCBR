@@ -28,6 +28,9 @@ export const getCAN = async (req, res) => {
         if(req.query.email) {
             query.where("sentBy", req.query.email)
         }
+        if (req.query.vehicleName) {
+            query.where("vehicleName", req.query.vehicleName)
+        }
         let can = await CanData.find(query).skip(skip).sort({'dateReceived': sortDir}).limit(num).exec()
         if (req.query.devices) {  
             const devices = await CanData.distinct("deviceSerial")
@@ -48,6 +51,9 @@ export const getTotalCAN = async (req, res) => {
         }
         if (req.query.email) {
             query = {...query, sentBy: req.query.email}
+        }
+        if (req.query.vehicleName){
+            query = {...query, vehicleName: req.query.vehicleName}
         }
         const can = await CanData.countDocuments(query).exec()
         res.status(200).json(can)
