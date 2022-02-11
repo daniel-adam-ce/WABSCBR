@@ -5,6 +5,7 @@ export const getCAN = async (req, res) => {
     try {
         let query = CanData.find()
         let num = 1
+        let skip = 0
         // 1 = ascending, -1 descending (for dates -1 = newest first)
         let sortDir = 1
         if (req.query.id) {
@@ -21,7 +22,35 @@ export const getCAN = async (req, res) => {
         if (req.query.deviceSerial) {
             query.where("deviceSerial", req.query.deviceSerial)
         }
-        const can = await CanData.find(query).sort({'dateReceived': sortDir}).limit(num).exec()
+        if(req.query.skip) {
+            skip = 1 * req.query.skip
+        }
+        if(req.query.email) {
+            query.where("sentBy", req.query.email)
+        }
+        if (req.query.vehicleName) {
+            query.where("vehicleName", req.query.vehicleName)
+        }
+        let can = await CanData.find(query).skip(skip).sort({'dateReceived': sortDir}).limit(num).exec()
+        res.status(200).json(can)
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+}
+
+export const getTotalCAN = async (req, res) => {
+    try {
+        let query = {}
+        if (req.query.deviceSerial){
+            query = {...query, deviceSerial: req.query.deviceSerial}
+        }
+        if (req.query.email) {
+            query = {...query, sentBy: req.query.email}
+        }
+        if (req.query.vehicleName){
+            query = {...query, vehicleName: req.query.vehicleName}
+        }
+        const can = await CanData.countDocuments(query).exec()
         res.status(200).json(can)
     } catch (error) {
         res.status(400).json({message: error.message})
@@ -44,7 +73,7 @@ export const createCAN = async (req, res) => {
         // decrypt payload, may not accurately reflect how this will be handled
         // encryption/decryption is not developed yet
         // --------------------------------------------------------------
-        // const AEScpp = spawn('../../AEScpp/AEScpp.exe', [can.payload])
+        // const AEScpp = spawn('../../aes/decryption/main.exe', [can.payload])
         // let temp_stdout = 0
         // AEScpp.stdout.on('data', function(data){ 
         //     temp_stdout = data
