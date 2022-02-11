@@ -65,6 +65,61 @@ export const googleAuth = async (req, res) => {
 }
 
 
+export const getVehiclesAndDevices = async (req, res) => {
+    try {
+        
+        let query = UserData.find()
+        if (req.query.email) {
+            query.where("email", req.query.email)
+        } else {
+            throw new Error('Email must be provided')
+        }
+        const user = await UserData.findOne(query).exec()
+        res.status(200).send([user.vehicles, user.devices])
+    } catch (error) {
+        res.status(400).send({message: error.message})
+    }
+}
+
+export const addVehicleOrDevice = async (req, res) => { 
+    try {
+        let query = UserData.find()
+
+        const checkUniqueAndAdd = (object, field, itemToAdd) => {
+            if (object[`${field}`].findIndex((element)=> (
+                element == itemToAdd
+            ))==-1) {
+                object[`${field}`].push(itemToAdd)
+            } else {
+                throw new Error(`Attempt to add item in ${field} failed. Item already exists.`)
+            }
+        }
+
+        if (req.query.email) {
+            query.where("email", req.query.email)
+        } else {
+            throw new Error('Email must be provided')
+        }
+
+        if (!(req.body.vehicleName || req.body.deviceSerial)){
+            throw new Error('Must provide vehicle name or device serial number')
+        }
+        
+        let user = await UserData.findOne(query).exec()
+        if (req.body.vehicleName) {
+            checkUniqueAndAdd(user, 'vehicles', req.body.vehicleName)
+        } 
+        if (req.body.deviceSerial) {
+            checkUniqueAndAdd(user, 'devices', req.body.deviceSerial)
+        }
+        await user.save()
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+}
+
+
 // **********************************************************************************
 // deprecated due to addition of google login
 // may be added back if website native accounts get added 

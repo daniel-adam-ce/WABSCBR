@@ -1,5 +1,5 @@
 import express from 'express'
-import { createCAN, deleteCAN, getCAN, getTotalCAN, getAllDevices, updateCAN } from '../controllers/can.js'
+import { createCAN, deleteCAN, getCAN, getTotalCAN, updateCAN } from '../controllers/can.js'
 
 const router = express.Router()
 
@@ -7,7 +7,6 @@ const router = express.Router()
 // GET requests
 router.get('', getCAN)
 router.get('/count', getTotalCAN)
-router.get('/devices', getAllDevices)
 // DELETE requests
 router.delete('', deleteCAN)
 

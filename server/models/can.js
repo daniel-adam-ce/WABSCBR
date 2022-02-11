@@ -19,18 +19,21 @@ const canSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    vehicleName: {
+        type: String,
+        required: true,
+    },
     sentBy: {
         type: String,
         lowercase: true,
         required: [true, 'Email is required'],
-        unique: true,
         validate: [isEmail, 'Enter a valid email']
     }
 })
 
-canSchema.pre('save', async function(next) {
-    // ...
-})
+// canSchema.pre('save', async function(next) {
+//     // ...
+// })
 
 const CanData = mongoose.model('can', canSchema);
 export default CanData;
