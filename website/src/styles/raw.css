@@ -1,6 +1,6 @@
 
 .body {
-    padding-top: 5rem;
+    padding-top: 2rem;
     background-color: #31363b;
     color: white;
 }
@@ -11,8 +11,10 @@
     font-size: 5vw;
 }
 
-.can-table {
-    border-radius: 100rem;
+.figcaption {
+    position: absolute;
+    top: 5vw;
+    left: 30vw;
 }
 
 .hex-button {
@@ -21,13 +23,19 @@
     padding-bottom: 1vw;
 }
 
-.device-dropdown {
+.dropdown {
     background-color: #212529;
     color: white;
     border-radius: 2pt;
-    
+}
+
+.device-dropdown {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.vehicle-dropdown {
+    padding-left: 1rem;
 }
 
 
