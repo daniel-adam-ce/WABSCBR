@@ -15,6 +15,20 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    vehicles: {
+        type: Array,
+        of: {
+            type: String,
+        },
+        default: []
+    },
+    devices: {
+        type: Array,
+        of: {
+            type: Number,
+        },
+        default: []
+    }
     // depreciated due to addition of google login
     // password: {
     //     type: String, 
@@ -27,6 +41,7 @@ const userSchema = mongoose.Schema({
     // }
 })
 
+// depreciated due to addition of google login
 // userSchema.pre('save', async function(next) {
 //     // check if object is new or if the password has been modified
 //     if (this.isNew || this.modifiedPaths().includes('password')){
@@ -47,6 +62,7 @@ const userSchema = mongoose.Schema({
 //     }
 //     next();
 // })
+
 
 userSchema.set('validateBeforeSave', false);
 

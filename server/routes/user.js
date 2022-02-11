@@ -1,11 +1,12 @@
 import express from 'express'
-import {deleteUser, getUser, googleAuth } from '../controllers/user.js'
+import {addVehicleOrDevice, deleteUser, getUser, getVehiclesAndDevices, googleAuth } from '../controllers/user.js'
 
 const router = express.Router()
 
 
 // GET requests
 router.get('', getUser)
+router.get('/vehicles-devices', getVehiclesAndDevices)
 
 // DELETE requests
 router.delete('', deleteUser)
@@ -15,6 +16,6 @@ router.delete('', deleteUser)
 router.post('/auth', googleAuth)
 
 // PUT requests
-// router.put('', updateUser)
+router.put('/add', addVehicleOrDevice)
 
 export default router
