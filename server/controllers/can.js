@@ -32,11 +32,6 @@ export const getCAN = async (req, res) => {
             query.where("vehicleName", req.query.vehicleName)
         }
         let can = await CanData.find(query).skip(skip).sort({'dateReceived': sortDir}).limit(num).exec()
-        if (req.query.devices) {  
-            const devices = await CanData.distinct("deviceSerial")
-            can.push({_id: "devices", devices: devices})
-        }
-        console.log(can)
         res.status(200).json(can)
     } catch (error) {
         res.status(400).json({message: error.message})
@@ -62,16 +57,6 @@ export const getTotalCAN = async (req, res) => {
     }
 }
 
-export const getAllDevices = async (req, res) => {
-    try {
-        const devices = await CanData.distinct("deviceSerial")
-        res.status(200).json(devices)
-    } catch (error) {
-        res.status(400).json({message: error.message})
-    }
-}
-
-
 export const deleteCAN = async (req, res) => { 
     try {
 
@@ -88,7 +73,7 @@ export const createCAN = async (req, res) => {
         // decrypt payload, may not accurately reflect how this will be handled
         // encryption/decryption is not developed yet
         // --------------------------------------------------------------
-        // const AEScpp = spawn('../../AEScpp/AEScpp.exe', [can.payload])
+        // const AEScpp = spawn('../../aes/decryption/main.exe', [can.payload])
         // let temp_stdout = 0
         // AEScpp.stdout.on('data', function(data){ 
         //     temp_stdout = data
