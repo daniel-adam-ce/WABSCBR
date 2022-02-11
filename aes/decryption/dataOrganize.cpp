@@ -1,39 +1,27 @@
-#include <iostream> 
-#include <string>
+#include <iostream>
 using namespace std;
 
-int dataOrganize(){
-    int x;
 
-    return x;
-}
-int main(){
-    string indata;
-    string ciphertxt[64];
-    string temp1;
-    string temp2;
-    int data2,data1;
-
-    cout << "Enter data" << endl;
-    cin >> indata;
-
-
-
-    for(int i = 1; i<65 ; i++){
-        temp1.append(indata[i]);
+int main(int argc, char** argv){
+    
+    int ciphertxt[16];
+    for (int i = 0; i < 16; i++) {
+        ciphertxt[i] = 0;
     }
-    //for (int i = 0; i<64; i++){
-   //     temp2.at(i) = indata[i+64];
-   // }
+    std::cout << argv[1] << std::endl;
+    char tempCString[3] = {0};
+    int size = 0;
+    for (int i = 0, j = 0; i < 16; (i=i+2), j++){
+        tempCString[0] = argv[1][i];
+        tempCString[1] = argv[1][i+1];
+        std::cout << tempCString[0] << " " << tempCString[1] << std::endl;
+        ciphertxt[j] = std::strtoul(tempCString, nullptr, 16);
+        size = j;
+    }
 
- //   data1 = stoi(temp1,0,2);
-//    data2 = stoi(temp2,0,2);
+    for (int x = 0; x<= size; x++){
+        std::cout << ciphertxt[x] << endl;
+    }
 
-   //cout << temp1 << endl;
-  // cout << temp2 << endl;
-
- //  cout << data1 << endl;
- //  cout << data2 << endl;
-    cout << indata << endl;
     return 0;
 }
