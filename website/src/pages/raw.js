@@ -6,18 +6,21 @@ import {useNavigate } from 'react-router-dom'
 import Pagination from 'react-bootstrap/Pagination'
 import Container from 'react-bootstrap/esm/Container'
 import "../styles/raw.css"
+import rawImg from '../raw.jpg'
 
 const RawPage = () => {
     const [table, setTable] = useState([])
-    // const [displayTable, setDisplayTable] = useState
     const [pages, setPages] = useState(1)
     const [pageSelected, setPageSelected] = useState(0)
     const [loadState, setLoadState] = useState(false)
     const [numDisplayHex, setNumDisplayHex] = useState(false)
     const navigate = useNavigate()
     const numPerPage = 18;
-    const [deviceSerial, setDeviceSerial] = useState('')
-    
+    const [deviceSerialSelected, setDeviceSerialSelected] = useState('')
+    const [vehicleNameSelected, setVehicleNameSelected] = useState('')
+    const [deviceArray, setDeviceArray] = useState([])
+    const [vehicleArray, setVehicleArray] = useState([])
+    const url = 'http://localhost:5000'
     const displayTable = () => {
 
         const formatDate = (date) => {
@@ -31,6 +34,7 @@ const RawPage = () => {
                 <td>{numDisplayHex ? item.arbId.toString(16) : item.arbId}</td>
                 <td>{numDisplayHex ? item.payload.toString(16) : item.payload}</td>
                 <td>{item.deviceSerial}</td>
+                <td>{item.vehicleName}</td>
             </tr>
         ))
     }
@@ -39,23 +43,27 @@ const RawPage = () => {
         let pagesElement = []
         for (let i = 0; i < pages; i++){
             pagesElement.push (
-                <Pagination.Item active={pageSelected===i+341234}className='pagination active-a' key={i+1} onClick={()=>{setPageSelected(i)}}>{i+1}</Pagination.Item>
+                <Pagination.Item active={pageSelected===i}className='pagination active-a' key={i+1} onClick={()=>{setPageSelected(i)}}>{i+1}</Pagination.Item>
             )
         }
         return pagesElement
     }
 
-    const displayOptions = () => {
-        let ids = []
-        if (table.length > 0) {
-            ids = table[table.length-1].devices
-            return ids.map((item)=>(
-                <option key={item} value={item}>{item}</option>
-            ))
-        }
+    const displayVehicleOptions = () => {
+        let ids = vehicleArray
+        return ids.map((item)=>(
+            <option key={item} value={item}>{item}</option>
+        ))
     }
 
+    const displayDeviceOptions = () => {
+        let ids = deviceArray
+        return ids.map((item)=>(
+            <option key={item} value={item}>{item}</option>
+        ))
+    }
 
+    
     useEffect(()=>{
         setLoadState(false)
         const user = JSON.parse(localStorage.getItem('user'))
@@ -64,29 +72,39 @@ const RawPage = () => {
             console.log('user is null')
             navigate('/auth')
         } else {
-            axios.post('http://localhost:5000/user/auth', {tokenId: user.token}).then((res)=>{
-                axios.get(`http://localhost:5000/can/?num=${numPerPage}&sort=-1&deviceSerial=${deviceSerial}&email=${user.profileObj.email}&devices=all&skip=${numPerPage*pageSelected}`).then((res)=>{
+            const retrieveData = async () => {
+        
+                const user = JSON.parse(localStorage.getItem('user'))
+                try {
+                    await axios.post(`${url}/user/auth`, {tokenId: user.token})
+                    let res = await axios.get(`${url}/can/?num=${numPerPage}&sort=-1&vehicleName=${vehicleNameSelected}&deviceSerial=${deviceSerialSelected}&email=${user.profileObj.email}&skip=${numPerPage*pageSelected}`)
                     setTable(res.data)
                     setLoadState(true)
-                    axios.get(`http://localhost:5000/can/count?deviceSerial=${deviceSerial}&email=${user.profileObj.email}`).then((res)=>{
-                        setPages(Math.ceil(res.data/numPerPage))
-                    })
-                }).catch((res)=>{
-                    console.log(res)
-                })
-            }).catch((res)=>{
-                navigate('/auth')
-                console.log(res)
-            })
+                    res = await axios.get(`${url}/can/count?deviceSerial=${deviceSerialSelected}&email=${user.profileObj.email}`)
+                    setPages(Math.ceil(res.data/numPerPage))
+                    res = await axios.get(`${url}/user/vehicles-devices?email=${user.profileObj.email}`)
+                    setVehicleArray(res.data[0])
+                    setDeviceArray(res.data[1])
+                } catch (error) {
+                    if (error.response.data.message === "Email is not verified") {
+                        navigate('/auth')
+                    }
+                    // console.log(error)
+                }
+            }
+            retrieveData()
         }
-        
         return () => {
             source.cancel()
         }
-    }, [deviceSerial, pageSelected, navigate])
+    }, [vehicleNameSelected, deviceSerialSelected, pageSelected, navigate])
 
     return (
         <div className="body">
+            <figure className="position-relative">
+                <img src={rawImg} alt="phone" width="100%"></img>
+            </figure>
+            <figcaption className="figcaption">
             <label key='num-display' className='hex-button'>
                 Display as Hex <input 
                 type="checkbox"
@@ -96,18 +114,30 @@ const RawPage = () => {
 
             <select
                 key='device-dropdown'
-                id="tag_deviceSerial"
-                className='device-dropdown'
+                id="tag-deviceSerial"
+                className='dropdown device-dropdown'
                 onChange={(event)=>{
-                    setDeviceSerial(event.target.value)
+                    setDeviceSerialSelected(event.target.value)
                 }}
             >
                 <option key="default" value="">All Devices</option>
-                {displayOptions()}
+                {displayDeviceOptions()}
+            </select>
+
+            <select
+                key='vehicle-dropdown'
+                id="tag-vehicle"
+                className='dropdown vehicle-dropdown'
+                onChange={(event)=>{
+                    setVehicleNameSelected(event.target.value)
+                }}
+            >
+                <option key="default" value="">All Vehicles</option>
+                {displayVehicleOptions()}
             </select>
             
             {loadState ? <Container>
-                <Table className='can-table' striped bordered hover variant="dark">
+                <Table className='can-table' striped bordered hover variant="dark" size="lg">
                 
                 <thead key={'theader'}>
                     <tr key = {'headers'}>
@@ -115,6 +145,7 @@ const RawPage = () => {
                         <th key='arbId'>Arbitration ID</th>
                         <th key={'payload'}>Payload Data</th>
                         <th key='deviceSerial'>Device Serial #</th>
+                        <th key='vehicleName'>Vehicle Name</th>
                     </tr>
                 </thead>
                 <tbody key={'tbody'}>
@@ -139,6 +170,7 @@ const RawPage = () => {
                     setPageSelected(pages-1)
                 }}></Pagination.Last>
             </Pagination>
+            </figcaption>
         </div>
         
     )
