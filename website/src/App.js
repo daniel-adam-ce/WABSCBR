@@ -24,7 +24,7 @@ function useTokenVerify() {
     if (user === null) {
         console.log('user is null')
     } else {
-        axios.post('http://localhost:5000/user/auth', {tokenId: user.token}).then((res)=>{
+        axios.post('https://can-connect-server.herokuapp.com/user/auth', {tokenId: user.token}).then((res)=>{
             setAuthState(true)
         }).catch((res)=>{
             console.log(res)
