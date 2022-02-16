@@ -42,9 +42,9 @@ const LandingPage = () => {
 
                 <figcaption className={`figcaption-3 content-body ${fadeState2}`}>
                     <button className="start-button" onClick={()=>{
-                            navigate('/auth')
+                            navigate('/about')
                         }}>
-                            Get Started with Google
+                           Learn How It Works
                         </button>
                 </figcaption>   
                 </div>
