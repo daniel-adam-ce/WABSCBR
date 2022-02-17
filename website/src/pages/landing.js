@@ -1,29 +1,11 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
 import { useNavigate, } from 'react-router-dom'
 import landingImg from "../landing1.png"
+import Fader from '../components/fader'
 import '../styles/landing.css'
 
 const LandingPage = () => {
-
-    const [fadeState, setFadeState] = useState('fade-out')
-    const [fadeState1, setFadeState1] = useState('fade-out')
-    const [fadeState2, setFadeState2] = useState('fade-out')
-    useEffect(()=>{
-        setFadeState("fade-in")
-        const timeout = setInterval(()=>{
-            setFadeState1("fade-in")
-        }, 1000)
-        const timeout2 = setInterval(()=>{
-            setFadeState2("fade-in")
-        }, 1500)
-        
-        return () => {
-            clearTimeout(timeout)
-            clearTimeout(timeout2)
-        }
-
-    }, [])
+    
     const navigate = useNavigate()
 
     return (
@@ -32,21 +14,28 @@ const LandingPage = () => {
                     <img src={landingImg} alt="phone" width="100%"></img>
                 </figure>
                 <div>
-                <figcaption className={`figcaption-1 content-body ${fadeState}`}>
-                    {"CAN Connect."}
-                </figcaption>
+                <Fader>
+                    <figcaption className={`figcaption-1 content-body`}>
+                        {"CAN Connect."}
+                    </figcaption>
+                </Fader>
 
-                <figcaption className={`figcaption-2 content-body ${fadeState1}`}>
-                    {"Access your car's data any time, any place."}
-                </figcaption>
+                <Fader sleep={1000}>
+                    <figcaption className={`figcaption-2 content-body`}>
+                        {"Access your car's data any time, any place."}
+                    </figcaption>
+                </Fader>
 
-                <figcaption className={`figcaption-3 content-body ${fadeState2}`}>
-                    <button className="start-button" onClick={()=>{
-                            navigate('/auth')
+                <Fader sleep={1500}>
+                    <figcaption className={`figcaption-3 content-body`}>
+                        <button className="start-button" onClick={()=>{
+                                navigate('/about')
                         }}>
-                            Get Started with Google
+                            Learn How It Works
                         </button>
-                </figcaption>   
+                    </figcaption> 
+                </Fader>
+                  
                 </div>
             </div>
     )   

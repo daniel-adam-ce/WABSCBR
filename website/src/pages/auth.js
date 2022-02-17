@@ -23,7 +23,8 @@ const AuthPage = () => {
             axios.post(`${url}/user/auth`, {tokenId: token}).then((res)=>{
                 console.log(res)
                 setAuthState(true)
-                navigate('/raw-can?p=1&device=All Devices&vehicle=All Vehicles')
+                navigate('/dashboard')
+                // navigate('/raw-can?p=1&device=All Devices&vehicle=All Vehicles')
             }).catch((res)=>{
                 console.log(res)
             })
