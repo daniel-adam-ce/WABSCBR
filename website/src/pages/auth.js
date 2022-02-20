@@ -6,6 +6,12 @@ import {GoogleLogin, GoogleLogout} from 'react-google-login'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../App';
+import '../styles/auth.css'
+
+import Paper from '@mui/material/Paper';
+import TextField  from '@mui/material/TextField'
+
+import {Link} from 'react-router-dom'
 
 const AuthPage = () => {
     const [authState, setAuthState] = useContext(AuthContext)
@@ -39,32 +45,61 @@ const AuthPage = () => {
 
     return (
         
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '50vh'}}>
-            <Card style={{width: '18rem'}}>
-                <Card.Header>Getting Started...</Card.Header>
-                <ListGroup variant="flush">
-                    <ListGroup.Item>
-                    <GoogleLogin
-                            clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
-                            buttonText="Login with Google"
-                            onSuccess={googleSuccess}
-                            onFailure={googleFailure}
-                            cookiePolicy={'single_host_origin'}
-                        />  
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                    <GoogleLogout
-                        clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
-                        buttonText="Logout"
-                        onLogoutSuccess={()=> {localStorage.removeItem('user'); setAuthState(false)}}
-                    >
-                    </GoogleLogout>
-                    </ListGroup.Item>
-                </ListGroup>
-            </Card>
-            
+        // <div className="auth-body">
+        //     <Card style={{width: '18rem'}}>
+        //         <Card.Header>Getting Started...</Card.Header>
+        //         <ListGroup variant="flush">
+        //             <ListGroup.Item>
+        //             <GoogleLogin
+        //                     clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
+        //                     buttonText="Login with Google"
+        //                     onSuccess={googleSuccess}
+        //                     onFailure={googleFailure}
+        //                     cookiePolicy={'single_host_origin'}
+        //                 />  
+        //             </ListGroup.Item>
+        //             <ListGroup.Item>
+        //             <GoogleLogout
+        //                 clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
+        //                 buttonText="Logout"
+        //                 onLogoutSuccess={()=> {localStorage.removeItem('user'); setAuthState(false)}}
+        //             >
+        //             </GoogleLogout>
+        //             </ListGroup.Item>
+        //         </ListGroup>
+        //     </Card> 
+        // </div>  
 
-        </div>  
+        <div className='auth-body'>
+            <Paper className='paper-auth-bg' key={1} elevation={12}>
+                <div className="login-text">Login</div>
+                <div className="auth-text-field">
+                    <TextField fullWidth label="Email"></TextField>
+                </div>
+                <div className="auth-text-field">
+                    <TextField fullWidth label="Password"></TextField>
+                </div>
+                <div >
+                    <button className="login-button">
+                        Login
+                    </button>
+                </div>
+                <Link to="/auth/register">Don't have an ac</Link>
+                <div style={{marginBottom:'2%'}}>
+                    or
+                </div>
+
+                <GoogleLogin
+                    clientId="469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com"
+                    buttonText="Login with Google"
+                    onSuccess={googleSuccess}
+                    onFailure={googleFailure}
+                    cookiePolicy={'single_host_origin'}
+                />  
+                
+            </Paper>
+        </div>
+
         
     )
 }
