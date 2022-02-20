@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, } from 'react-router-dom'
-import landingImg from "../landing1.png"
+import landingImg from "../images/landing1.png"
 import Fader from '../components/fader'
 import '../styles/landing.css'
 

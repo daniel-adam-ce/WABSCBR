@@ -6,7 +6,7 @@ import {useNavigate, useSearchParams } from 'react-router-dom'
 // import Pagination from 'react-bootstrap/Pagination'
 // import Container from 'react-bootstrap/esm/Container'
 import "../styles/raw.css"
-import rawImg from '../raw.jpg'
+import rawImg from '../images/raw.jpg'
 
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -29,8 +29,6 @@ import Checkbox from '@mui/material/Checkbox';
 
 const RawPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
-    
-    // console.log(searchParams.get('p'))
     const [table, setTable] = useState([])
     const [pages, setPages] = useState(1)
     const [pageSelected, setPageSelected] = useState(parseInt(searchParams.get('p')))
@@ -50,16 +48,6 @@ const RawPage = () => {
             const d = new Date(date)
             return (("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2))
         }
-
-        // return  table.slice(0, table.length-1).map((item) => (
-        //     <tr className='table-row' key={item._id}>
-        //         <td className='table-row-data'>{formatDate(item.dateReceived)}</td>
-        //         <td>{numDisplayHex ? item.arbId.toString(16) : item.arbId}</td>
-        //         <td>{numDisplayHex ? item.payload.toString(16) : item.payload}</td>
-        //         <td>{item.deviceSerial}</td>
-        //         <td>{item.vehicleName}</td>
-        //     </tr>
-        // ))
         return  table.map((item) => (
             <TableRow key={item._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>{formatDate(item.dateReceived)}</TableCell>
@@ -71,28 +59,8 @@ const RawPage = () => {
         ))
     }
 
-    // const displayPages = () => {
-    //     let pagesElement = []
-    //     for (let i = 0; i < pages; i++){
-    //         pagesElement.push (
-    //             <Pagination.Item active={pageSelected===i}className='pagination active-a' key={i+1} onClick={()=>{
-    //                 setPageSelected(i)
-    //                 let v  =  vehicleNameSelected === '' ? 'All Vehicles' : vehicleNameSelected
-    //                 let d  =  deviceSerialSelected === '' ? 'All Devices' : deviceSerialSelected
-                    
-    //                 // setSearchParams({p: i+1, device:d, vehicle:v})
-    //                 navigate(`/raw-can?p=${i+1}&device=${d}&vehicle=${v}`)
-    //             }}>{i+1}</Pagination.Item>
-    //         )
-    //     }
-    //     return pagesElement
-    // }
-
     const displayVehicleOptions = () => {
         let ids = vehicleArray
-        // return ids.map((item)=>(
-        //     <option key={item} value={item}>{item}</option>
-        // ))
         return ids.map((item)=>(
             <MenuItem key={item} value={item}>{item}</MenuItem>
         ))
@@ -100,9 +68,6 @@ const RawPage = () => {
 
     const displayDeviceOptions = () => {
         let ids = deviceArray
-        // return ids.map((item)=>(
-        //     <option key={item} value={item}>{item}</option>
-        // ))
         return ids.map((item)=>(
             <MenuItem key={item} value={item}>{item}</MenuItem>
         ))
@@ -110,7 +75,6 @@ const RawPage = () => {
 
     
     useEffect(()=>{
-        // console.log('effect', pageSelected)
         if (pageSelected !== searchParams.get('p')-1 ) {
             setPageSelected(parseInt(searchParams.get('p')))
         }
@@ -150,7 +114,7 @@ const RawPage = () => {
     }, [vehicleNameSelected, deviceSerialSelected, pageSelected, navigate, searchParams])
 
     return (
-        <div className="body">
+        <div className="raw-body">
             
             <FormControl>
                 <FormControlLabel className='hex-button' control={<Checkbox onChange={()=>{
@@ -195,7 +159,7 @@ const RawPage = () => {
             </FormControl>
             
             {loadState ? 
-                <Container fixed>
+                <Container className="table-container" fixed>
                     <Paper>
                         <Table size='medium' sx={{ minWidth: 650, border: 0.5 }} aria-label="simple table">
                             <TableHead>
@@ -214,50 +178,13 @@ const RawPage = () => {
                     </Paper>
 
                 </Container>
-                // <TableContainer sx={{ maxWidth: 800, justifyContent='center' }} component={Paper}>
-                
-                //</TableContainer>
-            //     <Table className='can-table' striped bordered hover variant="dark" size="lg">
-                
-            //     <thead key={'theader'}>
-            //         <tr key = {'headers'}>
-            //             <th key={'date'}>Date Received</th>
-            //             <th key='arbId'>Arbitration ID</th>
-            //             <th key={'payload'}>Payload Data</th>
-            //             <th key='deviceSerial'>Device Serial #</th>
-            //             <th key='vehicleName'>Vehicle Name</th>
-            //         </tr>
-            //     </thead>
-            //     <tbody key={'tbody'}>
-            //         {displayTable()}
-            //     </tbody>
-                
-            // </Table> 
             : <div className='loading'><Spinner animation="border" size='lg'/></div>}
-
-            {/* <Pagination style={{justifyContent: 'center', paddingBottom:'1rem'}}>
-                <Pagination.First style={{color: '#212529'}} onClick={()=>{
-                    setPageSelected(0)
-                }}></Pagination.First>
-                <Pagination.Prev onClick={()=>{
-                    setPageSelected(pageSelected > 0 ? pageSelected-1 : 0)
-                }}></Pagination.Prev>
-                {displayPages()}
-                <Pagination.Next onClick={()=>{
-                    setPageSelected(pageSelected < pages-1 ? pageSelected+1 : pages-1)
-                }}></Pagination.Next>
-                <Pagination.Last onClick={()=>{
-                    setPageSelected(pages-1)
-                }}></Pagination.Last>
-            </Pagination> */}
 
             <Stack spacing={2}>
                 <Pagination color="primary" className='pagination' count={pages} page={pageSelected} onChange={(event, value) => {
                         setPageSelected(value)
                         let v  =  vehicleNameSelected === '' ? 'All Vehicles' : vehicleNameSelected
                         let d  =  deviceSerialSelected === '' ? 'All Devices' : deviceSerialSelected
-                        
-                        // setSearchParams({p: i+1, device:d, vehicle:v})
                         navigate(`/raw-can?p=${value}&device=${d}&vehicle=${v}`)
                     }}></Pagination>
             </Stack>

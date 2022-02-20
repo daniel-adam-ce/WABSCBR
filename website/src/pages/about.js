@@ -3,22 +3,15 @@ import {useState, useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import '../styles/about.css'
 import { useNavigate } from 'react-router-dom'
+import Fader from '../components/fader.js'
 
 const AboutPage = () => {
-    
-    const [fadeState, setFadeState] = useState('fade-out')
     const navigate = useNavigate()
-    useEffect(()=>{
-        setFadeState("fade-in")
-        return () => {
-
-        }
-    })
 
     return (
-        <div className='body'>
+        <div className='about-body'>
             <Paper className='paper-bg' key={1} elevation={24}>
-                <div className={`${fadeState}`}>
+                <Fader>
                     <h1>something awesome about</h1>
                     <div>can connect</div>
                     <div>
@@ -28,7 +21,7 @@ const AboutPage = () => {
                             Get Started with Google
                         </button>
                     </div>
-                </div>
+                </Fader>
             </Paper>
         </div>
     )

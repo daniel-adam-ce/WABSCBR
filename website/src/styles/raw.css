@@ -1,11 +1,13 @@
 
 html {
-    background-color: rgb(238, 238, 238);;
+    background: rgb(214,214,214);
+    background: radial-gradient(circle, rgba(214,214,214,1) 0%, rgba(255,255,255,1) 100%);
 }
 
-.body {
+.raw-body {
     padding-top: 5rem;
-    background-color: rgb(238, 238, 238);
+    background: rgb(214,214,214);
+    background: radial-gradient(circle, rgba(214,214,214,1) 0%, rgba(255,255,255,1) 100%);
     color: black;
 }
 
@@ -15,7 +17,6 @@ html {
     margin-bottom: 10vw;
     color:#2A78B5;
 }
-
 
 .hex-button {
     padding-top: 1rem;
@@ -39,15 +40,6 @@ html {
     padding-left: 1rem;
 }
 
-
-.table-row:hover {
-    border-color:#2A78B5;
-    background-color: #2A78B5;
-    color: #2A78B5;
-}
-
-
-/* https://stackoverflow.com/questions/32355009/changing-pagination-colour-bootstrap/32355258 */
 .pagination {
     margin-top: 2%;
     justify-content: center;
