@@ -1,7 +1,9 @@
 import UserData from '../models/user.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import OAuth2Client from 'google-auth-library'
 import dotenv from 'dotenv'
+import mongoose from 'mongoose'
 dotenv.config()
 
 const client = new OAuth2Client.OAuth2Client(process.env.GOOGLE_CLIENT_ID)
@@ -119,47 +121,92 @@ export const addVehicleOrDevice = async (req, res) => {
     }
 }
 
+export const loginUser = async (req, res) => {
+    try {
+        let query = UserData.find()
+        if (req.query.id) {
+            query.where("_id", `${req.query.id}`)
+        } else if (req.query.email) {
+            query.where("email", req.query.email)
+        } else {
+            throw new Error('Must provide id or email')
+        }
+        const user = await UserData.findOne(query).exec()
+        if (user === null) {
+            throw new Error("No account exists with the given id or email")
+        }
+        const passwordCompare = bcrypt.compareSync(req.query.password, user.password)
+        
+        if (passwordCompare) {
+            const token = jwt.sign({email: user.email}, 'test', { expiresIn: '1h'})
+            res.status(200).json(token) 
+        } else {
+            throw new Error("Passwords do not match")
+        }
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+}
+
+export const createUser = async (req, res) => { 
+    try {
+        const {email, emailConfirm, password, passwordConfirm} = req.body;
+        let data = {errors: []};
+        const checkUser = await UserData.findOne({email: email}).exec()
+        if (checkUser) {
+            data['errors'].push({
+                message: "User already exists with this email", 
+                type: "email"
+            })
+        }
+        if (email !== emailConfirm) {
+            data['errors'].push({
+                message: "Emails must match", 
+                type: "email"
+            })
+        }
+        if (password !== passwordConfirm) {
+            data['errors'].push({
+                message: "Passwords must match", 
+                type: "password"
+            })
+        }
+        if (data['errors'].length !== 0) {
+            return res.status(400).json({message: data})
+        }
+
+        const user = {email: email, password: password}
+        const newUser = new UserData(user)
+        await newUser.save()
+        res.status(200).json({message: 'User created'})
+    } catch (error) {
+        let data = {errors: []}
+        console.log(error)
+        if (error.name === 'ValidationError') {
+            console.log('mongoose')
+            for (let field in error.errors) {
+                console.log(error.errors[field].message)
+                data['errors'].push({
+                    message: error.errors[field].message,
+                    type: field
+                })
+            }
+        }
+        if (error.code === 'PASSWORD_ERROR_STR') {
+            data['errors'].push({message: error.message, type: 'password'})
+        }
+        
+        res.status(400).json({message: data, error: error.message})
+    }
+}
 
 // **********************************************************************************
 // deprecated due to addition of google login
 // may be added back if website native accounts get added 
 // however, logic will be different to handle JWT 
-// export const loginUser = async (req, res) => {
-//     try {
-//         let query = UserData.find()
-//         if (req.query.id) {
-//             query.where("_id", `${req.query.id}`)
-//         } else if (req.query.email) {
-//             query.where("email", req.query.email)
-//         } else {
-//             throw new Error('Must provide id or email')
-//         }
-//         const user = await UserData.findOne(query).exec()
-//         if (user === null) {
-//             throw new Error("No account exists with the given id or email")
-//         }
-//         const cmp_pass = bcrypt.compareSync(req.query.password, user.password)
-        
-//         if (cmp_pass) {
-//             res.status(200).json({...user, message: "Passwords match"}) 
-//         } else {
-//             throw new Error("Passwords do not match")
-//         }
-//     } catch (error) {
-//         res.status(400).json({message: error.message})
-//     }
-// }
 
-// export const createUser = async (req, res) => { 
-//     try {
-//         const user = req.body
-//         const newUser = new UserData(user)
-//         await newUser.save()
-//         res.status(200).json(newUser)
-//     } catch (error) {
-//         res.status(400).json({message: error.message})
-//     }
-// }
+
+
 
 // export const updateUser = async (req, res) => { 
 //     try {

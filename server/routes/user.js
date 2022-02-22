@@ -1,5 +1,5 @@
 import express from 'express'
-import {addVehicleOrDevice, deleteUser, getUser, getVehiclesAndDevices, googleAuth } from '../controllers/user.js'
+import {addVehicleOrDevice, deleteUser, getUser, getVehiclesAndDevices, googleAuth, createUser, loginUser } from '../controllers/user.js'
 
 const router = express.Router()
 
@@ -12,8 +12,10 @@ router.get('/vehicles-devices', getVehiclesAndDevices)
 router.delete('', deleteUser)
 
 // POST requests
-// router.post('', createUser)
-router.post('/auth', googleAuth)
+
+router.post('/auth/login', loginUser)
+router.post('/auth/register', createUser)
+router.post('/auth/google', googleAuth)
 
 // PUT requests
 router.put('/add', addVehicleOrDevice)
