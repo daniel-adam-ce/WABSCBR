@@ -1,5 +1,6 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
+import { AuthContext } from '../App';
 // import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import {useNavigate, useSearchParams } from 'react-router-dom'
@@ -28,6 +29,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 
 const RawPage = () => {
+    const [authState, setAuthState] = useContext(AuthContext)
     const [searchParams, setSearchParams] = useSearchParams()
     const [table, setTable] = useState([])
     const [pages, setPages] = useState(1)
@@ -41,6 +43,7 @@ const RawPage = () => {
     const [deviceArray, setDeviceArray] = useState([])
     const [vehicleArray, setVehicleArray] = useState([])
     const url = 'https://can-connect-server.herokuapp.com'
+    // const url = 'http://localhost:5000'
 
     const displayTable = () => {
 
@@ -90,19 +93,33 @@ const RawPage = () => {
         
                 const user = JSON.parse(localStorage.getItem('user'))
                 try {
-                    await axios.post(`${url}/user/auth`, {tokenId: user.token})
-                    let res = await axios.get(`${url}/can/?num=${numPerPage}&sort=-1&vehicleName=${vehicleNameSelected}&deviceSerial=${deviceSerialSelected}&email=${user.profileObj.email}&skip=${numPerPage*(pageSelected-1)}`)
+                    let res = await axios.get(`${url}/can/?num=${numPerPage}&sort=-1&vehicleName=${vehicleNameSelected}&deviceSerial=${deviceSerialSelected}&skip=${numPerPage*(pageSelected-1)}`, {
+                        headers: {
+                            'Authorization': `Bearer ${user.token}`
+                        }
+                    })
                     setTable(res.data)
                     setLoadState(true)
-                    res = await axios.get(`${url}/can/count?deviceSerial=${deviceSerialSelected}&email=${user.profileObj.email}&vehicleName=${vehicleNameSelected}`)
+                    res = await axios.get(`${url}/can/count?deviceSerial=${deviceSerialSelected}&vehicleName=${vehicleNameSelected}`, {
+                        headers: {
+                            'Authorization': `Bearer ${user.token}`
+                        }
+                    })
                     setPages(Math.ceil(res.data/numPerPage))
-                    res = await axios.get(`${url}/user/vehicles-devices?email=${user.profileObj.email}`)
+                    res = await axios.get(`${url}/user/vehicles-devices`, {
+                        headers: {
+                            'Authorization': `Bearer ${user.token}`
+                        }
+                    })
                     setVehicleArray(res.data[0])
                     setDeviceArray(res.data[1])
                 } catch (error) {
-                    if (error.response.data.message === "Email is not verified" || error.response.data.message.search(/late/i) > -1) {
-                        navigate('/auth')
-                    }
+                    // if (error.response.data.message === "Email is not verified" || error.response.data.message.search(/late/i) > -1) {
+                    // need to finish error checking here
+                    navigate('/auth')
+                    setAuthState(false)
+                    // }
+                    console.log(error.response)
                 }
             }
             retrieveData()

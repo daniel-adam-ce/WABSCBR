@@ -1,13 +1,7 @@
 
-html {
-    background: rgb(214,214,214);
-    background: radial-gradient(circle, rgba(214,214,214,1) 0%, rgba(255,255,255,1) 100%);
-}
-
 .raw-body {
     padding-top: 5rem;
-    background: rgb(214,214,214);
-    background: radial-gradient(circle, rgba(214,214,214,1) 0%, rgba(255,255,255,1) 100%);
+    background: #eeeeee;
     color: black;
 }
 

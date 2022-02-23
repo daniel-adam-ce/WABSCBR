@@ -5,10 +5,21 @@ import Container from "react-bootstrap/Container"
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react';
 import { AuthContext } from '../App';
+import { useGoogleLogout } from "react-google-login"
 
 const NavBar = () => {
     const [authState, setAuthState] = useContext(AuthContext)
     const user = JSON.parse(localStorage.getItem('user'))
+    const logout = () => {
+        localStorage.removeItem('user'); 
+        setAuthState(false)
+    }
+
+    const {signOut, loaded} = useGoogleLogout({
+        clientId: "469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com",
+        onLogoutSuccess: logout
+    })
+
     return (
         <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
@@ -23,8 +34,16 @@ const NavBar = () => {
                 <Nav.Link as={NavLink} to="/device">Device</Nav.Link>
             </Nav>
             <Nav>
-                <Nav.Link as={NavLink} to="/auth">{authState ? "Logout" : "Login"}</Nav.Link>
-                {authState && <Navbar.Brand>
+                <Nav.Link onClick={()=>{
+                    if (authState) {
+                        if (user.isGoogle) {
+                            signOut()
+                        } else {
+                            logout()
+                        }
+                    }
+                }} as={NavLink} to="/auth">{authState ? "Logout" : "Login"}</Nav.Link>
+                {authState && user.isGoogle && <Navbar.Brand>
                 <img
                     src={user.profileObj.imageUrl}
                     width="30"

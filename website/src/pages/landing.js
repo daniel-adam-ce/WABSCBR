@@ -10,7 +10,7 @@ const LandingPage = () => {
 
     return (
             <div style={{backgroundColor:"#212529"}}>
-                <figure className="position-relative">
+                <figure className="landing-image">
                     <img src={landingImg} alt="phone" width="100%"></img>
                 </figure>
                 <div>
