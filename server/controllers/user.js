@@ -139,7 +139,7 @@ export const loginUser = async (req, res) => {
         const passwordCompare = bcrypt.compareSync(req.query.password, user.password)
         
         if (passwordCompare) {
-            const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET, { expiresIn: '1m'})
+            const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET, { expiresIn: '1h'})
             return res.status(200).json({profileObj: {email: user.email}, token: token, isGoogle: false}) 
         } else {
             return res.status(400).json({message: {error: 'Wrong password', type: 'password'}})
