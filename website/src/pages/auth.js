@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useEffect,  useContext} from 'react'
+import {useContext} from 'react'
 import Card from "react-bootstrap/Card"
 import ListGroup from  "react-bootstrap/ListGroup"
 import {GoogleLogin, GoogleLogout} from 'react-google-login'
@@ -8,10 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../App';
 
 const AuthPage = () => {
-    const [fadeState, setFadeState] = useState(false)
     const [authState, setAuthState] = useContext(AuthContext)
     const navigate = useNavigate()
-
+    const url = 'https://can-connect-server.herokuapp.com'
     const googleSuccess = (res) => {
         const token = res?.tokenId
         const user = {
@@ -21,10 +20,11 @@ const AuthPage = () => {
         }
         try {
             localStorage.setItem('user', JSON.stringify(user))
-            axios.post('http://localhost:5000/user/auth', {tokenId: token}).then((res)=>{
+            axios.post(`${url}/user/auth`, {tokenId: token}).then((res)=>{
                 console.log(res)
                 setAuthState(true)
-                navigate('/raw-can')
+                navigate('/dashboard')
+                // navigate('/raw-can?p=1&device=All Devices&vehicle=All Vehicles')
             }).catch((res)=>{
                 console.log(res)
             })

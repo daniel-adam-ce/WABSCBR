@@ -1,31 +1,32 @@
 
+html {
+    background-color: rgb(238, 238, 238);;
+}
+
 .body {
-    padding-top: 2rem;
-    background-color: #31363b;
-    color: white;
+    padding-top: 5rem;
+    background-color: rgb(238, 238, 238);
+    color: black;
 }
 
 .loading {
-    justify-content: center;
-    padding-left: 40vw;
-    font-size: 5vw;
+    margin-top: 10vw;
+    margin-left: 50%;
+    margin-bottom: 10vw;
+    color:#2A78B5;
 }
 
-.figcaption {
-    position: absolute;
-    top: 5vw;
-    left: 30vw;
-}
 
 .hex-button {
-    padding-left: 17vw;
+    padding-top: 1rem;
+    padding-left: 35vw;
     padding-right: 1vw;
     padding-bottom: 1vw;
 }
 
 .dropdown {
-    background-color: #212529;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border-radius: 2pt;
 }
 
@@ -47,33 +48,7 @@
 
 
 /* https://stackoverflow.com/questions/32355009/changing-pagination-colour-bootstrap/32355258 */
-.pagination > li > a
-{
-    border-color:#212529;
-    background-color: #2A78B5;
-    color: white;
-}
-
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #ffffff;
-    background-color: #38a1f1;
-    border-color: rgb(255, 255, 255);
-}
-
-
-.pagination > .active > a
-{
-    color: rgb(76, 76, 76);
-    background-color: #534d4d !Important;
-    border: solid 1px #787878 !Important;
-}
-
-.pagination > .active > a:hover
-{
-    background-color: #5A4181 !Important;
-    border: solid 1px #5A4181;
+.pagination {
+    margin-top: 2%;
+    justify-content: center;
 }

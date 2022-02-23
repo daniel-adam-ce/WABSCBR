@@ -9,6 +9,8 @@ import VehiclePage from './pages/vehicle.js'
 import DevicePage from './pages/device.js'
 import NotFoundPage from './pages/notFound.js'
 import NavBar from './components/navbar'
+import AboutPage from './pages/about.js'
+import DashboardPage from './pages/dashboard.js'
 import NotFoundRedirect from './components/notFoundRedirect.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
@@ -24,7 +26,7 @@ function useTokenVerify() {
     if (user === null) {
         console.log('user is null')
     } else {
-        axios.post('http://localhost:5000/user/auth', {tokenId: user.token}).then((res)=>{
+        axios.post('https://can-connect-server.herokuapp.com/user/auth', {tokenId: user.token}).then((res)=>{
             setAuthState(true)
         }).catch((res)=>{
             console.log(res)
@@ -49,6 +51,8 @@ function App() {
       <NavBar/>
           <Routes>
             <Route path='/' exact element={<LandingPage/>}></Route>
+            <Route path='/about' element={<AboutPage/>}></Route>
+            <Route path='dashboard' element={<DashboardPage/>}></Route>
             <Route path='/auth' element={<AuthPage/>}></Route>
             <Route path='/raw-can' element={<RawPage/>}></Route>
             <Route path='/trouble-codes' element={<TroublePage/>}></Route>

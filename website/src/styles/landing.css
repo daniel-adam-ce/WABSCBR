@@ -34,16 +34,13 @@
     justify-content: 'center';
     align-items: 'center';
     font-size: 1.15vw;
+    transition: background-color 1s;
+    transition: padding 500ms;
+    transition: font-size 500ms;
 }
 
 .start-button:hover{
     background-color: #38a1f1;
-}
-
-.fade-in {
-  transition: opacity 2s ease;
-}
-
-.fade-out {
-    opacity: 0;
+    padding: 0.75vw 2.75vw 0.75vw 2.75vw;
+    font-size: 1.25vw;
 }
