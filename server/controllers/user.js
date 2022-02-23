@@ -3,12 +3,12 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import OAuth2Client from 'google-auth-library'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
 dotenv.config()
 
 const client = new OAuth2Client.OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
 export const getUser = async (req, res) => {
+    console.log(req.body)
     try {
         let query = UserData.find()
         if (req.query.id) {
@@ -52,12 +52,14 @@ export const googleAuth = async (req, res) => {
             if (user === null) {
                 const newUser = new UserData({
                     email: payload.email,
-                    dateJoined: new Date(Date.now())
+                    dateJoined: new Date(Date.now()),
+                    isGoogle: true,
+                    password: 'none',
                 })
                 const res = await newUser.save()
                 user = newUser
             }
-            res.status(200).json(user)
+            res.status(200).json({message: 'Google login successful'})
         } else {
             throw new Error('Email is not verified')
         }
@@ -71,8 +73,8 @@ export const getVehiclesAndDevices = async (req, res) => {
     try {
         
         let query = UserData.find()
-        if (req.query.email) {
-            query.where("email", req.query.email)
+        if (req.email) {
+            query.where("email", req.email)
         } else {
             throw new Error('Email must be provided')
         }
@@ -97,8 +99,8 @@ export const addVehicleOrDevice = async (req, res) => {
             }
         }
 
-        if (req.query.email) {
-            query.where("email", req.query.email)
+        if (req.email) {
+            query.where("email", req.email)
         } else {
             throw new Error('Email must be provided')
         }
@@ -115,7 +117,7 @@ export const addVehicleOrDevice = async (req, res) => {
             checkUniqueAndAdd(user, 'devices', req.body.deviceSerial)
         }
         await user.save()
-        res.status(200).json(user)
+        res.status(200).json({message: 'Device or vehicle successfully added'})
     } catch (error) {
         res.status(400).json({message: error.message})
     }
@@ -124,27 +126,27 @@ export const addVehicleOrDevice = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
         let query = UserData.find()
-        if (req.query.id) {
-            query.where("_id", `${req.query.id}`)
-        } else if (req.query.email) {
+        if (req.query.email) {
             query.where("email", req.query.email)
         } else {
-            throw new Error('Must provide id or email')
+            return res.status(400).json({message: {error: 'Must provide email', type: 'email'}})
         }
         const user = await UserData.findOne(query).exec()
-        if (user === null) {
-            throw new Error("No account exists with the given id or email")
+        if (!user) {
+            return res.status(400).json({message: {error: 'No account exists with the given id or email', type: 'email'}})
+            // throw new Error("No account exists with the given id or email")
         }
         const passwordCompare = bcrypt.compareSync(req.query.password, user.password)
         
         if (passwordCompare) {
-            const token = jwt.sign({email: user.email}, 'test', { expiresIn: '1h'})
-            res.status(200).json(token) 
+            const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET, { expiresIn: '1m'})
+            return res.status(200).json({profileObj: {email: user.email}, token: token, isGoogle: false}) 
         } else {
-            throw new Error("Passwords do not match")
+            return res.status(400).json({message: {error: 'Wrong password', type: 'password'}})
+            // throw new Error("Passwords do not match")
         }
     } catch (error) {
-        res.status(400).json({message: error.message})
+        res.status(500).json({message: error.message})
     }
 }
 
@@ -200,14 +202,18 @@ export const createUser = async (req, res) => {
     }
 }
 
+export const verifyToken = async (req, res) => {
+    try {
+        res.status(200).json({message: `${req.email} token verified`})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+
 // **********************************************************************************
-// deprecated due to addition of google login
-// may be added back if website native accounts get added 
-// however, logic will be different to handle JWT 
-
-
-
-
+// to be added later
+//
 // export const updateUser = async (req, res) => { 
 //     try {
 //         let query = UserData.find()

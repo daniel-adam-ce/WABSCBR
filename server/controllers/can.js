@@ -25,8 +25,8 @@ export const getCAN = async (req, res) => {
         if(req.query.skip) {
             skip = 1 * req.query.skip
         }
-        if(req.query.email) {
-            query.where("sentBy", req.query.email)
+        if(req.email) {
+            query.where("sentBy", req.email)
         }
         if (req.query.vehicleName) {
             query.where("vehicleName", req.query.vehicleName)
@@ -44,8 +44,8 @@ export const getTotalCAN = async (req, res) => {
         if (req.query.deviceSerial){
             query = {...query, deviceSerial: req.query.deviceSerial}
         }
-        if (req.query.email) {
-            query = {...query, sentBy: req.query.email}
+        if (req.email) {
+            query = {...query, sentBy: req.email}
         }
         if (req.query.vehicleName){
             query = {...query, vehicleName: req.query.vehicleName}
@@ -69,7 +69,7 @@ export const deleteCAN = async (req, res) => {
 export const createCAN = async (req, res) => { 
     try {
         const can = req.body
-        
+        can['sentBy'] = req.email
         // decrypt payload, may not accurately reflect how this will be handled
         // encryption/decryption is not developed yet
         // --------------------------------------------------------------
