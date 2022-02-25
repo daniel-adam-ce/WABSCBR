@@ -1,6 +1,7 @@
-/* * {background-color: #212529} */
 
-html {background-color: #212529}
+html {
+  background-color: #eeeeee
+}
 .App {
   text-align: center;
 }
