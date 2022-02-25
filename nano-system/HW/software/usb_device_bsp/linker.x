@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'DE2_115_Qsys'
  * SOPC Builder design path: ../../DE2_115_Qsys.sopcinfo
  *
- * Generated: Mon Oct 22 13:50:32 CST 2012
+ * Generated: Fri Feb 25 11:15:21 PST 2022
  */
 
 /*
@@ -91,6 +91,7 @@ SECTIONS
         KEEP (*(.irq));
         KEEP (*(.exceptions.entry.label));
         KEEP (*(.exceptions.entry.user));
+        KEEP (*(.exceptions.entry.ecc_fatal));
         KEEP (*(.exceptions.entry));
         KEEP (*(.exceptions.irqtest.user));
         KEEP (*(.exceptions.irqtest));
@@ -194,7 +195,7 @@ SECTIONS
         PROVIDE (__fini_array_end = ABSOLUTE(.));
         SORT(CONSTRUCTORS)
         KEEP (*(.eh_frame))
-        *(.gcc_except_table)
+        *(.gcc_except_table .gcc_except_table.*)
         *(.dynamic)
         PROVIDE (__CTOR_LIST__ = ABSOLUTE(.));
         KEEP (*(.ctors))
@@ -206,7 +207,7 @@ SECTIONS
         PROVIDE (__DTOR_END__ = ABSOLUTE(.));
         KEEP (*(.jcr))
         . = ALIGN(4);
-    } > sdram_0 = 0x3a880100 /* Nios II NOP instruction */
+    } > sdram_0 = 0x3a880100 /* NOP instruction (always in big-endian byte ordering) */
 
     .rodata :
     {
@@ -309,7 +310,7 @@ SECTIONS
     .sdram_0 LOADADDR (.bss) + SIZEOF (.bss) : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
     {
         PROVIDE (_alt_partition_sdram_0_start = ABSOLUTE(.));
-        *(.sdram_0. sdram_0.*)
+        *(.sdram_0 .sdram_0. sdram_0.*)
         . = ALIGN(4);
         PROVIDE (_alt_partition_sdram_0_end = ABSOLUTE(.));
         _end = ABSOLUTE(.);
