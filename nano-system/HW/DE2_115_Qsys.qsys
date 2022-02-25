@@ -19,6 +19,11 @@
    }
    element CY7C67200_IF_0.hpi
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "64";
@@ -35,6 +40,11 @@
    }
    element SEG7_Display.avalon_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "160";
@@ -51,6 +61,11 @@
    }
    element button_pio.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "96";
@@ -89,6 +104,14 @@
          type = "int";
       }
    }
+   element cpu_0.debug_mem_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
    element jtag_uart_0
    {
       datum _sortIndex
@@ -99,6 +122,11 @@
    }
    element jtag_uart_0.avalon_jtag_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "150999040";
@@ -120,6 +148,11 @@
    }
    element lcd_16207_0.control_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "144";
@@ -136,6 +169,11 @@
    }
    element led_green.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "112";
@@ -152,6 +190,11 @@
    }
    element led_red.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "128";
@@ -168,6 +211,11 @@
    }
    element mm_clock_crossing_bridge_0.s0
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "134217728";
@@ -210,6 +258,11 @@
    }
    element switch_pio.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "80";
@@ -226,6 +279,11 @@
    }
    element timer_0.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "0";
@@ -242,6 +300,11 @@
    }
    element timer_1.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "32";

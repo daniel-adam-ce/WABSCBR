@@ -1,5 +1,5 @@
 Flow report for DE2_115_USB_DEVICE_LED
-Fri Feb 11 11:43:49 2022
+Sun Feb 20 18:11:00 2022
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Fri Feb 11 11:43:43 2022       ;
+; Flow Status                        ; Successful - Sun Feb 20 18:10:54 2022       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_USB_DEVICE_LED                      ;
 ; Top-level Entity Name              ; DE2_115_USB_DEVICE_LED                      ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+------------------------+
 ; Option            ; Setting                ;
 +-------------------+------------------------+
-; Start date & time ; 02/11/2022 11:42:24    ;
+; Start date & time ; 02/20/2022 18:09:33    ;
 ; Main task         ; Compilation            ;
 ; Revision Name     ; DE2_115_USB_DEVICE_LED ;
 +-------------------+------------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +-------------------------------------+--------------------------------------------------------------------------------+---------------+--------------+------------+
 ; Assignment Name                     ; Value                                                                          ; Default Value ; Entity Name  ; Section Id ;
 +-------------------------------------+--------------------------------------------------------------------------------+---------------+--------------+------------+
-; COMPILER_SIGNATURE_ID               ; 123719801958938.164460854417992                                                ; --            ; --           ; --         ;
+; COMPILER_SIGNATURE_ID               ; 123719801958938.164540937226772                                                ; --            ; --           ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                                             ; --            ; --           ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                                              ; --            ; --           ; --         ;
 ; MISC_FILE                           ; D:/svn/DE2_115_USB_DEVICE_LED/DE2_115_USB_DEVICE_LED.dpf                       ; --            ; --           ; --         ;
@@ -95,7 +95,7 @@ agreement for further details.
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                          ; --            ; --           ; --         ;
 ; SLD_FILE                            ; DE2_115_Qsys/synthesis/DE2_115_Qsys.regmap                                     ; --            ; --           ; --         ;
 ; SLD_FILE                            ; DE2_115_Qsys/synthesis/DE2_115_Qsys.debuginfo                                  ; --            ; --           ; --         ;
-; SLD_INFO                            ; QSYS_NAME DE2_115_Qsys HAS_SOPCINFO 1 GENERATION_ID 1644608434                 ; --            ; DE2_115_Qsys ; --         ;
+; SLD_INFO                            ; QSYS_NAME DE2_115_Qsys HAS_SOPCINFO 1 GENERATION_ID 1645409336                 ; --            ; DE2_115_Qsys ; --         ;
 ; SMART_RECOMPILE                     ; On                                                                             ; Off           ; --           ; --         ;
 ; SOPCINFO_FILE                       ; DE2_115_Qsys/synthesis/../../DE2_115_Qsys.sopcinfo                             ; --            ; --           ; --         ;
 ; SYNTHESIS_ONLY_QIP                  ; On                                                                             ; --            ; --           ; --         ;
@@ -107,11 +107,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:34     ; 1.0                     ; 4964 MB             ; 00:00:50                           ;
-; Fitter                    ; 00:00:36     ; 1.0                     ; 5503 MB             ; 00:00:43                           ;
+; Analysis & Synthesis      ; 00:00:35     ; 1.0                     ; 4971 MB             ; 00:00:52                           ;
+; Fitter                    ; 00:00:37     ; 1.0                     ; 5576 MB             ; 00:00:46                           ;
 ; Assembler                 ; 00:00:03     ; 1.0                     ; 4708 MB             ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.1                     ; 4889 MB             ; 00:00:05                           ;
-; Total                     ; 00:01:18     ; --                      ; --                  ; 00:01:41                           ;
+; TimeQuest Timing Analyzer ; 00:00:05     ; 1.1                     ; 4885 MB             ; 00:00:05                           ;
+; Total                     ; 00:01:20     ; --                      ; --                  ; 00:01:46                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

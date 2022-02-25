@@ -1,5 +1,5 @@
 Fitter report for DE2_115_USB_DEVICE_LED
-Fri Feb 11 11:43:38 2022
+Sun Feb 20 18:10:49 2022
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -77,7 +77,7 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Fri Feb 11 11:43:38 2022       ;
+; Fitter Status                      ; Successful - Sun Feb 20 18:10:48 2022       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_USB_DEVICE_LED                      ;
 ; Top-level Entity Name              ; DE2_115_USB_DEVICE_LED                      ;
@@ -170,7 +170,7 @@ agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   3.2%      ;
+;     Processor 2            ;   3.4%      ;
 +----------------------------+-------------+
 
 
@@ -5263,7 +5263,7 @@ Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:05
-Info (11888): Total time spent on timing analysis during the Fitter is 3.87 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 4.20 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
@@ -5524,10 +5524,10 @@ Warning (169064): Following 87 pins have no output enable or a GND or VCC output
     Info (169065): Pin EX_IO[6] has a permanently disabled output enable File: C:/Users/micae/Documents/Senior-Design-B/WABSCBR/nano-system/HW/de2_115_usb_device_led.v Line: 436
 Info (144001): Generated suppressed messages file C:/Users/micae/Documents/Senior-Design-B/WABSCBR/nano-system/HW/DE2_115_USB_DEVICE_LED.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 89 warnings
-    Info: Peak virtual memory: 5503 megabytes
-    Info: Processing ended: Fri Feb 11 11:43:39 2022
-    Info: Elapsed time: 00:00:37
-    Info: Total CPU time (on all processors): 00:00:44
+    Info: Peak virtual memory: 5576 megabytes
+    Info: Processing ended: Sun Feb 20 18:10:50 2022
+    Info: Elapsed time: 00:00:39
+    Info: Total CPU time (on all processors): 00:00:47
 
 
 +----------------------------+

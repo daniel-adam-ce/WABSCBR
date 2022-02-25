@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for DE2_115_USB_DEVICE_LED
-Fri Feb 11 11:43:49 2022
+Sun Feb 20 18:11:00 2022
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -132,12 +132,12 @@ agreement for further details.
 ; Number detected on machine ; 12          ;
 ; Maximum allowed            ; 2           ;
 ;                            ;             ;
-; Average used               ; 1.14        ;
+; Average used               ; 1.15        ;
 ; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  14.3%      ;
+;     Processor 2            ;  15.1%      ;
 +----------------------------+-------------+
 
 
@@ -146,10 +146,10 @@ agreement for further details.
 +---------------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                                 ; Status ; Read at                  ;
 +---------------------------------------------------------------+--------+--------------------------+
-; DE2_115_Qsys/synthesis/submodules/altera_reset_controller.sdc ; OK     ; Fri Feb 11 11:43:46 2022 ;
-; DE2_115_Qsys/synthesis/submodules/altera_avalon_dc_fifo.sdc   ; OK     ; Fri Feb 11 11:43:46 2022 ;
-; DE2_115_Qsys/synthesis/submodules/DE2_115_Qsys_cpu_0_cpu.sdc  ; OK     ; Fri Feb 11 11:43:46 2022 ;
-; DE2_115_USB_DEVICE_LED.SDC                                    ; OK     ; Fri Feb 11 11:43:46 2022 ;
+; DE2_115_Qsys/synthesis/submodules/altera_reset_controller.sdc ; OK     ; Sun Feb 20 18:10:57 2022 ;
+; DE2_115_Qsys/synthesis/submodules/altera_avalon_dc_fifo.sdc   ; OK     ; Sun Feb 20 18:10:57 2022 ;
+; DE2_115_Qsys/synthesis/submodules/DE2_115_Qsys_cpu_0_cpu.sdc  ; OK     ; Sun Feb 20 18:10:57 2022 ;
+; DE2_115_USB_DEVICE_LED.SDC                                    ; OK     ; Sun Feb 20 18:10:57 2022 ;
 +---------------------------------------------------------------+--------+--------------------------+
 
 
@@ -6915,7 +6915,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Fri Feb 11 11:43:44 2022
+    Info: Processing started: Sun Feb 20 18:10:55 2022
 Info: Command: quartus_sta DE2_115_USB_DEVICE_LED -c DE2_115_USB_DEVICE_LED
 Info: qsta_default_script.tcl version: #1
 Info (20032): Parallel compilation is enabled and will use up to 2 processors
@@ -7117,8 +7117,8 @@ Info (332114): Report Metastability: Found 46 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4889 megabytes
-    Info: Processing ended: Fri Feb 11 11:43:49 2022
+    Info: Peak virtual memory: 4885 megabytes
+    Info: Processing ended: Sun Feb 20 18:11:00 2022
     Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05
 
