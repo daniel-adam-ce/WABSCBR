@@ -204,7 +204,7 @@ export const createUser = async (req, res) => {
 
 export const verifyToken = async (req, res) => {
     try {
-        res.status(200).json({message: `${req.email} token verified`})
+        res.status(200).json({message: `${req.email} token verified`, user: req.user})
     } catch (error) {
         res.status(500).json({message: error.message})
     }
