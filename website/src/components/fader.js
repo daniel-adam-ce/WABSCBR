@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react'
 const Fader = (props) => {
 
     const styleFadeIn = {
-        transition: `opacity ${(props.fadeInTime === undefined ? 1000 : props.fadeInTime)/1000}s ease`
+        transition: `opacity ${(props.fadeInTime === undefined ? 1000 : props.fadeInTime)/1000}s linear`
     }
     
     const styleFadeOut = {

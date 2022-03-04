@@ -29,7 +29,7 @@
     Colors,
   } from 'react-native/Libraries/NewAppScreen';
   
-  import BleManager from '../BleManager';
+  import BleManager from 'react-native-ble-manager';
   const BleManagerModule = NativeModules.BleManager;
   const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
   
@@ -41,7 +41,7 @@
   
     const startScan = () => {
       if (!isScanning) {
-        BleManager.scan([], 3, true).then((results) => {
+        BleManager.scan([], 10, false).then((results) => {
           console.log('Scanning...');
           setIsScanning(true);
         }).catch(err => {

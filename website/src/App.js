@@ -12,11 +12,15 @@ import NavBar from './components/navbar'
 import AboutPage from './pages/about.js'
 import DashboardPage from './pages/dashboard.js'
 import NotFoundRedirect from './components/notFoundRedirect.js'
+import RegisterPage from './pages/register'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 export const AuthContext = React.createContext()
+
+// const url = 'https://can-connect-server.herokuapp.com'
+const url = 'http://localhost:5000'
 
 function useTokenVerify() {
   const [authState, setAuthState] = useState(false)
@@ -26,10 +30,15 @@ function useTokenVerify() {
     if (user === null) {
         console.log('user is null')
     } else {
-        axios.post('https://can-connect-server.herokuapp.com/user/auth', {tokenId: user.token}).then((res)=>{
+        axios.post(`${url}/user/auth`, {}, {
+          headers: {
+              'Authorization': `Bearer ${user.token}`
+          }
+      }).then((res)=>{
+            console.log(res.data)
             setAuthState(true)
         }).catch((res)=>{
-            console.log(res)
+            console.log(res.response)
         })
     }
     return () => {
@@ -54,6 +63,7 @@ function App() {
             <Route path='/about' element={<AboutPage/>}></Route>
             <Route path='dashboard' element={<DashboardPage/>}></Route>
             <Route path='/auth' element={<AuthPage/>}></Route>
+            <Route path='/auth/register' element={<RegisterPage/>}></Route>
             <Route path='/raw-can' element={<RawPage/>}></Route>
             <Route path='/trouble-codes' element={<TroublePage/>}></Route>
             <Route path='/vehicle-data' element={<VehiclePage/>}></Route>

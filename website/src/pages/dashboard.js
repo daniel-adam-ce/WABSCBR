@@ -1,9 +1,7 @@
 import React from 'react'
-import {useState} from 'react'
 import { useNavigate, } from 'react-router-dom'
 const DashboardPage = () => {
     const navigate = useNavigate()
-    const [counter, setCounter] = useState(0)
 
     return (
         <div style={{marginTop:'10%'}}>
@@ -25,7 +23,6 @@ const DashboardPage = () => {
                 trouble codes
                 </button>
             </div>
-            {counter}
         </div>
         
     )
