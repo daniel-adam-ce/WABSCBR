@@ -33,25 +33,39 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import HomeScreen from './screens/home.js'
 import BluetoothScreen from './screens/bluetooth.js';
+import WebsiteScreen from './screens/website.js';
 
-GoogleSignin.configure()
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+GoogleSignin.configure({
+  webClientId: '469403570539-fnk4vhg7v5eb9ta1no0lr5fc24gco4b8.apps.googleusercontent.com', 
+  offlineAccess: true
+})
 const Stack = createNativeStackNavigator()
 
-const signIn = async () => {
+const signIn = async (navigation) => {
   try {
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
+    console.log(userInfo)
+    const user = {
+      token: userInfo.idToken,
+      isGoogle: true,
+      profileObj: userInfo.user
+    }
+    await AsyncStorage.setItem('user', JSON.stringify(user))
+    navigation.navigate('Home')
     // this.setState({ userInfo });
   } catch (error) {
-    // if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-    //   // user cancelled the login flow
-    // } else if (error.code === statusCodes.IN_PROGRESS) {
-    //   // operation (e.g. sign in) is in progress already
-    // } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-    //   // play services not available or outdated
-    // } else {
-    //   // some other error happened
-    // }
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+    } else {
+      // some other error happened
+    }
     console.log(error)
   }
 };
@@ -89,7 +103,9 @@ const LoginScreen = ({navigation}) => {
       <Text>login</Text>
       <GoogleSigninButton
       style={{width:192, height: 48}}
-      onPress={signIn}
+      onPress={()=>{
+        signIn(navigation)
+      }}
       />
       <Button 
       title="go to home"
@@ -123,6 +139,10 @@ const App = () => {
         <Stack.Screen
           name="Bluetooth"
           component={BluetoothScreen}
+        />
+        <Stack.Screen
+          name="Website"
+          component={WebsiteScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
