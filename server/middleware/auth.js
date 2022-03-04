@@ -13,13 +13,29 @@ const auth = async (req, res, next) => {
         const token = req.headers.authorization.split(" ")[1]
         const isGoogleAuth = token.length > 500
 
-        console.log(isGoogleAuth)
+        console.log("token isGoogle?:", isGoogleAuth)
         if (!isGoogleAuth) {
             const decodedData = jwt.verify(token, process.env.TOKEN_SECRET)
+            req.user = {
+                isGoogle: false,
+                profileObj: {
+                    email: decodedData.email
+                },
+                token: token
+            }
             req.email = decodedData?.email
         } else {
             const ticket = await client.verifyIdToken({idToken: token, audience: process.env.GOOGLE_CLIENT_ID})
             const payload = ticket.payload
+            req.user = {
+                isGoogle: true,
+                profileObj: {
+                    name: payload.name,
+                    email: payload.email,
+                    imageUrl: payload.picture
+                },
+                token: token
+            }
             req.email = payload?.email
         }
         next()
