@@ -1,17 +1,15 @@
-
 /** include files **/
 
 #include "./../terasic_includes.h"
 #include "usb_hal.h"
 
-
 /** local definitions **/
 #ifdef DEBUG_CY7C67200_HAL
-    #define DEBUG_OUT(format, arg...) {printf("[UHAL]"); printf(format, ## arg);}
-    #define DEBUG_ERR(format, arg...) {printf("[UHAL_ERR]");printf(format, ## arg);}
+#define DEBUG_OUT(format, arg...) {printf("[UHAL]"); printf(format, ## arg);}
+#define DEBUG_ERR(format, arg...) {printf("[UHAL_ERR]");printf(format, ## arg);}
 #else
-    #define DEBUG_OUT(format, arg...) 
-    #define DEBUG_ERR(format, arg...)
+#define DEBUG_OUT(format, arg...) 
+#define DEBUG_ERR(format, arg...)
 #endif   
 
 #define HPI_DATA    0
@@ -25,18 +23,13 @@
 
 /** external data **/
 
-
 /** internal functions **/
 static int writeable_region(unsigned short chip_addr, int byte_length);
 
-static void hpi_write_words(unsigned short chip_addr,
-                         unsigned short *data,
-                         int num_words
-                        );
-static void hpi_read_words(unsigned short chip_addr,
-                        unsigned short *data,
-                        int num_words
-                        );
+static void hpi_write_words(unsigned short chip_addr, unsigned short *data,
+		int num_words);
+static void hpi_read_words(unsigned short chip_addr, unsigned short *data,
+		int num_words);
 
 /** public data **/
 
@@ -44,13 +37,10 @@ static void hpi_read_words(unsigned short chip_addr,
 
 /** public functions **/
 
+int hpi_init(void) {
 
-int hpi_init(void)
-{
-
-    return SUCCESS;
+	return SUCCESS;
 }
-
 
 /*
  *  FUNCTION: hpi_read_memory
@@ -67,62 +57,58 @@ int hpi_init(void)
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int hpi_read_memory(unsigned short chip_addr,
-                    char * data,
-                    int byte_length
-                    )
-{
-    int num_words = 0;
-    unsigned short short_int;
+int hpi_read_memory(unsigned short chip_addr, char * data, int byte_length) {
+	int num_words = 0;
+	unsigned short short_int;
 
-    /* Check for unaligned address */
-    if ((chip_addr & 0x1) == 0x1) {
+	/* Check for unaligned address */
+	if ((chip_addr & 0x1) == 0x1) {
 
-        /* Read Word */
-        short_int = hpi_read_word(chip_addr - 1);
+		/* Read Word */
+		short_int = hpi_read_word(chip_addr - 1);
 
-        /* Save upper byte */
-        *data++ = (char) ((unsigned short) short_int >> 0x8);
+		/* Save upper byte */
+		*data++ = (char) ((unsigned short) short_int >> 0x8);
 
-        /* Update address */
-        chip_addr = chip_addr + 1;
+		/* Update address */
+		chip_addr = chip_addr + 1;
 
-        /* Update length */
-        byte_length--;
-    }
+		/* Update length */
+		byte_length--;
+	}
 
-    /* Determine number of words to read */
-    num_words = byte_length >> 1;
+	/* Determine number of words to read */
+	num_words = byte_length >> 1;
 
-    /* Check for words to read */
-    if (num_words > 0) {
+	/* Check for words to read */
+	if (num_words > 0) {
 
-        hpi_read_words(chip_addr, (unsigned short *) data, num_words);
+		hpi_read_words(chip_addr, (unsigned short *) data, num_words);
 
-        byte_length -= (2 * num_words);
+		byte_length -= (2 * num_words);
 
-        chip_addr += (2 * num_words);
-    }
+		chip_addr += (2 * num_words);
+	}
 
-    /* Check for a remaining byte to read*/
-    if (byte_length > 0) {
+	/* Check for a remaining byte to read*/
+	if (byte_length > 0) {
 
-        /* Read Word */
-        short_int = hpi_read_word(chip_addr);
+		/* Read Word */
+		short_int = hpi_read_word(chip_addr);
 
-        /* Save lower byte */
-        *(data + 2*num_words) = (char) ((unsigned short) short_int >> 0x0);
+		/* Save lower byte */
+		*(data + 2 * num_words) = (char) ((unsigned short) short_int >> 0x0);
 
-        /* Update length */
-        byte_length--;
-    }
+		/* Update length */
+		byte_length--;
+	}
 
-    /* Consistancy check */
-    if (byte_length != 0) {
-        DEBUG_ERR("hpi_read_memory: Internal error\r\n");
-    }
+	/* Consistancy check */
+	if (byte_length != 0) {
+		DEBUG_ERR("hpi_read_memory: Internal error\r\n");
+	}
 
-    return(SUCCESS);
+	return (SUCCESS);
 }
 
 /*
@@ -140,87 +126,80 @@ int hpi_read_memory(unsigned short chip_addr,
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int hpi_write_memory(unsigned short chip_addr, 
-                     char * data,
-                     int byte_length
-                    )
-{
-    int response = ERROR;
-    int num_words = 0;
-    unsigned short short_int;
-    unsigned short tmp_short_int;
+int hpi_write_memory(unsigned short chip_addr, char * data, int byte_length) {
+	int response = ERROR;
+	int num_words = 0;
+	unsigned short short_int;
+	unsigned short tmp_short_int;
 
-      DEBUG_OUT("hpi_write_memory.- chip_addr = 0x%x, byte_length = 0x%x\r\n", chip_addr, byte_length);
+	DEBUG_OUT("hpi_write_memory.- chip_addr = 0x%x, byte_length = 0x%x\r\n", chip_addr, byte_length);
 
+	/* Check if the memory region is writable or not */
 
-    /* Check if the memory region is writable or not */
+	if (writeable_region(chip_addr, byte_length) == SUCCESS) {
 
-    if (writeable_region(chip_addr, byte_length) == SUCCESS) {
+		/* Check for unaligned address */
+		if ((chip_addr & 0x1) == 0x1) {
 
-        /* Check for unaligned address */
-        if ((chip_addr & 0x1) == 0x1) {
+			/* Read Word */
+			short_int = hpi_read_word(chip_addr - 1);
 
-            /* Read Word */
-            short_int = hpi_read_word(chip_addr - 1);
+			/* Modify upper byte */
+			tmp_short_int = (unsigned short) (0x00FF & *data++);
+			short_int = ((0x00FF & short_int) | (tmp_short_int << 8));
 
-            /* Modify upper byte */
-            tmp_short_int = (unsigned short) (0x00FF & *data++);
-            short_int = ((0x00FF & short_int) | (tmp_short_int << 8));
+			/* Write Word */
+			hpi_write_word((chip_addr - 1), short_int);
 
-            /* Write Word */
-            hpi_write_word((chip_addr - 1), short_int);
+			/* Update address */
+			chip_addr = chip_addr + 1;
 
-            /* Update address */
-            chip_addr = chip_addr + 1;
+			/* Update length */
+			byte_length--;
+		}
 
-            /* Update length */
-            byte_length--;
-        }
+		/* Determine number of words to write */
+		num_words = (int) byte_length / 2;
 
-        /* Determine number of words to write */
-        num_words = (int) byte_length/2;
+		/* Check for words to write */
+		if (num_words > 0) {
+			hpi_write_words(chip_addr, (unsigned short *) data, num_words);
 
-        /* Check for words to write */
-        if (num_words > 0) {
-            hpi_write_words(chip_addr, (unsigned short *) data, num_words);
+			byte_length -= (2 * num_words);
 
-            byte_length -= (2 * num_words);
+			chip_addr += (2 * num_words);
 
-            chip_addr += (2 * num_words);
+			data += (2 * num_words);
+		}
 
-            data += (2 * num_words);
-        }
+		/* Check for a remaining byte to read*/
+		if (byte_length > 0) {
 
-        /* Check for a remaining byte to read*/
-        if (byte_length > 0) {
+			/* Read Word */
+			short_int = hpi_read_word(chip_addr);
 
-            /* Read Word */
-            short_int = hpi_read_word(chip_addr); 
+			/* Modify lower byte */
+			tmp_short_int = (unsigned short) (0x00FF & *data++);
+			short_int = ((0xFF00 & short_int) | tmp_short_int);
 
-            /* Modify lower byte */
-            tmp_short_int = (unsigned short) (0x00FF & *data++);
-            short_int = ((0xFF00 & short_int) | tmp_short_int);
+			/* Write Word */
+			hpi_write_word(chip_addr, short_int);
 
-            /* Write Word */
-            hpi_write_word(chip_addr, short_int);
+			/* Update length */
+			byte_length--;
+		}
 
-            /* Update length */
-            byte_length--;
-        }
+		/* Consistancy check */
+		if (byte_length != 0) {
+			DEBUG_ERR("hpi_write_memory: Internal error\r\n");
+		}
 
-        /* Consistancy check */
-        if (byte_length != 0) {
-            DEBUG_ERR("hpi_write_memory: Internal error\r\n");
-        }
+		response = SUCCESS;
+	} else
+		DEBUG_ERR("hpi_write_memory: this memory region is not writable\r\n");
 
-        response = SUCCESS;
-    }
-    else
-        DEBUG_ERR("hpi_write_memory: this memory region is not writable\r\n");
-
-    return(response);
+	return (response);
 }
-
 
 /*
  *  FUNCTION: hpi_read_reg
@@ -237,15 +216,12 @@ int hpi_write_memory(unsigned short chip_addr,
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int hpi_read_reg(unsigned short reg_addr,
-                 unsigned short *reg_value
-                )
-{
+int hpi_read_reg(unsigned short reg_addr, unsigned short *reg_value) {
 
-    /* Hardware Specific Code to Write to Lyberty via HPI Port */
-    *reg_value = hpi_read_word(reg_addr);
+	/* Hardware Specific Code to Write to Lyberty via HPI Port */
+	*reg_value = hpi_read_word(reg_addr);
 
-    return (SUCCESS);
+	return (SUCCESS);
 }
 
 /*
@@ -263,13 +239,11 @@ int hpi_read_reg(unsigned short reg_addr,
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int hpi_write_reg(unsigned short reg_addr,
-                  unsigned short reg_value)
-{
+int hpi_write_reg(unsigned short reg_addr, unsigned short reg_value) {
 
-    hpi_write_word(reg_addr, reg_value);
+	hpi_write_word(reg_addr, reg_value);
 
-    return (SUCCESS);
+	return (SUCCESS);
 }
 
 /*
@@ -284,17 +258,15 @@ int hpi_write_reg(unsigned short reg_addr,
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-unsigned short hpi_read_status(void)
-{
-    unsigned short value;
-    
-    value = IORD(HPI_NIOSII_BASE_ADDR,HPI_STATUS);
+unsigned short hpi_read_status(void) {
+	unsigned short value;
 
-    DEBUG_OUT("read_status: value = 0x%04x\r\n", value);
+	value = IORD(HPI_NIOSII_BASE_ADDR, HPI_STATUS);
 
-    return value;
+	DEBUG_OUT("read_status: value = 0x%04x\r\n", value);
+
+	return value;
 }
-
 
 /*
  *  FUNCTION: hpi_write_mbx
@@ -308,13 +280,11 @@ unsigned short hpi_read_status(void)
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-void hpi_write_mbx(unsigned short value)
-{
-    DEBUG_OUT("write_mbx: 0x%04x\r\n", value);
+void hpi_write_mbx(unsigned short value) {
+	DEBUG_OUT("write_mbx: 0x%04x\r\n", value);
 
-    IOWR(HPI_NIOSII_BASE_ADDR,HPI_MAILBOX,value);
+	IOWR(HPI_NIOSII_BASE_ADDR, HPI_MAILBOX, value);
 }
-
 
 /*
  *  FUNCTION: hpi_read_mbx
@@ -328,17 +298,15 @@ void hpi_write_mbx(unsigned short value)
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-unsigned short hpi_read_mbx(void)
-{
-    unsigned short value;
- 
-    value =  IORD(HPI_NIOSII_BASE_ADDR,HPI_MAILBOX);
+unsigned short hpi_read_mbx(void) {
+	unsigned short value;
 
-    DEBUG_OUT("read_mbx: 0x%04x\r\n", value);
+	value = IORD(HPI_NIOSII_BASE_ADDR, HPI_MAILBOX);
 
-    return value;
+	DEBUG_OUT("read_mbx: 0x%04x\r\n", value);
+
+	return value;
 }
-
 
 /*
  *  FUNCTION: hpi_write_word
@@ -354,18 +322,11 @@ unsigned short hpi_read_mbx(void)
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-void hpi_write_word(unsigned short chip_addr,
-                        unsigned short value
-                        )
-{
-    DEBUG_OUT("write_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
-    IOWR(HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
-    IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, value);
+void hpi_write_word(unsigned short chip_addr, unsigned short value) {
+	DEBUG_OUT("write_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
+	IOWR(HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
+	IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, value);
 }
-
-
-
-
 
 /*
  *  FUNCTION: hpi_read_word
@@ -379,16 +340,13 @@ void hpi_write_word(unsigned short chip_addr,
  *  RETURNS: 
  *    Value of the chip_addr
  */
-unsigned short hpi_read_word(unsigned short chip_addr)
-{
-    unsigned short value;
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
-    value = IORD( HPI_NIOSII_BASE_ADDR,HPI_DATA) ;
-    DEBUG_OUT("read_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
-    return value;
+unsigned short hpi_read_word(unsigned short chip_addr) {
+	unsigned short value;
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
+	value = IORD( HPI_NIOSII_BASE_ADDR, HPI_DATA);
+	DEBUG_OUT("read_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
+	return value;
 }
-
-
 
 /*
  *  FUNCTION: hpi_write_words
@@ -405,22 +363,18 @@ unsigned short hpi_read_word(unsigned short chip_addr)
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-void hpi_write_words(unsigned short chip_addr,
-                         unsigned short *data,
-                         int num_words
-                        )
-{
-    int i;
+void hpi_write_words(unsigned short chip_addr, unsigned short *data,
+		int num_words) {
+	int i;
 
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
 
-    DEBUG_OUT("write_words addr:0x%04x, num_words:%d", chip_addr, num_words);
+	DEBUG_OUT("write_words addr:0x%04x, num_words:%d", chip_addr, num_words);
 
-    for (i=0; i<num_words; i++) 
-    {
-        DEBUG_OUT(" 0x%04x", *data);
-        IOWR (HPI_NIOSII_BASE_ADDR, HPI_DATA    ,*data++);
-    }
+	for (i = 0; i < num_words; i++) {
+		DEBUG_OUT(" 0x%04x", *data);
+		IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, *data++);
+	}
 }
 
 /*
@@ -438,26 +392,21 @@ void hpi_write_words(unsigned short chip_addr,
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-void hpi_read_words(unsigned short chip_addr,
-                        unsigned short *data,
-                        int num_words
-                        )
-{
-    int i;
+void hpi_read_words(unsigned short chip_addr, unsigned short *data,
+		int num_words) {
+	int i;
 
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
 
-    DEBUG_OUT("read_words addr:0x%04x, num_words:%d", chip_addr, num_words);
+	DEBUG_OUT("read_words addr:0x%04x, num_words:%d", chip_addr, num_words);
 
-    for (i=0; i<num_words; i++) 
-    {
-        *data++ = IORD (HPI_NIOSII_BASE_ADDR,HPI_DATA  );
-        DEBUG_OUT("    0x%04x", *(data-1));
-    }
+	for (i = 0; i < num_words; i++) {
+		*data++ = IORD(HPI_NIOSII_BASE_ADDR, HPI_DATA);
+		DEBUG_OUT("    0x%04x", *(data-1));
+	}
 }
 
 /** private functions **/
-
 
 /*
  *  FUNCTION: get_ushort
@@ -474,14 +423,15 @@ void hpi_read_words(unsigned short chip_addr,
  *    An unsigned short.
  */
 
-unsigned short get_ushort(char * data, int start_address)
-{
-    unsigned short value = 0;
+unsigned short get_ushort(char * data, int start_address) {
+	unsigned short value = 0;
 
-    value = (((unsigned short)(*(unsigned char*)(data + start_address + 1)) << 8) |
-              (unsigned short)(*(unsigned char*)(data + start_address)));
+	value =
+			(((unsigned short) (*(unsigned char*) (data + start_address + 1))
+					<< 8)
+					| (unsigned short) (*(unsigned char*) (data + start_address)));
 
-    return value;
+	return value;
 }
 
 /*
@@ -499,15 +449,13 @@ unsigned short get_ushort(char * data, int start_address)
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int writeable_region(unsigned short chip_addr,
-                         int byte_length)
-{
-    int response = ERROR;
+int writeable_region(unsigned short chip_addr, int byte_length) {
+	int response = ERROR;
 
-    /* Check that address is in a valid writable range */
-    if (((int)chip_addr + byte_length) <= 0xFFFF)
-        response = SUCCESS;
+	/* Check that address is in a valid writable range */
+	if (((int) chip_addr + byte_length) <= 0xFFFF)
+		response = SUCCESS;
 
-    return response;
+	return response;
 }
 

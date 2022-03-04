@@ -33,7 +33,7 @@
 //
 // --------------------------------------------------------------------
 // Author: Dee Zeng        
-
+#include "alt_types.h"
 
 typedef enum{
     LED_DISPLAY = 0x01,

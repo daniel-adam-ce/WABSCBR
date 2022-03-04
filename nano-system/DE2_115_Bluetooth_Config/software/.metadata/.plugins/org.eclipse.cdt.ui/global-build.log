@@ -1,0 +1,30 @@
+15:05:51 **** Incremental Build of configuration Nios II for project HC05_Config ****
+make all 
+Info: Building ../HC05_Config_bsp/
+E:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../HC05_Config_bsp/
+[BSP build complete]
+Info: Compiling CUart.cpp to obj/default/CUart.o
+nios2-elf-gcc -xc++ -MP -MMD -c -I../HC05_Config_bsp//HAL/inc -I../HC05_Config_bsp/ -I../HC05_Config_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED      -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/CUart.o CUart.cpp
+Info: Compiling main.cpp to obj/default/main.o
+nios2-elf-gcc -xc++ -MP -MMD -c -I../HC05_Config_bsp//HAL/inc -I../HC05_Config_bsp/ -I../HC05_Config_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED      -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/main.o main.cpp
+main.cpp: In function 'int main()':
+main.cpp:26:28: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+   Uart.Open(HC_05_UART_NAME);
+                            ^
+main.cpp:31:28: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+   Uart.WriteString("AT\r\n");
+                            ^
+main.cpp:34:33: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+   Uart.WriteString("AT+ORGL\r\n");
+                                 ^
+main.cpp:37:44: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+   Uart.WriteString("AT+UART=115200,0,0\r\n");
+                                            ^
+Info: Linking HC05_Config.elf
+nios2-elf-g++  -T'../HC05_Config_bsp//linker.x' -msys-crt0='../HC05_Config_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../HC05_Config_bsp/   -Wl,-Map=HC05_Config.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o HC05_Config.elf obj/default/CUart.o obj/default/main.o -lm -msys-lib=m
+nios2-elf-insert HC05_Config.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name Qsys --quartus_project_dir "K:/RTS/cd/system_cd/Demonstrations/DE2_115_Bluetooth_Config" --jdi K:/RTS/cd/system_cd/Demonstrations/DE2_115_Bluetooth_Config/software/HC05_Config_bsp/../../DE2_115_Bluetooth_Config.jdi --sopcinfo K:/RTS/cd/system_cd/Demonstrations/DE2_115_Bluetooth_Config/software/HC05_Config_bsp/../../Qsys.sopcinfo
+Info: (HC05_Config.elf) 84 KBytes program size (code + initialized data).
+Info:                   6820 Bytes free for stack + heap.
+Info: Creating HC05_Config.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source HC05_Config.elf >HC05_Config.objdump
+[HC05_Config build complete]

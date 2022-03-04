@@ -49,67 +49,66 @@
 #include "usb_device_control.h"
 #include "LCD.h"
 
- /*
-  * Docs reference  :   cy3663_cd_rom 
-  *                 :  BIOS User¡¯s Manual
-  * 
-  * demo reference  :  WINCE ver 1.1 drivers for peripheral mode 
-  *                        http://www.cypress.com/?rID=14386    
-  * 
-  *  you can download this from cypress web site and search for other reference
-  */
-   
+/*
+ * Docs reference  :   cy3663_cd_rom 
+ *                 :  BIOS User¡¯s Manual
+ * 
+ * demo reference  :  WINCE ver 1.1 drivers for peripheral mode 
+ *                        http://www.cypress.com/?rID=14386    
+ * 
+ *  you can download this from cypress web site and search for other reference
+ */
+
 #ifdef DEBUG_MAIN
-    #define DEBUG_OUT(format, arg...) printf(format, ## arg)
+#define DEBUG_OUT(format, arg...) printf(format, ## arg)
 #else
-    #define DEBUG_OUT(format, arg...) 
+#define DEBUG_OUT(format, arg...) 
 #endif   
-   
+
 extern DEVICE_STATUS device_status;
 
-int main(void)
-{ 
-    DEBUG_OUT("========= DE2-115 CY7C67200 USB Device Demo [2011/07/05]=========\n");
-    DEBUG_OUT("=                                                               =\n");
-    DEBUG_OUT("=  This program demo a simply transfer between PC and DE2-115.  =\n");
-    DEBUG_OUT("=                                                               =\n");
-    DEBUG_OUT("=================================================================\n");
- 
+int main(void) {
+	DEBUG_OUT(
+			"========= DE2-115 CY7C67200 USB Device Demo [2011/07/05]=========\n");
+	DEBUG_OUT(
+			"=                                                               =\n");
+	DEBUG_OUT(
+			"=  This program demo a simply transfer between PC and DE2-115.  =\n");
+	DEBUG_OUT(
+			"=                                                               =\n");
+	DEBUG_OUT(
+			"=================================================================\n");
 
-     /*******************************************************************************
-      * dc_download has download code into 67200 chip's ram 
-      * And then call the COMM_JUMP2CODE lcp command to let 67200 run this image
-      * 
-      * pcd_asm.h is generate from pcd_asm.asm (folder :pcd_asm)
-      * we can edit the pcd_asm.asm and generate a new code to realize our functions
-      * // please move the folder to a new location if you want to generate your code 
-      * // otherwise there will be some error or bug when you use makep.bat 
-      * 
-      * you can see pcd_asm.asm to know the detail process 
-      */ 
-      if(dc_download((char*)pcd_asm,/*max_try*/10)==ERROR){ //fail to init
-        DEBUG_OUT("-DEVICE Init - Failed to download into 67200 Chip.\n") ;
-        return FALSE;
-       }
-      usleep(100000);
-          while(1)
-        {
-             /****************************************
-              *  mainly check the SIE2 message
-              *  and then process it according to the message
-              *************************************/
-              dcProcessEvent();
-            
-             /****************************************
-              *  when the status of switch or button have changed
-              *  send a packet to pc to indicate the change
-              *************************************/
-             check_button_sw_status();
-        }
-          
- 
-   return 0;
+	/*******************************************************************************
+	 * dc_download has download code into 67200 chip's ram 
+	 * And then call the COMM_JUMP2CODE lcp command to let 67200 run this image
+	 * 
+	 * pcd_asm.h is generate from pcd_asm.asm (folder :pcd_asm)
+	 * we can edit the pcd_asm.asm and generate a new code to realize our functions
+	 * // please move the folder to a new location if you want to generate your code 
+	 * // otherwise there will be some error or bug when you use makep.bat 
+	 * 
+	 * you can see pcd_asm.asm to know the detail process 
+	 */
+	if (dc_download((char*) pcd_asm,/*max_try*/10) == ERROR) { //fail to init
+		DEBUG_OUT("-DEVICE Init - Failed to download into 67200 Chip.\n");
+		return FALSE;
+	}
+	usleep(100000);
+	while (1) {
+		/****************************************
+		 *  mainly check the SIE2 message
+		 *  and then process it according to the message
+		 *************************************/
+		dcProcessEvent();
+
+		/****************************************
+		 *  when the status of switch or button have changed
+		 *  send a packet to pc to indicate the change
+		 *************************************/
+		check_button_sw_status();
+	}
+
+	return 0;
 }
-
-
 

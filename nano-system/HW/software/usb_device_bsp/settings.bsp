@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 25, 2022 11:15:20 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1645816520717</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 27, 2022 10:23:26 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1645986206409</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\micae\Documents\Senior-Design-B\WABSCBR\nano-system\HW\software\usb_device_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\DE2_115_Qsys.sopcinfo</SopcDesignFile>

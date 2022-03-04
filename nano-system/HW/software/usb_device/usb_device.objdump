@@ -35,43 +35,43 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   8 .debug_aranges 00000fd0  00000000  00000000  00015330  2**3
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_info   00025934  00000000  00000000  00016300  2**0
+  9 .debug_info   00025931  00000000  00000000  00016300  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00009acb  00000000  00000000  0003bc34  2**0
+ 10 .debug_abbrev 00009aaf  00000000  00000000  0003bc31  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   0000c2fb  00000000  00000000  000456ff  2**0
+ 11 .debug_line   0000c2e7  00000000  00000000  000456e0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_frame  00002734  00000000  00000000  000519fc  2**2
+ 12 .debug_frame  00002734  00000000  00000000  000519c8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    00003c49  00000000  00000000  00054130  2**0
+ 13 .debug_str    00003c49  00000000  00000000  000540fc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    000178c0  00000000  00000000  00057d79  2**0
+ 14 .debug_loc    000178c0  00000000  00000000  00057d45  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_alt_sim_info 00000050  00000000  00000000  0006f63c  2**2
+ 15 .debug_alt_sim_info 00000050  00000000  00000000  0006f608  2**2
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 000018d8  00000000  00000000  0006f690  2**3
+ 16 .debug_ranges 000018d8  00000000  00000000  0006f658  2**3
                   CONTENTS, READONLY, DEBUGGING
- 17 .thread_model 00000003  00000000  00000000  00074682  2**0
+ 17 .thread_model 00000003  00000000  00000000  0007464a  2**0
                   CONTENTS, READONLY
- 18 .cpu          00000005  00000000  00000000  00074685  2**0
+ 18 .cpu          00000005  00000000  00000000  0007464d  2**0
                   CONTENTS, READONLY
- 19 .qsys         00000001  00000000  00000000  0007468a  2**0
+ 19 .qsys         00000001  00000000  00000000  00074652  2**0
                   CONTENTS, READONLY
- 20 .simulation_enabled 00000001  00000000  00000000  0007468b  2**0
+ 20 .simulation_enabled 00000001  00000000  00000000  00074653  2**0
                   CONTENTS, READONLY
- 21 .stderr_dev   0000000b  00000000  00000000  0007468c  2**0
+ 21 .stderr_dev   0000000b  00000000  00000000  00074654  2**0
                   CONTENTS, READONLY
- 22 .stdin_dev    0000000b  00000000  00000000  00074697  2**0
+ 22 .stdin_dev    0000000b  00000000  00000000  0007465f  2**0
                   CONTENTS, READONLY
- 23 .stdout_dev   0000000b  00000000  00000000  000746a2  2**0
+ 23 .stdout_dev   0000000b  00000000  00000000  0007466a  2**0
                   CONTENTS, READONLY
- 24 .sopc_system_name 0000000c  00000000  00000000  000746ad  2**0
+ 24 .sopc_system_name 0000000c  00000000  00000000  00074675  2**0
                   CONTENTS, READONLY
- 25 .quartus_project_dir 0000003f  00000000  00000000  000746b9  2**0
+ 25 .quartus_project_dir 0000003f  00000000  00000000  00074681  2**0
                   CONTENTS, READONLY
- 26 .jdi          00004380  00000000  00000000  000746f8  2**0
+ 26 .jdi          00004380  00000000  00000000  000746c0  2**0
                   CONTENTS, READONLY
- 27 .sopcinfo     0006cb11  00000000  00000000  00078a78  2**0
+ 27 .sopcinfo     0006cb11  00000000  00000000  00078a40  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 00000000 l    d  .entry	00000000 .entry
@@ -1129,31 +1129,31 @@ void LCD_Test()
 
 00000444 <dc_init_struct>:
 
+/** local variable **/
+
 DEVICE_STATUS device_status;
 
-
-void dc_init_struct(void)
-{
+void dc_init_struct(void) {
      444:	deffff04 	addi	sp,sp,-4
      448:	df000015 	stw	fp,0(sp)
      44c:	d839883a 	mov	fp,sp
-    device_status.hpi_status = 0; 
+	device_status.hpi_status = 0;
      450:	00800074 	movhi	r2,1
      454:	10984a04 	addi	r2,r2,24872
      458:	1000000d 	sth	zero,0(r2)
-    device_status.bEP1InTransfer = FALSE;
+	device_status.bEP1InTransfer = FALSE;
      45c:	00800074 	movhi	r2,1
      460:	10984a04 	addi	r2,r2,24872
      464:	10000115 	stw	zero,4(r2)
-    device_status.bEP2InTransfer = FALSE;
+	device_status.bEP2InTransfer = FALSE;
      468:	00800074 	movhi	r2,1
      46c:	10984a04 	addi	r2,r2,24872
      470:	10000215 	stw	zero,8(r2)
-    device_status.EP1_Transfer_Timeout = 0;
+	device_status.EP1_Transfer_Timeout = 0;
      474:	00800074 	movhi	r2,1
      478:	10984a04 	addi	r2,r2,24872
      47c:	10000415 	stw	zero,16(r2)
-    device_status.bEP1_Transfer_Judge = FALSE;
+	device_status.bEP1_Transfer_Judge = FALSE;
      480:	00800074 	movhi	r2,1
      484:	10984a04 	addi	r2,r2,24872
      488:	10000315 	stw	zero,12(r2)
@@ -1166,50 +1166,49 @@ void dc_init_struct(void)
 
 000004a0 <dc_clear_bug>:
 
-void dc_clear_bug(void)
-{
+void dc_clear_bug(void) {
      4a0:	defffd04 	addi	sp,sp,-12
      4a4:	dfc00215 	stw	ra,8(sp)
      4a8:	df000115 	stw	fp,4(sp)
      4ac:	df000104 	addi	fp,sp,4
-            DEBUG_OUT("Clear up the interrupt\r\n");
+	DEBUG_OUT("Clear up the interrupt\r\n");
      4b0:	01000074 	movhi	r4,1
      4b4:	21069904 	addi	r4,r4,6756
      4b8:	00023d40 	call	23d4 <printf>
      4bc:	01000074 	movhi	r4,1
      4c0:	21069b04 	addi	r4,r4,6764
      4c4:	00024d00 	call	24d0 <puts>
-            alt_u16 intStat;
-            hpi_read_mbx();
+	alt_u16 intStat;
+	hpi_read_mbx();
      4c8:	00016a00 	call	16a0 <hpi_read_mbx>
-            hpi_read_status();
+	hpi_read_status();
      4cc:	00016380 	call	1638 <hpi_read_status>
 
-            // Had to add the write due to a bug in BIOS where they overwrite
-            // the mailbox after initialization with garbage.  The read clears
-            // any pending interrupts.
-             hpi_read_reg (HPI_SIE1_MSG_ADR, &intStat);
+	// Had to add the write due to a bug in BIOS where they overwrite
+	// the mailbox after initialization with garbage.  The read clears
+	// any pending interrupts.
+	hpi_read_reg(HPI_SIE1_MSG_ADR, &intStat);
      4d0:	e17fff04 	addi	r5,fp,-4
      4d4:	01005104 	movi	r4,324
      4d8:	00015a00 	call	15a0 <hpi_read_reg>
-             hpi_write_reg (HPI_SIE1_MSG_ADR, 0);
+	hpi_write_reg(HPI_SIE1_MSG_ADR, 0);
      4dc:	000b883a 	mov	r5,zero
      4e0:	01005104 	movi	r4,324
      4e4:	00015ec0 	call	15ec <hpi_write_reg>
-            hpi_read_reg (HPI_SIE2_MSG_ADR, &intStat);
+	hpi_read_reg(HPI_SIE2_MSG_ADR, &intStat);
      4e8:	e17fff04 	addi	r5,fp,-4
      4ec:	01005204 	movi	r4,328
      4f0:	00015a00 	call	15a0 <hpi_read_reg>
-            hpi_write_reg (HPI_SIE2_MSG_ADR, 0);
+	hpi_write_reg(HPI_SIE2_MSG_ADR, 0);
      4f4:	000b883a 	mov	r5,zero
      4f8:	01005204 	movi	r4,328
      4fc:	00015ec0 	call	15ec <hpi_write_reg>
 
-            hpi_write_reg (HOST1_STAT_REG, 0xFFFF);
+	hpi_write_reg(HOST1_STAT_REG, 0xFFFF);
      500:	017fffd4 	movui	r5,65535
      504:	01302414 	movui	r4,49296
      508:	00015ec0 	call	15ec <hpi_write_reg>
-            hpi_write_reg (HOST2_STAT_REG, 0xFFFF);   
+	hpi_write_reg(HOST2_STAT_REG, 0xFFFF);
      50c:	017fffd4 	movui	r5,65535
      510:	01302c14 	movui	r4,49328
      514:	00015ec0 	call	15ec <hpi_write_reg>
@@ -1222,58 +1221,58 @@ void dc_clear_bug(void)
      52c:	f800283a 	ret
 
 00000530 <dc_download>:
+ *
  *  RETURNS: 
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int dc_download(char * download_data,int max_try)
-{
+int dc_download(char * download_data, int max_try) {
      530:	defff904 	addi	sp,sp,-28
      534:	dfc00615 	stw	ra,24(sp)
      538:	df000515 	stw	fp,20(sp)
      53c:	df000504 	addi	fp,sp,20
      540:	e13ffe15 	stw	r4,-8(fp)
      544:	e17fff15 	stw	r5,-4(fp)
-    DEBUG_OUT("+ dc_download ---- \n");
+	DEBUG_OUT("+ dc_download ---- \n");
      548:	01000074 	movhi	r4,1
      54c:	21069904 	addi	r4,r4,6756
      550:	00023d40 	call	23d4 <printf>
      554:	01000074 	movhi	r4,1
      558:	2106a104 	addi	r4,r4,6788
      55c:	00024d00 	call	24d0 <puts>
-    int try_i=0;
+	int try_i = 0;
      560:	e03ffb15 	stw	zero,-20(fp)
-    int response = ERROR;
+	int response = ERROR;
      564:	00bfffc4 	movi	r2,-1
      568:	e0bffc15 	stw	r2,-16(fp)
-    unsigned short address;
-    unsigned short download_length;   
+	unsigned short address;
+	unsigned short download_length;
 
-    while((try_i<max_try)&&(response == ERROR)){
+	while ((try_i < max_try) && (response == ERROR)) {
      56c:	00003706 	br	64c <dc_download+0x11c>
 
-       /* Download asm code array to ASIC RAM  */
-       if (download_data != NULL) {
+		/* Download asm code array to ASIC RAM  */
+		if (download_data != NULL) {
      570:	e0bffe17 	ldw	r2,-8(fp)
      574:	10002826 	beq	r2,zero,618 <dc_download+0xe8>
-           dc_clear_bug();
+			dc_clear_bug();
      578:	00004a00 	call	4a0 <dc_clear_bug>
 
-          /* Org address */
-          address = get_ushort(download_data, 0xe);
+			/* Org address */
+			address = get_ushort(download_data, 0xe);
      57c:	01400384 	movi	r5,14
      580:	e13ffe17 	ldw	r4,-8(fp)
      584:	00018640 	call	1864 <get_ushort>
      588:	e0bffd0d 	sth	r2,-12(fp)
 
-          download_length = get_ushort(download_data, 0xb) - 2;
+			download_length = get_ushort(download_data, 0xb) - 2;
      58c:	014002c4 	movi	r5,11
      590:	e13ffe17 	ldw	r4,-8(fp)
      594:	00018640 	call	1864 <get_ushort>
      598:	10bfff84 	addi	r2,r2,-2
      59c:	e0bffd8d 	sth	r2,-10(fp)
 
-          DEBUG_OUT("dc_download: address=0x%x, download_length=0x%x\r\n", address, download_length);
+			DEBUG_OUT("dc_download: address=0x%x, download_length=0x%x\r\n",
      5a0:	01000074 	movhi	r4,1
      5a4:	21069904 	addi	r4,r4,6756
      5a8:	00023d40 	call	23d4 <printf>
@@ -1284,8 +1283,9 @@ int dc_download(char * download_data,int max_try)
      5bc:	01000074 	movhi	r4,1
      5c0:	2106a604 	addi	r4,r4,6808
      5c4:	00023d40 	call	23d4 <printf>
+					address, download_length);
 
-          if ((response = dc_download_code(address, download_length,
+			if ((response = dc_download_code(address, download_length,
      5c8:	e0fffd0b 	ldhu	r3,-12(fp)
      5cc:	e13ffd8b 	ldhu	r4,-10(fp)
      5d0:	e0bffe17 	ldw	r2,-8(fp)
@@ -1298,9 +1298,8 @@ int dc_download(char * download_data,int max_try)
      5ec:	e0bffc17 	ldw	r2,-16(fp)
      5f0:	10bfffd8 	cmpnei	r2,r2,-1
      5f4:	10001c1e 	bne	r2,zero,668 <dc_download+0x138>
-                              &download_data[16] )) == ERROR) 
-           {
-             DEBUG_ERR("dc_download: download error,  try_count=%d\r\n",try_i);
+					&download_data[16])) == ERROR) {
+				DEBUG_ERR("dc_download: download error,  try_count=%d\r\n",
      5f8:	01000074 	movhi	r4,1
      5fc:	2106b304 	addi	r4,r4,6860
      600:	00023d40 	call	23d4 <printf>
@@ -1309,35 +1308,36 @@ int dc_download(char * download_data,int max_try)
      60c:	2106b604 	addi	r4,r4,6872
      610:	00023d40 	call	23d4 <printf>
      614:	00000806 	br	638 <dc_download+0x108>
-           }else{
-               goto _Finished_Download;
-           }
-    
-         } else {
-            DEBUG_OUT("dc_download:Null Code--Nothing had being download to the ASIC Ram!!");
+			} else {
+				goto _Finished_Download;
+			}
+
+		} else {
+			DEBUG_OUT(
      618:	01000074 	movhi	r4,1
      61c:	21069904 	addi	r4,r4,6756
      620:	00023d40 	call	23d4 <printf>
      624:	01000074 	movhi	r4,1
      628:	2106c204 	addi	r4,r4,6920
      62c:	00023d40 	call	23d4 <printf>
-            response = ERROR;
+					"dc_download:Null Code--Nothing had being download to the ASIC Ram!!");
+			response = ERROR;
      630:	00bfffc4 	movi	r2,-1
      634:	e0bffc15 	stw	r2,-16(fp)
-      }
-       try_i++;
+		}
+		try_i++;
      638:	e0bffb17 	ldw	r2,-20(fp)
      63c:	10800044 	addi	r2,r2,1
      640:	e0bffb15 	stw	r2,-20(fp)
-       usleep(10000);
+		usleep(10000);
      644:	0109c404 	movi	r4,10000
      648:	000ecb80 	call	ecb8 <usleep>
-    int try_i=0;
-    int response = ERROR;
-    unsigned short address;
-    unsigned short download_length;   
+	int try_i = 0;
+	int response = ERROR;
+	unsigned short address;
+	unsigned short download_length;
 
-    while((try_i<max_try)&&(response == ERROR)){
+	while ((try_i < max_try) && (response == ERROR)) {
      64c:	e0fffb17 	ldw	r3,-20(fp)
      650:	e0bfff17 	ldw	r2,-4(fp)
      654:	1880050e 	bge	r3,r2,66c <dc_download+0x13c>
@@ -1345,28 +1345,27 @@ int dc_download(char * download_data,int max_try)
      65c:	10bfffe0 	cmpeqi	r2,r2,-1
      660:	103fc31e 	bne	r2,zero,570 <__alt_data_end+0xf8000570>
      664:	00000106 	br	66c <dc_download+0x13c>
-          if ((response = dc_download_code(address, download_length,
-                              &download_data[16] )) == ERROR) 
-           {
-             DEBUG_ERR("dc_download: download error,  try_count=%d\r\n",try_i);
-           }else{
-               goto _Finished_Download;
+			if ((response = dc_download_code(address, download_length,
+					&download_data[16])) == ERROR) {
+				DEBUG_ERR("dc_download: download error,  try_count=%d\r\n",
+						try_i);
+			} else {
+				goto _Finished_Download;
      668:	0001883a 	nop
-      }
-       try_i++;
-       usleep(10000);
-    }
-_Finished_Download:
-    DEBUG_OUT("- dc_download ---- \n");
+		}
+		try_i++;
+		usleep(10000);
+	}
+	_Finished_Download:
+	DEBUG_OUT("- dc_download ---- \n");
      66c:	01000074 	movhi	r4,1
      670:	21069904 	addi	r4,r4,6756
      674:	00023d40 	call	23d4 <printf>
      678:	01000074 	movhi	r4,1
      67c:	2106d304 	addi	r4,r4,6988
      680:	00024d00 	call	24d0 <puts>
-return response;
+	return response;
      684:	e0bffc17 	ldw	r2,-16(fp)
-
 
 }
      688:	e037883a 	mov	sp,fp
@@ -1376,12 +1375,12 @@ return response;
      698:	f800283a 	ret
 
 0000069c <dc_download_code>:
+ *  RETURNS: 
+ *    SUCCESS         - Success
+ *    ERROR           - Failure
  */
 
-int dc_download_code(unsigned short chip_addr,
-                      int byte_length,
-                      char * data)
-{
+int dc_download_code(unsigned short chip_addr, int byte_length, char * data) {
      69c:	defff704 	addi	sp,sp,-36
      6a0:	dfc00815 	stw	ra,32(sp)
      6a4:	df000715 	stw	fp,28(sp)
@@ -1390,42 +1389,41 @@ int dc_download_code(unsigned short chip_addr,
      6b0:	e17ffe15 	stw	r5,-8(fp)
      6b4:	e1bfff15 	stw	r6,-4(fp)
      6b8:	e0bffd0d 	sth	r2,-12(fp)
-    int response = ERROR;
+	int response = ERROR;
      6bc:	00bfffc4 	movi	r2,-1
      6c0:	e0bff915 	stw	r2,-28(fp)
 
-    if (byte_length > 0) {
+	if (byte_length > 0) {
      6c4:	e0bffe17 	ldw	r2,-8(fp)
      6c8:	00803e0e 	bge	zero,r2,7c4 <dc_download_code+0x128>
 
-        response = hpi_write_memory(chip_addr, data,byte_length);
+		response = hpi_write_memory(chip_addr, data, byte_length);
      6cc:	e0bffd0b 	ldhu	r2,-12(fp)
      6d0:	e1bffe17 	ldw	r6,-8(fp)
      6d4:	e17fff17 	ldw	r5,-4(fp)
      6d8:	1009883a 	mov	r4,r2
      6dc:	00013bc0 	call	13bc <hpi_write_memory>
      6e0:	e0bff915 	stw	r2,-28(fp)
-        char *cmpdata;
-        cmpdata = malloc(byte_length);
+		char *cmpdata;
+		cmpdata = malloc(byte_length);
      6e4:	e0bffe17 	ldw	r2,-8(fp)
      6e8:	1009883a 	mov	r4,r2
      6ec:	0001b700 	call	1b70 <malloc>
      6f0:	e0bffc15 	stw	r2,-16(fp)
-        hpi_read_memory(chip_addr,cmpdata,byte_length);
+		hpi_read_memory(chip_addr, cmpdata, byte_length);
      6f4:	e0bffd0b 	ldhu	r2,-12(fp)
      6f8:	e1bffe17 	ldw	r6,-8(fp)
      6fc:	e17ffc17 	ldw	r5,-16(fp)
      700:	1009883a 	mov	r4,r2
      704:	00012940 	call	1294 <hpi_read_memory>
-        int  i;
-        bool data_checker = TRUE;
+		int i;
+		bool data_checker = TRUE;
      708:	00800044 	movi	r2,1
      70c:	e0bffb15 	stw	r2,-20(fp)
-        for(i=0;i<byte_length; i++)
+		for (i = 0; i < byte_length; i++) {
      710:	e03ffa15 	stw	zero,-24(fp)
      714:	00001506 	br	76c <dc_download_code+0xd0>
-        {
-         if(*(data+i) != *(cmpdata+i)) {
+			if (*(data + i) != *(cmpdata + i)) {
      718:	e0bffa17 	ldw	r2,-24(fp)
      71c:	e0ffff17 	ldw	r3,-4(fp)
      720:	1885883a 	add	r2,r3,r2
@@ -1441,65 +1439,64 @@ int dc_download_code(unsigned short chip_addr,
      748:	1080201c 	xori	r2,r2,128
      74c:	10bfe004 	addi	r2,r2,-128
      750:	18800326 	beq	r3,r2,760 <dc_download_code+0xc4>
-            //DEBUG_OUT("err[%d]: wrdata:0x%02X,rddata :0x%02X\n",i,(char)*(data+i),(char)*(cmpdata+i));
-           // DEBUG_OUT("err[%d],",i);
-            data_checker =  FALSE ;
+				//DEBUG_OUT("err[%d]: wrdata:0x%02X,rddata :0x%02X\n",i,(char)*(data+i),(char)*(cmpdata+i));
+				// DEBUG_OUT("err[%d],",i);
+				data_checker = FALSE;
      754:	e03ffb15 	stw	zero,-20(fp)
-            response     =  ERROR;
+				response = ERROR;
      758:	00bfffc4 	movi	r2,-1
      75c:	e0bff915 	stw	r2,-28(fp)
-        char *cmpdata;
-        cmpdata = malloc(byte_length);
-        hpi_read_memory(chip_addr,cmpdata,byte_length);
-        int  i;
-        bool data_checker = TRUE;
-        for(i=0;i<byte_length; i++)
+		char *cmpdata;
+		cmpdata = malloc(byte_length);
+		hpi_read_memory(chip_addr, cmpdata, byte_length);
+		int i;
+		bool data_checker = TRUE;
+		for (i = 0; i < byte_length; i++) {
      760:	e0bffa17 	ldw	r2,-24(fp)
      764:	10800044 	addi	r2,r2,1
      768:	e0bffa15 	stw	r2,-24(fp)
      76c:	e0fffa17 	ldw	r3,-24(fp)
      770:	e0bffe17 	ldw	r2,-8(fp)
      774:	18bfe816 	blt	r3,r2,718 <__alt_data_end+0xf8000718>
-            data_checker =  FALSE ;
-            response     =  ERROR;
-            }
-        }
+				data_checker = FALSE;
+				response = ERROR;
+			}
+		}
 
-       free(cmpdata);
+		free(cmpdata);
      778:	e13ffc17 	ldw	r4,-16(fp)
      77c:	0001b840 	call	1b84 <free>
 
-       if( data_checker == FALSE )
+		if (data_checker == FALSE) {
      780:	e0bffb17 	ldw	r2,-20(fp)
      784:	1000061e 	bne	r2,zero,7a0 <dc_download_code+0x104>
-       {
-        DEBUG_ERR("Data Checker ERROR! \n");
+			DEBUG_ERR("Data Checker ERROR! \n");
      788:	01000074 	movhi	r4,1
      78c:	2106b304 	addi	r4,r4,6860
      790:	00023d40 	call	23d4 <printf>
      794:	01000074 	movhi	r4,1
      798:	2106d804 	addi	r4,r4,7008
      79c:	00024d00 	call	24d0 <puts>
-       }
+		}
 
-       if ( response == SUCCESS) {
+		if (response == SUCCESS) {
      7a0:	e0bff917 	ldw	r2,-28(fp)
      7a4:	1000071e 	bne	r2,zero,7c4 <dc_download_code+0x128>
-           
-             //COMM_JUMP2CODE flag,it will be cleared when mailbox Ack
-              hpi_write_reg(COMM_CODE_ADDR, chip_addr);
+
+			//COMM_JUMP2CODE flag,it will be cleared when mailbox Ack
+			hpi_write_reg(COMM_CODE_ADDR, chip_addr);
      7a8:	e0bffd0b 	ldhu	r2,-12(fp)
      7ac:	100b883a 	mov	r5,r2
      7b0:	01006f04 	movi	r4,444
      7b4:	00015ec0 	call	15ec <hpi_write_reg>
 
-              response = hpi_command(COMM_JUMP2CODE);
+			response = hpi_command(COMM_JUMP2CODE);
      7b8:	01338014 	movui	r4,52736
      7bc:	00007dc0 	call	7dc <hpi_command>
      7c0:	e0bff915 	stw	r2,-28(fp)
-          }
-    }
-    return response;
+		}
+	}
+	return response;
      7c4:	e0bff917 	ldw	r2,-28(fp)
 }
      7c8:	e037883a 	mov	sp,fp
@@ -1510,8 +1507,7 @@ int dc_download_code(unsigned short chip_addr,
 
 000007dc <hpi_command>:
 
-int hpi_command( unsigned short cmd)
-{ 
+int hpi_command(unsigned short cmd) {
      7dc:	defffb04 	addi	sp,sp,-20
      7e0:	dfc00415 	stw	ra,16(sp)
      7e4:	df000315 	stw	fp,12(sp)
@@ -1519,13 +1515,13 @@ int hpi_command( unsigned short cmd)
      7ec:	2005883a 	mov	r2,r4
      7f0:	e0bfff0d 	sth	r2,-4(fp)
 	alt_u32 Timeout;
-    alt_u16 IntStat;
-    
-    IntStat= hpi_read_status();  // clear interrupt status register
+	alt_u16 IntStat;
+
+	IntStat = hpi_read_status();  // clear interrupt status register
      7f4:	00016380 	call	1638 <hpi_read_status>
      7f8:	e0bffd0d 	sth	r2,-12(fp)
-    
-    device_status.hpi_status |= IntStat; //record into hpi_status
+
+	device_status.hpi_status |= IntStat; //record into hpi_status
      7fc:	00800074 	movhi	r2,1
      800:	10984a04 	addi	r2,r2,24872
      804:	10c0000b 	ldhu	r3,0(r2)
@@ -1535,16 +1531,16 @@ int hpi_command( unsigned short cmd)
      814:	00800074 	movhi	r2,1
      818:	10984a04 	addi	r2,r2,24872
      81c:	10c0000d 	sth	r3,0(r2)
-    
-    hpi_write_mbx(cmd);
+
+	hpi_write_mbx(cmd);
      820:	e0bfff0b 	ldhu	r2,-4(fp)
      824:	1009883a 	mov	r4,r2
      828:	00016680 	call	1668 <hpi_write_mbx>
-       
-       IntStat= hpi_read_status();      
+
+	IntStat = hpi_read_status();
      82c:	00016380 	call	1638 <hpi_read_status>
      830:	e0bffd0d 	sth	r2,-12(fp)
-          device_status.hpi_status |= IntStat;   //record into hpi_status
+	device_status.hpi_status |= IntStat;   //record into hpi_status
      834:	00800074 	movhi	r2,1
      838:	10984a04 	addi	r2,r2,24872
      83c:	10c0000b 	ldhu	r3,0(r2)
@@ -1569,16 +1565,15 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_ticks_per_second (void)
   return _alt_tick_rate;
      85c:	d0a78c17 	ldw	r2,-25040(gp)
 
-      Timeout = alt_nticks() + alt_ticks_per_second();
+	Timeout = alt_nticks() + alt_ticks_per_second();
      860:	1885883a 	add	r2,r3,r2
      864:	e0bffe15 	stw	r2,-8(fp)
-      while(((IntStat& MBX_OUT_FLG) == 0)&&(alt_nticks() < Timeout))
+	while (((IntStat & MBX_OUT_FLG) == 0) && (alt_nticks() < Timeout)) {
      868:	00000b06 	br	898 <hpi_command+0xbc>
-      {
-          IntStat= hpi_read_status();      
+		IntStat = hpi_read_status();
      86c:	00016380 	call	1638 <hpi_read_status>
      870:	e0bffd0d 	sth	r2,-12(fp)
-          device_status.hpi_status |= IntStat;   //record into hpi_status
+		device_status.hpi_status |= IntStat;   //record into hpi_status
      874:	00800074 	movhi	r2,1
      878:	10984a04 	addi	r2,r2,24872
      87c:	10c0000b 	ldhu	r3,0(r2)
@@ -1588,12 +1583,12 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_ticks_per_second (void)
      88c:	00800074 	movhi	r2,1
      890:	10984a04 	addi	r2,r2,24872
      894:	10c0000d 	sth	r3,0(r2)
-       
-       IntStat= hpi_read_status();      
-          device_status.hpi_status |= IntStat;   //record into hpi_status
 
-      Timeout = alt_nticks() + alt_ticks_per_second();
-      while(((IntStat& MBX_OUT_FLG) == 0)&&(alt_nticks() < Timeout))
+	IntStat = hpi_read_status();
+	device_status.hpi_status |= IntStat;   //record into hpi_status
+
+	Timeout = alt_nticks() + alt_ticks_per_second();
+	while (((IntStat & MBX_OUT_FLG) == 0) && (alt_nticks() < Timeout)) {
      898:	e0bffd0b 	ldhu	r2,-12(fp)
      89c:	1080004c 	andi	r2,r2,1
      8a0:	1000031e 	bne	r2,zero,8b0 <hpi_command+0xd4>
@@ -1606,12 +1601,11 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      8a4:	d0e78d17 	ldw	r3,-25036(gp)
      8a8:	e0bffe17 	ldw	r2,-8(fp)
      8ac:	18bfef36 	bltu	r3,r2,86c <__alt_data_end+0xf800086c>
-      {
-          IntStat= hpi_read_status();      
-          device_status.hpi_status |= IntStat;   //record into hpi_status
-       }
+		IntStat = hpi_read_status();
+		device_status.hpi_status |= IntStat;   //record into hpi_status
+	}
 
-        return (( hpi_read_mbx() == COMM_ACK) ? SUCCESS : ERROR );
+	return ((hpi_read_mbx() == COMM_ACK) ? SUCCESS : ERROR);
      8b0:	00016a00 	call	16a0 <hpi_read_mbx>
      8b4:	10bfffcc 	andi	r2,r2,65535
      8b8:	1083fb58 	cmpnei	r2,r2,4077
@@ -1627,10 +1621,10 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      8dc:	f800283a 	ret
 
 000008e0 <usb_send_data>:
-                  unsigned short send_buffer_location,
-                  unsigned char * data,  // 
-                  int byte_length
-                  )
+
+int usb_send_data(unsigned short endpoint, unsigned short send_buffer_location,
+		unsigned char * data,  // 
+		int byte_length)
 
 {
      8e0:	defff704 	addi	sp,sp,-36
@@ -1643,107 +1637,109 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      8fc:	e1ffff15 	stw	r7,-4(fp)
      900:	e0fffc0d 	sth	r3,-16(fp)
      904:	e0bffd0d 	sth	r2,-12(fp)
-    int response = ERROR;
+	int response = ERROR;
      908:	00bfffc4 	movi	r2,-1
      90c:	e0bff915 	stw	r2,-28(fp)
-    if(endpoint == 1) {
+	if (endpoint == 1) {
      910:	e0bffc0b 	ldhu	r2,-16(fp)
      914:	10800058 	cmpnei	r2,r2,1
      918:	1000381e 	bne	r2,zero,9fc <usb_send_data+0x11c>
-  
-       if(device_status.bEP1InTransfer == FALSE) {     
+
+		if (device_status.bEP1InTransfer == FALSE) {
      91c:	00800074 	movhi	r2,1
      920:	10984a04 	addi	r2,r2,24872
      924:	10800117 	ldw	r2,4(r2)
      928:	1000341e 	bne	r2,zero,9fc <usb_send_data+0x11c>
-       //you can set bEP1InTransfer TRUE when you want to make sure this transaction to finish
-       //then you also need to do something when  you need to send data while endpoint is in transfer (list to send ??)
-       
-              TRANSFER_FRAME frame;
-    
-              frame.wNextLink = 0;
+			//you can set bEP1InTransfer TRUE when you want to make sure this transaction to finish
+			//then you also need to do something when  you need to send data while endpoint is in transfer (list to send ??)
+
+			TRANSFER_FRAME frame;
+
+			frame.wNextLink = 0;
      92c:	e03ffa0d 	sth	zero,-24(fp)
-              frame.wAddress = send_buffer_location;
+			frame.wAddress = send_buffer_location;
      930:	e0bffd0b 	ldhu	r2,-12(fp)
      934:	e0bffa8d 	sth	r2,-22(fp)
-              frame.wLength  = byte_length; 
+			frame.wLength = byte_length;
      938:	e0bfff17 	ldw	r2,-4(fp)
      93c:	e0bffb0d 	sth	r2,-20(fp)
-              frame.wCallBack = 0;
+			frame.wCallBack = 0;
      940:	e03ffb8d 	sth	zero,-18(fp)
-    
-              /* write the data to the RAM buffer */
-              hpi_write_memory(send_buffer_location,(char *)data,byte_length);
+
+			/* write the data to the RAM buffer */
+			hpi_write_memory(send_buffer_location, (char *) data, byte_length);
      944:	e0bffd0b 	ldhu	r2,-12(fp)
      948:	e1bfff17 	ldw	r6,-4(fp)
      94c:	e17ffe17 	ldw	r5,-8(fp)
      950:	1009883a 	mov	r4,r2
      954:	00013bc0 	call	13bc <hpi_write_memory>
-    
-              /* Write control structure to the RAM buffer */
-              hpi_write_memory(EP1_TRANSFER_STRUCT_ADDRESS,(char*)&frame,sizeof(TRANSFER_FRAME));
+
+			/* Write control structure to the RAM buffer */
+			hpi_write_memory(EP1_TRANSFER_STRUCT_ADDRESS, (char*) &frame,
      958:	e0bffa04 	addi	r2,fp,-24
      95c:	01800204 	movi	r6,8
      960:	100b883a 	mov	r5,r2
      964:	01040004 	movi	r4,4096
      968:	00013bc0 	call	13bc <hpi_write_memory>
-           
-             //execute SUSB2_SEND_INT
-                hpi_write_reg(COMM_INT_NUM,SUSB2_SEND_INT);
+					sizeof(TRANSFER_FRAME));
+
+			//execute SUSB2_SEND_INT
+			hpi_write_reg(COMM_INT_NUM, SUSB2_SEND_INT);
      96c:	01401804 	movi	r5,96
      970:	01007084 	movi	r4,450
      974:	00015ec0 	call	15ec <hpi_write_reg>
-    
-                /* Set Register values */
-                hpi_write_reg(COMM_R0, 0);
+
+			/* Set Register values */
+			hpi_write_reg(COMM_R0, 0);
      978:	000b883a 	mov	r5,zero
      97c:	01007104 	movi	r4,452
      980:	00015ec0 	call	15ec <hpi_write_reg>
-                hpi_write_reg(COMM_R1, endpoint&0x000f);
+			hpi_write_reg(COMM_R1, endpoint & 0x000f);
      984:	e0bffc0b 	ldhu	r2,-16(fp)
      988:	108003cc 	andi	r2,r2,15
      98c:	100b883a 	mov	r5,r2
      990:	01007184 	movi	r4,454
      994:	00015ec0 	call	15ec <hpi_write_reg>
-                hpi_write_reg(COMM_R8, EP1_TRANSFER_STRUCT_ADDRESS);
+			hpi_write_reg(COMM_R8, EP1_TRANSFER_STRUCT_ADDRESS);
      998:	01440004 	movi	r5,4096
      99c:	01007504 	movi	r4,468
      9a0:	00015ec0 	call	15ec <hpi_write_reg>
-          
-                response = hpi_command(COMM_EXEC_INT);
+
+			response = hpi_command(COMM_EXEC_INT);
      9a4:	01338054 	movui	r4,52737
      9a8:	00007dc0 	call	7dc <hpi_command>
      9ac:	e0bff915 	stw	r2,-28(fp)
-            
-              if(response == SUCCESS){ DEBUG_OUT("send success!\n");
+
+			if (response == SUCCESS) {
      9b0:	e0bff917 	ldw	r2,-28(fp)
      9b4:	10000b1e 	bne	r2,zero,9e4 <usb_send_data+0x104>
+				DEBUG_OUT("send success!\n");
      9b8:	01000074 	movhi	r4,1
      9bc:	21069904 	addi	r4,r4,6756
      9c0:	00023d40 	call	23d4 <printf>
      9c4:	01000074 	movhi	r4,1
      9c8:	2106de04 	addi	r4,r4,7032
      9cc:	00024d00 	call	24d0 <puts>
-              device_status.bEP1InTransfer = TRUE;
+				device_status.bEP1InTransfer = TRUE;
      9d0:	00800074 	movhi	r2,1
      9d4:	10984a04 	addi	r2,r2,24872
      9d8:	00c00044 	movi	r3,1
      9dc:	10c00115 	stw	r3,4(r2)
      9e0:	00000606 	br	9fc <usb_send_data+0x11c>
-              }
-              else   { DEBUG_OUT("send failed!\n");}
+			} else {
+				DEBUG_OUT("send failed!\n");
      9e4:	01000074 	movhi	r4,1
      9e8:	21069904 	addi	r4,r4,6756
      9ec:	00023d40 	call	23d4 <printf>
      9f0:	01000074 	movhi	r4,1
      9f4:	2106e204 	addi	r4,r4,7048
      9f8:	00024d00 	call	24d0 <puts>
-    }
-    else{
-     // Do something here for other endpoint 
-    // DEBUG_OUT("usb_send_data: endpoint %d. Nothing had beeing done!\n",endpoint);
-    }
-   return response ;
+		}
+	} else {
+		// Do something here for other endpoint 
+		// DEBUG_OUT("usb_send_data: endpoint %d. Nothing had beeing done!\n",endpoint);
+	}
+	return response;
      9fc:	e0bff917 	ldw	r2,-28(fp)
 }
      a00:	e037883a 	mov	sp,fp
@@ -1753,10 +1749,10 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      a10:	f800283a 	ret
 
 00000a14 <usb_enable_receive_data>:
-                  unsigned short endpoint,
-                  unsigned short receive_buffer_location,
-                  int byte_length
-                  )
+ */
+
+int usb_enable_receive_data(unsigned short endpoint,
+		unsigned short receive_buffer_location, int byte_length)
 
 {
      a14:	defff804 	addi	sp,sp,-32
@@ -1768,73 +1764,74 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      a2c:	e1bfff15 	stw	r6,-4(fp)
      a30:	e0fffd0d 	sth	r3,-12(fp)
      a34:	e0bffe0d 	sth	r2,-8(fp)
-    int response = ERROR;
+	int response = ERROR;
      a38:	00bfffc4 	movi	r2,-1
      a3c:	e0bffa15 	stw	r2,-24(fp)
-        if(endpoint == 2) {
+	if (endpoint == 2) {
      a40:	e0bffd0b 	ldhu	r2,-12(fp)
      a44:	10800098 	cmpnei	r2,r2,2
      a48:	1000371e 	bne	r2,zero,b28 <usb_enable_receive_data+0x114>
-  
-       if(device_status.bEP2InTransfer == FALSE) {   
+
+		if (device_status.bEP2InTransfer == FALSE) {
      a4c:	00800074 	movhi	r2,1
      a50:	10984a04 	addi	r2,r2,24872
      a54:	10800217 	ldw	r2,8(r2)
      a58:	10002c1e 	bne	r2,zero,b0c <usb_enable_receive_data+0xf8>
-        
+
 //            device_status.bEP2InTransfer = TRUE;
-      
-            TRANSFER_FRAME frame;
-            
-            frame.wNextLink = 0;
+
+			TRANSFER_FRAME frame;
+
+			frame.wNextLink = 0;
      a5c:	e03ffb0d 	sth	zero,-20(fp)
-            frame.wAddress = receive_buffer_location;
+			frame.wAddress = receive_buffer_location;
      a60:	e0bffe0b 	ldhu	r2,-8(fp)
      a64:	e0bffb8d 	sth	r2,-18(fp)
-            frame.wLength  = byte_length;
+			frame.wLength = byte_length;
      a68:	e0bfff17 	ldw	r2,-4(fp)
      a6c:	e0bffc0d 	sth	r2,-16(fp)
-            frame.wCallBack = 0;
+			frame.wCallBack = 0;
      a70:	e03ffc8d 	sth	zero,-14(fp)
-            
-           
-            /* Write control structure to the RAM buffer */
-            hpi_write_memory(EP2_TRANSFER_STRUCT_ADDRESS,(char*)&frame,sizeof(TRANSFER_FRAME));
+
+			/* Write control structure to the RAM buffer */
+			hpi_write_memory(EP2_TRANSFER_STRUCT_ADDRESS, (char*) &frame,
      a74:	e0bffb04 	addi	r2,fp,-20
      a78:	01800204 	movi	r6,8
      a7c:	100b883a 	mov	r5,r2
      a80:	01080004 	movi	r4,8192
      a84:	00013bc0 	call	13bc <hpi_write_memory>
-                   
-                 //execute SUSB2_SEND_INT
-                hpi_write_reg(COMM_INT_NUM,SUSB2_RECEIVE_INT);
+					sizeof(TRANSFER_FRAME));
+
+			//execute SUSB2_SEND_INT
+			hpi_write_reg(COMM_INT_NUM, SUSB2_RECEIVE_INT);
      a88:	01401844 	movi	r5,97
      a8c:	01007084 	movi	r4,450
      a90:	00015ec0 	call	15ec <hpi_write_reg>
-    
-                /* Set Register values */
-                hpi_write_reg(COMM_R0, 0);
+
+			/* Set Register values */
+			hpi_write_reg(COMM_R0, 0);
      a94:	000b883a 	mov	r5,zero
      a98:	01007104 	movi	r4,452
      a9c:	00015ec0 	call	15ec <hpi_write_reg>
-                hpi_write_reg(COMM_R1, endpoint&0x000f);
+			hpi_write_reg(COMM_R1, endpoint & 0x000f);
      aa0:	e0bffd0b 	ldhu	r2,-12(fp)
      aa4:	108003cc 	andi	r2,r2,15
      aa8:	100b883a 	mov	r5,r2
      aac:	01007184 	movi	r4,454
      ab0:	00015ec0 	call	15ec <hpi_write_reg>
-                hpi_write_reg(COMM_R8, EP2_TRANSFER_STRUCT_ADDRESS);
+			hpi_write_reg(COMM_R8, EP2_TRANSFER_STRUCT_ADDRESS);
      ab4:	01480004 	movi	r5,8192
      ab8:	01007504 	movi	r4,468
      abc:	00015ec0 	call	15ec <hpi_write_reg>
-          
-                response = hpi_command(COMM_EXEC_INT);
+
+			response = hpi_command(COMM_EXEC_INT);
      ac0:	01338054 	movui	r4,52737
      ac4:	00007dc0 	call	7dc <hpi_command>
      ac8:	e0bffa15 	stw	r2,-24(fp)
-                if(response == SUCCESS) {DEBUG_OUT("receive enable success!\n");}
+			if (response == SUCCESS) {
      acc:	e0bffa17 	ldw	r2,-24(fp)
      ad0:	1000071e 	bne	r2,zero,af0 <usb_enable_receive_data+0xdc>
+				DEBUG_OUT("receive enable success!\n");
      ad4:	01000074 	movhi	r4,1
      ad8:	21069904 	addi	r4,r4,6756
      adc:	00023d40 	call	23d4 <printf>
@@ -1842,7 +1839,8 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      ae4:	2106e604 	addi	r4,r4,7064
      ae8:	00024d00 	call	24d0 <puts>
      aec:	00001606 	br	b48 <usb_enable_receive_data+0x134>
-                else  { DEBUG_OUT("Receive enable failed!\n");}
+			} else {
+				DEBUG_OUT("Receive enable failed!\n");
      af0:	01000074 	movhi	r4,1
      af4:	21069904 	addi	r4,r4,6756
      af8:	00023d40 	call	23d4 <printf>
@@ -1850,8 +1848,9 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      b00:	2106ec04 	addi	r4,r4,7088
      b04:	00024d00 	call	24d0 <puts>
      b08:	00000f06 	br	b48 <usb_enable_receive_data+0x134>
-       }else{
-         DEBUG_OUT("usb_receive_data: ep2 is enabled!\n");
+			}
+		} else {
+			DEBUG_OUT("usb_receive_data: ep2 is enabled!\n");
      b0c:	01000074 	movhi	r4,1
      b10:	21069904 	addi	r4,r4,6756
      b14:	00023d40 	call	23d4 <printf>
@@ -1859,11 +1858,10 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      b1c:	2106f204 	addi	r4,r4,7112
      b20:	00024d00 	call	24d0 <puts>
      b24:	00000806 	br	b48 <usb_enable_receive_data+0x134>
-         }
-    }
-    else{
-     // Do something here for other endpoint 
-     DEBUG_OUT("usb_receive_data: endpoint %d. Nothing had being done!\n",endpoint);
+		}
+	} else {
+		// Do something here for other endpoint 
+		DEBUG_OUT("usb_receive_data: endpoint %d. Nothing had being done!\n",
      b28:	01000074 	movhi	r4,1
      b2c:	21069904 	addi	r4,r4,6756
      b30:	00023d40 	call	23d4 <printf>
@@ -1872,10 +1870,10 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
      b3c:	01000074 	movhi	r4,1
      b40:	2106fb04 	addi	r4,r4,7148
      b44:	00023d40 	call	23d4 <printf>
-    }  
-       
+				endpoint);
+	}
 
-   return response ;
+	return response;
      b48:	e0bffa17 	ldw	r2,-24(fp)
 }
      b4c:	e037883a 	mov	sp,fp
@@ -2628,16 +2626,16 @@ static ALT_INLINE alt_u32 ALT_ALWAYS_INLINE alt_nticks (void)
 
 00001274 <hpi_init>:
 
+/** private data **/
+
 /** public functions **/
 
-
-int hpi_init(void)
-{
+int hpi_init(void) {
     1274:	deffff04 	addi	sp,sp,-4
     1278:	df000015 	stw	fp,0(sp)
     127c:	d839883a 	mov	fp,sp
 
-    return SUCCESS;
+	return SUCCESS;
     1280:	0005883a 	mov	r2,zero
 }
     1284:	e037883a 	mov	sp,fp
@@ -2646,12 +2644,12 @@ int hpi_init(void)
     1290:	f800283a 	ret
 
 00001294 <hpi_read_memory>:
+ *
+ *  RETURNS: 
+ *    SUCCESS         - Success
+ *    ERROR           - Failure
  */
-int hpi_read_memory(unsigned short chip_addr,
-                    char * data,
-                    int byte_length
-                    )
-{
+int hpi_read_memory(unsigned short chip_addr, char * data, int byte_length) {
     1294:	defff904 	addi	sp,sp,-28
     1298:	dfc00615 	stw	ra,24(sp)
     129c:	df000515 	stw	fp,20(sp)
@@ -2660,18 +2658,18 @@ int hpi_read_memory(unsigned short chip_addr,
     12a8:	e17ffe15 	stw	r5,-8(fp)
     12ac:	e1bfff15 	stw	r6,-4(fp)
     12b0:	e0bffd0d 	sth	r2,-12(fp)
-    int num_words = 0;
+	int num_words = 0;
     12b4:	e03ffb15 	stw	zero,-20(fp)
-    unsigned short short_int;
+	unsigned short short_int;
 
-    /* Check for unaligned address */
-    if ((chip_addr & 0x1) == 0x1) {
+	/* Check for unaligned address */
+	if ((chip_addr & 0x1) == 0x1) {
     12b8:	e0bffd0b 	ldhu	r2,-12(fp)
     12bc:	1080004c 	andi	r2,r2,1
     12c0:	10001226 	beq	r2,zero,130c <hpi_read_memory+0x78>
 
-        /* Read Word */
-        short_int = hpi_read_word(chip_addr - 1);
+		/* Read Word */
+		short_int = hpi_read_word(chip_addr - 1);
     12c4:	e0bffd0b 	ldhu	r2,-12(fp)
     12c8:	10bfffc4 	addi	r2,r2,-1
     12cc:	10bfffcc 	andi	r2,r2,65535
@@ -2679,8 +2677,8 @@ int hpi_read_memory(unsigned short chip_addr,
     12d4:	00017200 	call	1720 <hpi_read_word>
     12d8:	e0bffc0d 	sth	r2,-16(fp)
 
-        /* Save upper byte */
-        *data++ = (char) ((unsigned short) short_int >> 0x8);
+		/* Save upper byte */
+		*data++ = (char) ((unsigned short) short_int >> 0x8);
     12dc:	e0bffe17 	ldw	r2,-8(fp)
     12e0:	10c00044 	addi	r3,r2,1
     12e4:	e0fffe15 	stw	r3,-8(fp)
@@ -2688,38 +2686,38 @@ int hpi_read_memory(unsigned short chip_addr,
     12ec:	1806d23a 	srli	r3,r3,8
     12f0:	10c00005 	stb	r3,0(r2)
 
-        /* Update address */
-        chip_addr = chip_addr + 1;
+		/* Update address */
+		chip_addr = chip_addr + 1;
     12f4:	e0bffd0b 	ldhu	r2,-12(fp)
     12f8:	10800044 	addi	r2,r2,1
     12fc:	e0bffd0d 	sth	r2,-12(fp)
 
-        /* Update length */
-        byte_length--;
+		/* Update length */
+		byte_length--;
     1300:	e0bfff17 	ldw	r2,-4(fp)
     1304:	10bfffc4 	addi	r2,r2,-1
     1308:	e0bfff15 	stw	r2,-4(fp)
-    }
+	}
 
-    /* Determine number of words to read */
-    num_words = byte_length >> 1;
+	/* Determine number of words to read */
+	num_words = byte_length >> 1;
     130c:	e0bfff17 	ldw	r2,-4(fp)
     1310:	1005d07a 	srai	r2,r2,1
     1314:	e0bffb15 	stw	r2,-20(fp)
 
-    /* Check for words to read */
-    if (num_words > 0) {
+	/* Check for words to read */
+	if (num_words > 0) {
     1318:	e0bffb17 	ldw	r2,-20(fp)
     131c:	0080110e 	bge	zero,r2,1364 <hpi_read_memory+0xd0>
 
-        hpi_read_words(chip_addr, (unsigned short *) data, num_words);
+		hpi_read_words(chip_addr, (unsigned short *) data, num_words);
     1320:	e0bffd0b 	ldhu	r2,-12(fp)
     1324:	e1bffb17 	ldw	r6,-20(fp)
     1328:	e17ffe17 	ldw	r5,-8(fp)
     132c:	1009883a 	mov	r4,r2
     1330:	00017e80 	call	17e8 <hpi_read_words>
 
-        byte_length -= (2 * num_words);
+		byte_length -= (2 * num_words);
     1334:	e0bffb17 	ldw	r2,-20(fp)
     1338:	1085883a 	add	r2,r2,r2
     133c:	1007883a 	mov	r3,r2
@@ -2727,29 +2725,29 @@ int hpi_read_memory(unsigned short chip_addr,
     1344:	10c5c83a 	sub	r2,r2,r3
     1348:	e0bfff15 	stw	r2,-4(fp)
 
-        chip_addr += (2 * num_words);
+		chip_addr += (2 * num_words);
     134c:	e0bffb17 	ldw	r2,-20(fp)
     1350:	1085883a 	add	r2,r2,r2
     1354:	1007883a 	mov	r3,r2
     1358:	e0bffd0b 	ldhu	r2,-12(fp)
     135c:	1885883a 	add	r2,r3,r2
     1360:	e0bffd0d 	sth	r2,-12(fp)
-    }
+	}
 
-    /* Check for a remaining byte to read*/
-    if (byte_length > 0) {
+	/* Check for a remaining byte to read*/
+	if (byte_length > 0) {
     1364:	e0bfff17 	ldw	r2,-4(fp)
     1368:	00800e0e 	bge	zero,r2,13a4 <hpi_read_memory+0x110>
 
-        /* Read Word */
-        short_int = hpi_read_word(chip_addr);
+		/* Read Word */
+		short_int = hpi_read_word(chip_addr);
     136c:	e0bffd0b 	ldhu	r2,-12(fp)
     1370:	1009883a 	mov	r4,r2
     1374:	00017200 	call	1720 <hpi_read_word>
     1378:	e0bffc0d 	sth	r2,-16(fp)
 
-        /* Save lower byte */
-        *(data + 2*num_words) = (char) ((unsigned short) short_int >> 0x0);
+		/* Save lower byte */
+		*(data + 2 * num_words) = (char) ((unsigned short) short_int >> 0x0);
     137c:	e0bffb17 	ldw	r2,-20(fp)
     1380:	1085883a 	add	r2,r2,r2
     1384:	1007883a 	mov	r3,r2
@@ -2758,17 +2756,17 @@ int hpi_read_memory(unsigned short chip_addr,
     1390:	e0fffc0b 	ldhu	r3,-16(fp)
     1394:	10c00005 	stb	r3,0(r2)
 
-        /* Update length */
-        byte_length--;
+		/* Update length */
+		byte_length--;
     1398:	e0bfff17 	ldw	r2,-4(fp)
     139c:	10bfffc4 	addi	r2,r2,-1
     13a0:	e0bfff15 	stw	r2,-4(fp)
-    /* Consistancy check */
-    if (byte_length != 0) {
-        DEBUG_ERR("hpi_read_memory: Internal error\r\n");
-    }
+	/* Consistancy check */
+	if (byte_length != 0) {
+		DEBUG_ERR("hpi_read_memory: Internal error\r\n");
+	}
 
-    return(SUCCESS);
+	return (SUCCESS);
     13a4:	0005883a 	mov	r2,zero
 }
     13a8:	e037883a 	mov	sp,fp
@@ -2778,12 +2776,12 @@ int hpi_read_memory(unsigned short chip_addr,
     13b8:	f800283a 	ret
 
 000013bc <hpi_write_memory>:
+ *
+ *  RETURNS: 
+ *    SUCCESS         - Success
+ *    ERROR           - Failure
  */
-int hpi_write_memory(unsigned short chip_addr, 
-                     char * data,
-                     int byte_length
-                    )
-{
+int hpi_write_memory(unsigned short chip_addr, char * data, int byte_length) {
     13bc:	defff804 	addi	sp,sp,-32
     13c0:	dfc00715 	stw	ra,28(sp)
     13c4:	df000615 	stw	fp,24(sp)
@@ -2792,31 +2790,31 @@ int hpi_write_memory(unsigned short chip_addr,
     13d0:	e17ffe15 	stw	r5,-8(fp)
     13d4:	e1bfff15 	stw	r6,-4(fp)
     13d8:	e0bffd0d 	sth	r2,-12(fp)
-    int response = ERROR;
+	int response = ERROR;
     13dc:	00bfffc4 	movi	r2,-1
     13e0:	e0bffa15 	stw	r2,-24(fp)
-    int num_words = 0;
+	int num_words = 0;
     13e4:	e03ffb15 	stw	zero,-20(fp)
-      DEBUG_OUT("hpi_write_memory.- chip_addr = 0x%x, byte_length = 0x%x\r\n", chip_addr, byte_length);
 
+	DEBUG_OUT("hpi_write_memory.- chip_addr = 0x%x, byte_length = 0x%x\r\n", chip_addr, byte_length);
 
-    /* Check if the memory region is writable or not */
+	/* Check if the memory region is writable or not */
 
-    if (writeable_region(chip_addr, byte_length) == SUCCESS) {
+	if (writeable_region(chip_addr, byte_length) == SUCCESS) {
     13e8:	e0bffd0b 	ldhu	r2,-12(fp)
     13ec:	e17fff17 	ldw	r5,-4(fp)
     13f0:	1009883a 	mov	r4,r2
     13f4:	00018cc0 	call	18cc <writeable_region>
     13f8:	1000631e 	bne	r2,zero,1588 <hpi_write_memory+0x1cc>
 
-        /* Check for unaligned address */
-        if ((chip_addr & 0x1) == 0x1) {
+		/* Check for unaligned address */
+		if ((chip_addr & 0x1) == 0x1) {
     13fc:	e0bffd0b 	ldhu	r2,-12(fp)
     1400:	1080004c 	andi	r2,r2,1
     1404:	10002326 	beq	r2,zero,1494 <hpi_write_memory+0xd8>
 
-            /* Read Word */
-            short_int = hpi_read_word(chip_addr - 1);
+			/* Read Word */
+			short_int = hpi_read_word(chip_addr - 1);
     1408:	e0bffd0b 	ldhu	r2,-12(fp)
     140c:	10bfffc4 	addi	r2,r2,-1
     1410:	10bfffcc 	andi	r2,r2,65535
@@ -2824,8 +2822,8 @@ int hpi_write_memory(unsigned short chip_addr,
     1418:	00017200 	call	1720 <hpi_read_word>
     141c:	e0bffc0d 	sth	r2,-16(fp)
 
-            /* Modify upper byte */
-            tmp_short_int = (unsigned short) (0x00FF & *data++);
+			/* Modify upper byte */
+			tmp_short_int = (unsigned short) (0x00FF & *data++);
     1420:	e0bffe17 	ldw	r2,-8(fp)
     1424:	10c00044 	addi	r3,r2,1
     1428:	e0fffe15 	stw	r3,-8(fp)
@@ -2835,7 +2833,7 @@ int hpi_write_memory(unsigned short chip_addr,
     1438:	10bfe004 	addi	r2,r2,-128
     143c:	10803fcc 	andi	r2,r2,255
     1440:	e0bffc8d 	sth	r2,-14(fp)
-            short_int = ((0x00FF & short_int) | (tmp_short_int << 8));
+			short_int = ((0x00FF & short_int) | (tmp_short_int << 8));
     1444:	e0bffc0b 	ldhu	r2,-16(fp)
     1448:	10803fcc 	andi	r2,r2,255
     144c:	1007883a 	mov	r3,r2
@@ -2844,8 +2842,8 @@ int hpi_write_memory(unsigned short chip_addr,
     1458:	1884b03a 	or	r2,r3,r2
     145c:	e0bffc0d 	sth	r2,-16(fp)
 
-            /* Write Word */
-            hpi_write_word((chip_addr - 1), short_int);
+			/* Write Word */
+			hpi_write_word((chip_addr - 1), short_int);
     1460:	e0bffd0b 	ldhu	r2,-12(fp)
     1464:	10bfffc4 	addi	r2,r2,-1
     1468:	10bfffcc 	andi	r2,r2,65535
@@ -2854,39 +2852,39 @@ int hpi_write_memory(unsigned short chip_addr,
     1474:	1009883a 	mov	r4,r2
     1478:	00016d00 	call	16d0 <hpi_write_word>
 
-            /* Update address */
-            chip_addr = chip_addr + 1;
+			/* Update address */
+			chip_addr = chip_addr + 1;
     147c:	e0bffd0b 	ldhu	r2,-12(fp)
     1480:	10800044 	addi	r2,r2,1
     1484:	e0bffd0d 	sth	r2,-12(fp)
 
-            /* Update length */
-            byte_length--;
+			/* Update length */
+			byte_length--;
     1488:	e0bfff17 	ldw	r2,-4(fp)
     148c:	10bfffc4 	addi	r2,r2,-1
     1490:	e0bfff15 	stw	r2,-4(fp)
-        }
+		}
 
-        /* Determine number of words to write */
-        num_words = (int) byte_length/2;
+		/* Determine number of words to write */
+		num_words = (int) byte_length / 2;
     1494:	e0bfff17 	ldw	r2,-4(fp)
     1498:	1006d7fa 	srli	r3,r2,31
     149c:	1885883a 	add	r2,r3,r2
     14a0:	1005d07a 	srai	r2,r2,1
     14a4:	e0bffb15 	stw	r2,-20(fp)
 
-        /* Check for words to write */
-        if (num_words > 0) {
+		/* Check for words to write */
+		if (num_words > 0) {
     14a8:	e0bffb17 	ldw	r2,-20(fp)
     14ac:	0080170e 	bge	zero,r2,150c <hpi_write_memory+0x150>
-            hpi_write_words(chip_addr, (unsigned short *) data, num_words);
+			hpi_write_words(chip_addr, (unsigned short *) data, num_words);
     14b0:	e0bffd0b 	ldhu	r2,-12(fp)
     14b4:	e1bffb17 	ldw	r6,-20(fp)
     14b8:	e17ffe17 	ldw	r5,-8(fp)
     14bc:	1009883a 	mov	r4,r2
     14c0:	00017680 	call	1768 <hpi_write_words>
 
-            byte_length -= (2 * num_words);
+			byte_length -= (2 * num_words);
     14c4:	e0bffb17 	ldw	r2,-20(fp)
     14c8:	1085883a 	add	r2,r2,r2
     14cc:	1007883a 	mov	r3,r2
@@ -2894,7 +2892,7 @@ int hpi_write_memory(unsigned short chip_addr,
     14d4:	10c5c83a 	sub	r2,r2,r3
     14d8:	e0bfff15 	stw	r2,-4(fp)
 
-            chip_addr += (2 * num_words);
+			chip_addr += (2 * num_words);
     14dc:	e0bffb17 	ldw	r2,-20(fp)
     14e0:	1085883a 	add	r2,r2,r2
     14e4:	1007883a 	mov	r3,r2
@@ -2902,29 +2900,29 @@ int hpi_write_memory(unsigned short chip_addr,
     14ec:	1885883a 	add	r2,r3,r2
     14f0:	e0bffd0d 	sth	r2,-12(fp)
 
-            data += (2 * num_words);
+			data += (2 * num_words);
     14f4:	e0bffb17 	ldw	r2,-20(fp)
     14f8:	1085883a 	add	r2,r2,r2
     14fc:	1007883a 	mov	r3,r2
     1500:	e0bffe17 	ldw	r2,-8(fp)
     1504:	10c5883a 	add	r2,r2,r3
     1508:	e0bffe15 	stw	r2,-8(fp)
-        }
+		}
 
-        /* Check for a remaining byte to read*/
-        if (byte_length > 0) {
+		/* Check for a remaining byte to read*/
+		if (byte_length > 0) {
     150c:	e0bfff17 	ldw	r2,-4(fp)
     1510:	00801c0e 	bge	zero,r2,1584 <hpi_write_memory+0x1c8>
 
-            /* Read Word */
-            short_int = hpi_read_word(chip_addr); 
+			/* Read Word */
+			short_int = hpi_read_word(chip_addr);
     1514:	e0bffd0b 	ldhu	r2,-12(fp)
     1518:	1009883a 	mov	r4,r2
     151c:	00017200 	call	1720 <hpi_read_word>
     1520:	e0bffc0d 	sth	r2,-16(fp)
 
-            /* Modify lower byte */
-            tmp_short_int = (unsigned short) (0x00FF & *data++);
+			/* Modify lower byte */
+			tmp_short_int = (unsigned short) (0x00FF & *data++);
     1524:	e0bffe17 	ldw	r2,-8(fp)
     1528:	10c00044 	addi	r3,r2,1
     152c:	e0fffe15 	stw	r3,-8(fp)
@@ -2934,7 +2932,7 @@ int hpi_write_memory(unsigned short chip_addr,
     153c:	10bfe004 	addi	r2,r2,-128
     1540:	10803fcc 	andi	r2,r2,255
     1544:	e0bffc8d 	sth	r2,-14(fp)
-            short_int = ((0xFF00 & short_int) | tmp_short_int);
+			short_int = ((0xFF00 & short_int) | tmp_short_int);
     1548:	e0fffc0b 	ldhu	r3,-16(fp)
     154c:	00bfc004 	movi	r2,-256
     1550:	1884703a 	and	r2,r3,r2
@@ -2943,31 +2941,30 @@ int hpi_write_memory(unsigned short chip_addr,
     155c:	1884b03a 	or	r2,r3,r2
     1560:	e0bffc0d 	sth	r2,-16(fp)
 
-            /* Write Word */
-            hpi_write_word(chip_addr, short_int);
+			/* Write Word */
+			hpi_write_word(chip_addr, short_int);
     1564:	e0bffd0b 	ldhu	r2,-12(fp)
     1568:	e0fffc0b 	ldhu	r3,-16(fp)
     156c:	180b883a 	mov	r5,r3
     1570:	1009883a 	mov	r4,r2
     1574:	00016d00 	call	16d0 <hpi_write_word>
 
-            /* Update length */
-            byte_length--;
+			/* Update length */
+			byte_length--;
     1578:	e0bfff17 	ldw	r2,-4(fp)
     157c:	10bfffc4 	addi	r2,r2,-1
     1580:	e0bfff15 	stw	r2,-4(fp)
-        /* Consistancy check */
-        if (byte_length != 0) {
-            DEBUG_ERR("hpi_write_memory: Internal error\r\n");
-        }
+		/* Consistancy check */
+		if (byte_length != 0) {
+			DEBUG_ERR("hpi_write_memory: Internal error\r\n");
+		}
 
-        response = SUCCESS;
+		response = SUCCESS;
     1584:	e03ffa15 	stw	zero,-24(fp)
-    }
-    else
-        DEBUG_ERR("hpi_write_memory: this memory region is not writable\r\n");
+	} else
+		DEBUG_ERR("hpi_write_memory: this memory region is not writable\r\n");
 
-    return(response);
+	return (response);
     1588:	e0bffa17 	ldw	r2,-24(fp)
 }
     158c:	e037883a 	mov	sp,fp
@@ -2977,12 +2974,12 @@ int hpi_write_memory(unsigned short chip_addr,
     159c:	f800283a 	ret
 
 000015a0 <hpi_read_reg>:
+ *
+ *  RETURNS: 
+ *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int hpi_read_reg(unsigned short reg_addr,
-                 unsigned short *reg_value
-                )
-{
+int hpi_read_reg(unsigned short reg_addr, unsigned short *reg_value) {
     15a0:	defffc04 	addi	sp,sp,-16
     15a4:	dfc00315 	stw	ra,12(sp)
     15a8:	df000215 	stw	fp,8(sp)
@@ -2991,8 +2988,8 @@ int hpi_read_reg(unsigned short reg_addr,
     15b4:	e17fff15 	stw	r5,-4(fp)
     15b8:	e0bffe0d 	sth	r2,-8(fp)
 
-    /* Hardware Specific Code to Write to Lyberty via HPI Port */
-    *reg_value = hpi_read_word(reg_addr);
+	/* Hardware Specific Code to Write to Lyberty via HPI Port */
+	*reg_value = hpi_read_word(reg_addr);
     15bc:	e0bffe0b 	ldhu	r2,-8(fp)
     15c0:	1009883a 	mov	r4,r2
     15c4:	00017200 	call	1720 <hpi_read_word>
@@ -3000,7 +2997,7 @@ int hpi_read_reg(unsigned short reg_addr,
     15cc:	e0bfff17 	ldw	r2,-4(fp)
     15d0:	10c0000d 	sth	r3,0(r2)
 
-    return (SUCCESS);
+	return (SUCCESS);
     15d4:	0005883a 	mov	r2,zero
 }
     15d8:	e037883a 	mov	sp,fp
@@ -3010,12 +3007,12 @@ int hpi_read_reg(unsigned short reg_addr,
     15e8:	f800283a 	ret
 
 000015ec <hpi_write_reg>:
+ *
+ *  RETURNS: 
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int hpi_write_reg(unsigned short reg_addr,
-                  unsigned short reg_value)
-{
+int hpi_write_reg(unsigned short reg_addr, unsigned short reg_value) {
     15ec:	defffc04 	addi	sp,sp,-16
     15f0:	dfc00315 	stw	ra,12(sp)
     15f4:	df000215 	stw	fp,8(sp)
@@ -3025,14 +3022,14 @@ int hpi_write_reg(unsigned short reg_addr,
     1604:	e0fffe0d 	sth	r3,-8(fp)
     1608:	e0bfff0d 	sth	r2,-4(fp)
 
-    hpi_write_word(reg_addr, reg_value);
+	hpi_write_word(reg_addr, reg_value);
     160c:	e0bffe0b 	ldhu	r2,-8(fp)
     1610:	e0ffff0b 	ldhu	r3,-4(fp)
     1614:	180b883a 	mov	r5,r3
     1618:	1009883a 	mov	r4,r2
     161c:	00016d00 	call	16d0 <hpi_write_word>
 
-    return (SUCCESS);
+	return (SUCCESS);
     1620:	0005883a 	mov	r2,zero
 }
     1624:	e037883a 	mov	sp,fp
@@ -3042,26 +3039,26 @@ int hpi_write_reg(unsigned short reg_addr,
     1634:	f800283a 	ret
 
 00001638 <hpi_read_status>:
+ *
  *  RETURNS: 
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-unsigned short hpi_read_status(void)
-{
+unsigned short hpi_read_status(void) {
     1638:	defffe04 	addi	sp,sp,-8
     163c:	df000115 	stw	fp,4(sp)
     1640:	df000104 	addi	fp,sp,4
-    unsigned short value;
-    
-    value = IORD(HPI_NIOSII_BASE_ADDR,HPI_STATUS);
+	unsigned short value;
+
+	value = IORD(HPI_NIOSII_BASE_ADDR, HPI_STATUS);
     1644:	00820034 	movhi	r2,2048
     1648:	10801304 	addi	r2,r2,76
     164c:	10800037 	ldwio	r2,0(r2)
     1650:	e0bfff0d 	sth	r2,-4(fp)
 
-    DEBUG_OUT("read_status: value = 0x%04x\r\n", value);
+	DEBUG_OUT("read_status: value = 0x%04x\r\n", value);
 
-    return value;
+	return value;
     1654:	e0bfff0b 	ldhu	r2,-4(fp)
 }
     1658:	e037883a 	mov	sp,fp
@@ -3070,20 +3067,20 @@ unsigned short hpi_read_status(void)
     1664:	f800283a 	ret
 
 00001668 <hpi_write_mbx>:
+ *
  *  RETURNS: 
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-void hpi_write_mbx(unsigned short value)
-{
+void hpi_write_mbx(unsigned short value) {
     1668:	defffe04 	addi	sp,sp,-8
     166c:	df000115 	stw	fp,4(sp)
     1670:	df000104 	addi	fp,sp,4
     1674:	2005883a 	mov	r2,r4
     1678:	e0bfff0d 	sth	r2,-4(fp)
-    DEBUG_OUT("write_mbx: 0x%04x\r\n", value);
+	DEBUG_OUT("write_mbx: 0x%04x\r\n", value);
 
-    IOWR(HPI_NIOSII_BASE_ADDR,HPI_MAILBOX,value);
+	IOWR(HPI_NIOSII_BASE_ADDR, HPI_MAILBOX, value);
     167c:	e0ffff0b 	ldhu	r3,-4(fp)
     1680:	00820034 	movhi	r2,2048
     1684:	10801104 	addi	r2,r2,68
@@ -3096,26 +3093,26 @@ void hpi_write_mbx(unsigned short value)
     169c:	f800283a 	ret
 
 000016a0 <hpi_read_mbx>:
+ *
  *  RETURNS: 
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-unsigned short hpi_read_mbx(void)
-{
+unsigned short hpi_read_mbx(void) {
     16a0:	defffe04 	addi	sp,sp,-8
     16a4:	df000115 	stw	fp,4(sp)
     16a8:	df000104 	addi	fp,sp,4
-    unsigned short value;
- 
-    value =  IORD(HPI_NIOSII_BASE_ADDR,HPI_MAILBOX);
+	unsigned short value;
+
+	value = IORD(HPI_NIOSII_BASE_ADDR, HPI_MAILBOX);
     16ac:	00820034 	movhi	r2,2048
     16b0:	10801104 	addi	r2,r2,68
     16b4:	10800037 	ldwio	r2,0(r2)
     16b8:	e0bfff0d 	sth	r2,-4(fp)
 
-    DEBUG_OUT("read_mbx: 0x%04x\r\n", value);
+	DEBUG_OUT("read_mbx: 0x%04x\r\n", value);
 
-    return value;
+	return value;
     16bc:	e0bfff0b 	ldhu	r2,-4(fp)
 }
     16c0:	e037883a 	mov	sp,fp
@@ -3124,12 +3121,12 @@ unsigned short hpi_read_mbx(void)
     16cc:	f800283a 	ret
 
 000016d0 <hpi_write_word>:
+ *
+ *  RETURNS: 
+ *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-void hpi_write_word(unsigned short chip_addr,
-                        unsigned short value
-                        )
-{
+void hpi_write_word(unsigned short chip_addr, unsigned short value) {
     16d0:	defffd04 	addi	sp,sp,-12
     16d4:	df000215 	stw	fp,8(sp)
     16d8:	df000204 	addi	fp,sp,8
@@ -3137,13 +3134,13 @@ void hpi_write_word(unsigned short chip_addr,
     16e0:	2805883a 	mov	r2,r5
     16e4:	e0fffe0d 	sth	r3,-8(fp)
     16e8:	e0bfff0d 	sth	r2,-4(fp)
-    DEBUG_OUT("write_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
-    IOWR(HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	DEBUG_OUT("write_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
+	IOWR(HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
     16ec:	e0fffe0b 	ldhu	r3,-8(fp)
     16f0:	00820034 	movhi	r2,2048
     16f4:	10801204 	addi	r2,r2,72
     16f8:	10c00035 	stwio	r3,0(r2)
-    IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, value);
+	IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, value);
     16fc:	e0ffff0b 	ldhu	r3,-4(fp)
     1700:	00820034 	movhi	r2,2048
     1704:	10801004 	addi	r2,r2,64
@@ -3156,30 +3153,30 @@ void hpi_write_word(unsigned short chip_addr,
     171c:	f800283a 	ret
 
 00001720 <hpi_read_word>:
+ *    This function reads from hpi
  *
  *  RETURNS: 
  *    Value of the chip_addr
  */
-unsigned short hpi_read_word(unsigned short chip_addr)
-{
+unsigned short hpi_read_word(unsigned short chip_addr) {
     1720:	defffd04 	addi	sp,sp,-12
     1724:	df000215 	stw	fp,8(sp)
     1728:	df000204 	addi	fp,sp,8
     172c:	2005883a 	mov	r2,r4
     1730:	e0bfff0d 	sth	r2,-4(fp)
-    unsigned short value;
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	unsigned short value;
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
     1734:	e0ffff0b 	ldhu	r3,-4(fp)
     1738:	00820034 	movhi	r2,2048
     173c:	10801204 	addi	r2,r2,72
     1740:	10c00035 	stwio	r3,0(r2)
-    value = IORD( HPI_NIOSII_BASE_ADDR,HPI_DATA) ;
+	value = IORD( HPI_NIOSII_BASE_ADDR, HPI_DATA);
     1744:	00820034 	movhi	r2,2048
     1748:	10801004 	addi	r2,r2,64
     174c:	10800037 	ldwio	r2,0(r2)
     1750:	e0bffe0d 	sth	r2,-8(fp)
-    DEBUG_OUT("read_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
-    return value;
+	DEBUG_OUT("read_word: addr=0x%04x, value=0x%04x\r\n", chip_addr, value);
+	return value;
     1754:	e0bffe0b 	ldhu	r2,-8(fp)
 }
     1758:	e037883a 	mov	sp,fp
@@ -3188,12 +3185,12 @@ unsigned short hpi_read_word(unsigned short chip_addr)
     1764:	f800283a 	ret
 
 00001768 <hpi_write_words>:
+ *  RETURNS: 
+ *    SUCCESS         - Success
+ *    ERROR           - Failure
  */
-void hpi_write_words(unsigned short chip_addr,
-                         unsigned short *data,
-                         int num_words
-                        )
-{
+void hpi_write_words(unsigned short chip_addr, unsigned short *data,
+		int num_words) {
     1768:	defffb04 	addi	sp,sp,-20
     176c:	df000415 	stw	fp,16(sp)
     1770:	df000404 	addi	fp,sp,16
@@ -3201,22 +3198,21 @@ void hpi_write_words(unsigned short chip_addr,
     1778:	e17ffe15 	stw	r5,-8(fp)
     177c:	e1bfff15 	stw	r6,-4(fp)
     1780:	e0bffd0d 	sth	r2,-12(fp)
-    int i;
+	int i;
 
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
     1784:	e0fffd0b 	ldhu	r3,-12(fp)
     1788:	00820034 	movhi	r2,2048
     178c:	10801204 	addi	r2,r2,72
     1790:	10c00035 	stwio	r3,0(r2)
 
-    DEBUG_OUT("write_words addr:0x%04x, num_words:%d", chip_addr, num_words);
+	DEBUG_OUT("write_words addr:0x%04x, num_words:%d", chip_addr, num_words);
 
-    for (i=0; i<num_words; i++) 
+	for (i = 0; i < num_words; i++) {
     1794:	e03ffc15 	stw	zero,-16(fp)
     1798:	00000b06 	br	17c8 <hpi_write_words+0x60>
-    {
-        DEBUG_OUT(" 0x%04x", *data);
-        IOWR (HPI_NIOSII_BASE_ADDR, HPI_DATA    ,*data++);
+		DEBUG_OUT(" 0x%04x", *data);
+		IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, *data++);
     179c:	e0bffe17 	ldw	r2,-8(fp)
     17a0:	10c00084 	addi	r3,r2,2
     17a4:	e0fffe15 	stw	r3,-8(fp)
@@ -3226,21 +3222,20 @@ void hpi_write_words(unsigned short chip_addr,
     17b4:	10801004 	addi	r2,r2,64
     17b8:	10c00035 	stwio	r3,0(r2)
 
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
 
-    DEBUG_OUT("write_words addr:0x%04x, num_words:%d", chip_addr, num_words);
+	DEBUG_OUT("write_words addr:0x%04x, num_words:%d", chip_addr, num_words);
 
-    for (i=0; i<num_words; i++) 
+	for (i = 0; i < num_words; i++) {
     17bc:	e0bffc17 	ldw	r2,-16(fp)
     17c0:	10800044 	addi	r2,r2,1
     17c4:	e0bffc15 	stw	r2,-16(fp)
     17c8:	e0fffc17 	ldw	r3,-16(fp)
     17cc:	e0bfff17 	ldw	r2,-4(fp)
     17d0:	18bff216 	blt	r3,r2,179c <__alt_data_end+0xf800179c>
-    {
-        DEBUG_OUT(" 0x%04x", *data);
-        IOWR (HPI_NIOSII_BASE_ADDR, HPI_DATA    ,*data++);
-    }
+		DEBUG_OUT(" 0x%04x", *data);
+		IOWR(HPI_NIOSII_BASE_ADDR, HPI_DATA, *data++);
+	}
 }
     17d4:	0001883a 	nop
     17d8:	e037883a 	mov	sp,fp
@@ -3249,12 +3244,12 @@ void hpi_write_words(unsigned short chip_addr,
     17e4:	f800283a 	ret
 
 000017e8 <hpi_read_words>:
+ *  RETURNS: 
+ *    SUCCESS         - Success
+ *    ERROR           - Failure
  */
-void hpi_read_words(unsigned short chip_addr,
-                        unsigned short *data,
-                        int num_words
-                        )
-{
+void hpi_read_words(unsigned short chip_addr, unsigned short *data,
+		int num_words) {
     17e8:	defffb04 	addi	sp,sp,-20
     17ec:	df000415 	stw	fp,16(sp)
     17f0:	df000404 	addi	fp,sp,16
@@ -3262,21 +3257,20 @@ void hpi_read_words(unsigned short chip_addr,
     17f8:	e17ffe15 	stw	r5,-8(fp)
     17fc:	e1bfff15 	stw	r6,-4(fp)
     1800:	e0bffd0d 	sth	r2,-12(fp)
-    int i;
+	int i;
 
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
     1804:	e0fffd0b 	ldhu	r3,-12(fp)
     1808:	00820034 	movhi	r2,2048
     180c:	10801204 	addi	r2,r2,72
     1810:	10c00035 	stwio	r3,0(r2)
 
-    DEBUG_OUT("read_words addr:0x%04x, num_words:%d", chip_addr, num_words);
+	DEBUG_OUT("read_words addr:0x%04x, num_words:%d", chip_addr, num_words);
 
-    for (i=0; i<num_words; i++) 
+	for (i = 0; i < num_words; i++) {
     1814:	e03ffc15 	stw	zero,-16(fp)
     1818:	00000a06 	br	1844 <hpi_read_words+0x5c>
-    {
-        *data++ = IORD (HPI_NIOSII_BASE_ADDR,HPI_DATA  );
+		*data++ = IORD(HPI_NIOSII_BASE_ADDR, HPI_DATA);
     181c:	e0fffe17 	ldw	r3,-8(fp)
     1820:	18800084 	addi	r2,r3,2
     1824:	e0bffe15 	stw	r2,-8(fp)
@@ -3285,21 +3279,20 @@ void hpi_read_words(unsigned short chip_addr,
     1830:	10800037 	ldwio	r2,0(r2)
     1834:	1880000d 	sth	r2,0(r3)
 
-    IOWR( HPI_NIOSII_BASE_ADDR,HPI_ADDR, chip_addr);
+	IOWR( HPI_NIOSII_BASE_ADDR, HPI_ADDR, chip_addr);
 
-    DEBUG_OUT("read_words addr:0x%04x, num_words:%d", chip_addr, num_words);
+	DEBUG_OUT("read_words addr:0x%04x, num_words:%d", chip_addr, num_words);
 
-    for (i=0; i<num_words; i++) 
+	for (i = 0; i < num_words; i++) {
     1838:	e0bffc17 	ldw	r2,-16(fp)
     183c:	10800044 	addi	r2,r2,1
     1840:	e0bffc15 	stw	r2,-16(fp)
     1844:	e0fffc17 	ldw	r3,-16(fp)
     1848:	e0bfff17 	ldw	r2,-4(fp)
     184c:	18bff316 	blt	r3,r2,181c <__alt_data_end+0xf800181c>
-    {
-        *data++ = IORD (HPI_NIOSII_BASE_ADDR,HPI_DATA  );
-        DEBUG_OUT("    0x%04x", *(data-1));
-    }
+		*data++ = IORD(HPI_NIOSII_BASE_ADDR, HPI_DATA);
+		DEBUG_OUT("    0x%04x", *(data-1));
+	}
 }
     1850:	0001883a 	nop
     1854:	e037883a 	mov	sp,fp
@@ -3308,46 +3301,58 @@ void hpi_read_words(unsigned short chip_addr,
     1860:	f800283a 	ret
 
 00001864 <get_ushort>:
+ *
  *  RETURNS: 
  *    An unsigned short.
  */
 
-unsigned short get_ushort(char * data, int start_address)
-{
+unsigned short get_ushort(char * data, int start_address) {
     1864:	defffc04 	addi	sp,sp,-16
     1868:	df000315 	stw	fp,12(sp)
     186c:	df000304 	addi	fp,sp,12
     1870:	e13ffe15 	stw	r4,-8(fp)
     1874:	e17fff15 	stw	r5,-4(fp)
-    unsigned short value = 0;
+	unsigned short value = 0;
     1878:	e03ffd0d 	sth	zero,-12(fp)
 
-    value = (((unsigned short)(*(unsigned char*)(data + start_address + 1)) << 8) |
+	value =
+			(((unsigned short) (*(unsigned char*) (data + start_address + 1))
     187c:	e0bfff17 	ldw	r2,-4(fp)
     1880:	10800044 	addi	r2,r2,1
     1884:	e0fffe17 	ldw	r3,-8(fp)
     1888:	1885883a 	add	r2,r3,r2
     188c:	10800003 	ldbu	r2,0(r2)
+					<< 8)
     1890:	10803fcc 	andi	r2,r2,255
     1894:	1004923a 	slli	r2,r2,8
+ */
+
+unsigned short get_ushort(char * data, int start_address) {
+	unsigned short value = 0;
+
+	value =
     1898:	1009883a 	mov	r4,r2
-              (unsigned short)(*(unsigned char*)(data + start_address)));
+			(((unsigned short) (*(unsigned char*) (data + start_address + 1))
+					<< 8)
+					| (unsigned short) (*(unsigned char*) (data + start_address)));
     189c:	e0bfff17 	ldw	r2,-4(fp)
     18a0:	e0fffe17 	ldw	r3,-8(fp)
     18a4:	1885883a 	add	r2,r3,r2
     18a8:	10800003 	ldbu	r2,0(r2)
+ */
 
-unsigned short get_ushort(char * data, int start_address)
-{
-    unsigned short value = 0;
+unsigned short get_ushort(char * data, int start_address) {
+	unsigned short value = 0;
 
-    value = (((unsigned short)(*(unsigned char*)(data + start_address + 1)) << 8) |
+	value =
     18ac:	10803fcc 	andi	r2,r2,255
     18b0:	2084b03a 	or	r2,r4,r2
     18b4:	e0bffd0d 	sth	r2,-12(fp)
-              (unsigned short)(*(unsigned char*)(data + start_address)));
+			(((unsigned short) (*(unsigned char*) (data + start_address + 1))
+					<< 8)
+					| (unsigned short) (*(unsigned char*) (data + start_address)));
 
-    return value;
+	return value;
     18b8:	e0bffd0b 	ldhu	r2,-12(fp)
 }
     18bc:	e037883a 	mov	sp,fp
@@ -3356,33 +3361,33 @@ unsigned short get_ushort(char * data, int start_address)
     18c8:	f800283a 	ret
 
 000018cc <writeable_region>:
+ *
+ *  RETURNS: 
  *    SUCCESS         - Success
  *    ERROR           - Failure
  */
-int writeable_region(unsigned short chip_addr,
-                         int byte_length)
-{
+int writeable_region(unsigned short chip_addr, int byte_length) {
     18cc:	defffc04 	addi	sp,sp,-16
     18d0:	df000315 	stw	fp,12(sp)
     18d4:	df000304 	addi	fp,sp,12
     18d8:	2005883a 	mov	r2,r4
     18dc:	e17fff15 	stw	r5,-4(fp)
     18e0:	e0bffe0d 	sth	r2,-8(fp)
-    int response = ERROR;
+	int response = ERROR;
     18e4:	00bfffc4 	movi	r2,-1
     18e8:	e0bffd15 	stw	r2,-12(fp)
 
-    /* Check that address is in a valid writable range */
-    if (((int)chip_addr + byte_length) <= 0xFFFF)
+	/* Check that address is in a valid writable range */
+	if (((int) chip_addr + byte_length) <= 0xFFFF)
     18ec:	e0fffe0b 	ldhu	r3,-8(fp)
     18f0:	e0bfff17 	ldw	r2,-4(fp)
     18f4:	1885883a 	add	r2,r3,r2
     18f8:	00ffffd4 	movui	r3,65535
     18fc:	18800116 	blt	r3,r2,1904 <writeable_region+0x38>
-        response = SUCCESS;
+		response = SUCCESS;
     1900:	e03ffd15 	stw	zero,-12(fp)
 
-    return response;
+	return response;
     1904:	e0bffd17 	ldw	r2,-12(fp)
 }
     1908:	e037883a 	mov	sp,fp
@@ -3391,79 +3396,82 @@ int writeable_region(unsigned short chip_addr,
     1914:	f800283a 	ret
 
 00001918 <main>:
+#define DEBUG_OUT(format, arg...) 
 #endif   
-   
+
 extern DEVICE_STATUS device_status;
 
-int main(void)
-{ 
+int main(void) {
     1918:	defffe04 	addi	sp,sp,-8
     191c:	dfc00115 	stw	ra,4(sp)
     1920:	df000015 	stw	fp,0(sp)
     1924:	d839883a 	mov	fp,sp
-    DEBUG_OUT("========= DE2-115 CY7C67200 USB Device Demo [2011/07/05]=========\n");
+	DEBUG_OUT(
     1928:	01000074 	movhi	r4,1
     192c:	21079f04 	addi	r4,r4,7804
     1930:	00024d00 	call	24d0 <puts>
-    DEBUG_OUT("=                                                               =\n");
+			"========= DE2-115 CY7C67200 USB Device Demo [2011/07/05]=========\n");
+	DEBUG_OUT(
     1934:	01000074 	movhi	r4,1
     1938:	2107b004 	addi	r4,r4,7872
     193c:	00024d00 	call	24d0 <puts>
-    DEBUG_OUT("=  This program demo a simply transfer between PC and DE2-115.  =\n");
+			"=                                                               =\n");
+	DEBUG_OUT(
     1940:	01000074 	movhi	r4,1
     1944:	2107c104 	addi	r4,r4,7940
     1948:	00024d00 	call	24d0 <puts>
-    DEBUG_OUT("=                                                               =\n");
+			"=  This program demo a simply transfer between PC and DE2-115.  =\n");
+	DEBUG_OUT(
     194c:	01000074 	movhi	r4,1
     1950:	2107b004 	addi	r4,r4,7872
     1954:	00024d00 	call	24d0 <puts>
-    DEBUG_OUT("=================================================================\n");
+			"=                                                               =\n");
+	DEBUG_OUT(
     1958:	01000074 	movhi	r4,1
     195c:	2107d204 	addi	r4,r4,8008
     1960:	00024d00 	call	24d0 <puts>
-      * // please move the folder to a new location if you want to generate your code 
-      * // otherwise there will be some error or bug when you use makep.bat 
-      * 
-      * you can see pcd_asm.asm to know the detail process 
-      */ 
-      if(dc_download((char*)pcd_asm,/*max_try*/10)==ERROR){ //fail to init
+	 * // please move the folder to a new location if you want to generate your code 
+	 * // otherwise there will be some error or bug when you use makep.bat 
+	 * 
+	 * you can see pcd_asm.asm to know the detail process 
+	 */
+	if (dc_download((char*) pcd_asm,/*max_try*/10) == ERROR) { //fail to init
     1964:	01400284 	movi	r5,10
     1968:	01000074 	movhi	r4,1
     196c:	21095504 	addi	r4,r4,9556
     1970:	00005300 	call	530 <dc_download>
     1974:	10bfffd8 	cmpnei	r2,r2,-1
     1978:	1000051e 	bne	r2,zero,1990 <main+0x78>
-        DEBUG_OUT("-DEVICE Init - Failed to download into 67200 Chip.\n") ;
+		DEBUG_OUT("-DEVICE Init - Failed to download into 67200 Chip.\n");
     197c:	01000074 	movhi	r4,1
     1980:	2107e304 	addi	r4,r4,8076
     1984:	00024d00 	call	24d0 <puts>
-        return FALSE;
+		return FALSE;
     1988:	0005883a 	mov	r2,zero
     198c:	00000606 	br	19a8 <main+0x90>
-       }
-      usleep(100000);
+	}
+	usleep(100000);
     1990:	010000b4 	movhi	r4,2
     1994:	2121a804 	addi	r4,r4,-31072
     1998:	000ecb80 	call	ecb8 <usleep>
-        {
-             /****************************************
-              *  mainly check the SIE2 message
-              *  and then process it according to the message
-              *************************************/
-              dcProcessEvent();
+	while (1) {
+		/****************************************
+		 *  mainly check the SIE2 message
+		 *  and then process it according to the message
+		 *************************************/
+		dcProcessEvent();
     199c:	0000b600 	call	b60 <dcProcessEvent>
-            
-             /****************************************
-              *  when the status of switch or button have changed
-              *  send a packet to pc to indicate the change
-              *************************************/
-             check_button_sw_status();
+
+		/****************************************
+		 *  when the status of switch or button have changed
+		 *  send a packet to pc to indicate the change
+		 *************************************/
+		check_button_sw_status();
     19a0:	00010ec0 	call	10ec <check_button_sw_status>
-        }
+	}
     19a4:	003ffd06 	br	199c <__alt_data_end+0xf800199c>
-          
- 
-   return 0;
+
+	return 0;
 }
     19a8:	e037883a 	mov	sp,fp
     19ac:	dfc00117 	ldw	ra,4(sp)

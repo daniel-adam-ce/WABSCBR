@@ -1,7 +1,6 @@
 #ifndef _67200_H_
 #define _67200_H_
 
-
 /*********************************************************/
 /* FILE        : 63700.H                                 */
 /*********************************************************/
@@ -371,13 +370,13 @@
 #define P_SPEED                                              0xC008 /* Alias for BIOS code */
 
 /* CPU SPEED REGISTER FIELDS 
-**
-** The Speed field in the CPU Speed Register provides a mechanism to
-** divide the external clock signal down to operate the CPU at a lower 
-** clock speed (presumedly for lower-power operation). The value loaded 
-** into this field is a divisor and is calculated as (n+1). For instance, 
-** if 3 is loaded into the field, the resulting CPU speed will be PCLK/4.
-*/
+ **
+ ** The Speed field in the CPU Speed Register provides a mechanism to
+ ** divide the external clock signal down to operate the CPU at a lower 
+ ** clock speed (presumedly for lower-power operation). The value loaded 
+ ** into this field is a divisor and is calculated as (n+1). For instance, 
+ ** if 3 is loaded into the field, the resulting CPU speed will be PCLK/4.
+ */
 
 #define CPU_SPEED                                            0x000F /* CPU Speed */
 
@@ -484,7 +483,6 @@
 #define XROM_BEGIN                                           0xC100 /* External ROM Begin */
 #define IROM_BEGIN                                           0xE000 /* Internal ROM Begin */
 
-
 /* FIELDS */
 #define XRAM_MERGE_EN                                        0x2000 /* Overlay XRAMSEL w/ XMEMSEL */
 #define XROM_MERGE_EN                                        0x1000 /* Overlay XROMSEL w/ XMEMSEL */
@@ -509,7 +507,6 @@
 
 #define XRAM_8                                               0x0008 /*  */
 #define XRAM_16                                              0x0000 /*  */
-
 
 /*********************************************************/
 /* WATCHDOG TIMER REGISTER [R/W]                         */
@@ -573,7 +570,6 @@
 #define B_SOF_EOP_EN                                         0x0002 /* Port B SOF/EOP enable */
 #define A_SOF_EOP_EN                                         0x0001 /* Port A SOF/EOP enable */
 
-
 /* USB Control Register1 (0xC08A/0xC0AA) bit mask         */
 #define bmHOST_CTL1_SOF0                                     0x0001
 #define bmHOST_CTL1_SOF1                                     0x0002
@@ -591,7 +587,6 @@
 #define bmHOST_CTL1_D0p                                      0x2000
 #define bmHOST_CTL1_D1m                                      0x4000
 #define bmHOST_CTL1_D1p                                      0x8000
-
 
 /* MODE FIELD VALUES */
 
@@ -625,7 +620,6 @@
 #define B_FORCE_J                                            0x0020 /* Force J state on associated port */
 #define B_FORCE_NORMAL                                       0x0000 /* Don't force associated port */
 
-
 /*********************************************************/
 /*********************************************************/
 /* HOST REGISTERS                                        */
@@ -653,7 +647,6 @@
 #define A_CHG_IRQ_EN                                         0x0010 /* Port A Connect Change Interrupt Enable  */
 #define DONE_IRQ_EN                                          0x0001 /* Done Interrupt Enable  */
 
-
 /* Host Interrupt enable (0xC08C/0xC0AC)  bit mask      */
 #define bmHOST_INTEN_XFERDONE                                0x0001
 #define bmHOST_INTEN_INSRMV0                                 0x0010
@@ -664,8 +657,6 @@
 #define bmHOST_INTEN_IEXP                                    0x0400
 #define bmHOST_INTEN_OTG_ID                                  0x4000
 #define bmHOST_INTEN_OTG_44V                                 0x8000
-
-
 
 /*********************************************************/
 /* HOST n STATUS REGISTER [R/W]                          */
@@ -714,11 +705,9 @@
 #define SIE1_USB_CTRL_REG0                                   0xC080
 #define SIE1_REG_BASE                                        0xC080 /* Alias for susb.asm */
 
-
 #define HOST2_CTL_REG                                        0xC0A0 /* Host 2 Control Register [R/W] */
 #define SIE2_USB_CTRL_REG0                                   0xC0A0
 #define SIE2_REG_BASE                                        0xC0A0 /* Alias for susb.asm */
-
 
 /* FIELDS */
 #define PREAMBLE_EN                                          0x0080 /* Preamble enable */
@@ -738,7 +727,6 @@
 #define bmHOST_HCTL_DT                                       0x0040
 #define bmHOST_HCTL_PREAMBLE                                 0x0080
 
-
 /*********************************************************/
 /* HOST n ADDRESS REGISTERS [R/W]                        */
 /*********************************************************/
@@ -755,7 +743,6 @@
 
 #define HOST1_CNT_REG                                        0xC084 /* Host 1 Count Register [R/W] */
 #define SIE1_USB_LENGTH                                      0xC084
-
 
 #define HOST2_CNT_REG                                        0xC0A4 /* Host 2 Count Register [R/W] */
 #define SIE2_USB_LENGTH                                      0xC0A4
@@ -774,7 +761,6 @@
 #define HOST1_PID_REG                                        0xC086 /* Host 1 PID Register [W] */
 #define SIE1_USB_HOST_PID                                    0xC086
 #define SIE1_USB_ERR_STATUS                                  0xC086 /* When read */
-
 
 #define HOST2_PID_REG                                        0xC0A6 /* Host 2 PID Register [W] */
 #define SIE2_USB_HOST_PID                                    0xC0A6
@@ -824,10 +810,6 @@
 #define cPID_DATA1                                           0x000B
 #define cPID_ACK                                             0x0002
 
-
-
-
-
 /*********************************************************/
 /* HOST n ENDPOINT STATUS REGISTERS [R]                  */
 /*********************************************************/
@@ -853,11 +835,9 @@
 #define SIE1_USB_HOST_DEV                                    0xC088
 #define SIE1_USB_LEFT_BYTE                                   0xC088 /* When read */
 
-
 #define HOST2_DEV_ADDR_REG                                   0xC0A8 /* Host 2 Device Address Register [W] */
 #define SIE2_USB_HOST_DEV                                    0xC0A8
 #define SIE2_USB_LEFT_BYTE                                   0xC0A8 /* When read */
-
 
 /* FIELDS */
 
@@ -895,7 +875,6 @@
 #define HOST1_SOF_EOP_CTR_REG                                0xC094 /* Host 1 SOF/EOP Counter Register [R] */
 #define SIE1_USB_SOF_TIMER                                   0xC094
 
-
 #define HOST2_SOF_EOP_CTR_REG                                0xC0B4 /* Host 2 SOF/EOP Counter Register [R] */
 #define SIE2_USB_SOF_TIMER                                   0xC0B4
 
@@ -916,7 +895,6 @@
 /* FIELDS */
 
 #define HOST_FRAME_NUM                                       0x07FF /* Frame */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -1031,7 +1009,6 @@
 
 #define SIE1_DEV_REQ                                         0x0300 /* SIE1 Default Setup packet Address */
 #define SIE2_DEV_REQ                                         0x0308 /* SIE2 Default Setup packet Address */
-
 
 /* FIELDS */
 
@@ -1155,7 +1132,6 @@
 
 #define EP_RESULT                                            0x00FF /* Endpoint Count Result */
 
-
 /*********************************************************/
 /*********************************************************/
 /* OTG REGISTERS                                         */
@@ -1180,7 +1156,6 @@
 #define OTG_DATA_STAT                                        0x0004 /* TTL logic state of VBUS pin [R] */
 #define OTG_ID_STAT                                          0x0002 /* Value of OTG ID pin [R] */
 #define VBUS_VALID_FLG                                       0x0001 /* VBUS > 4.4V [R] */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -1235,7 +1210,6 @@
 #define GPIO1_DIR_REG                                        0xC028 /* GPIO 1 Direction Register [R/W] (1:Output, 0:Input) */
 #define GPIO_HI_IO                                           0xC024 /* Alias for BIOS */
 #define GPIO_HI_ENB                                          0xC028 /* Alias for BIOS */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -1303,7 +1277,6 @@
 /* FIELDS */
 
 #define EPP_ADDR                                             0x00FF /* EPP Address */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -1374,7 +1347,6 @@
 #define IDE_PIO_CMD_REG                                      0xC05E /* IDE PIO Command Register [R/W] */
 #define IDE_PIO_DEV_CTL_REG                                  0xC06C /* IDE PIO Device Control Register [R/W] */
 
-
 /*********************************************************/
 /*********************************************************/
 /* MDMA REGISTERS                                        */
@@ -1422,7 +1394,6 @@
 #define MDMA_IRQ_EN                                          0x0004 /* MDMA Interrupt Enable */
 #define MDMA_DONE_FLG                                        0x0002 /* MDMA Done Flag (Set by silicon, Cleared by writing 0) */
 #define MDMA_EN                                              0x0001 /* MDMA Enable (Set by writing 1, Cleared by silicon) */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -1826,7 +1797,6 @@
 /*     SPI_Ctl       0xC0CA              0x0a */
 /*     SPI_Cfg       0xC0C8              0x08 */
 
-
 /* SPI 16-bit Configuration Register */
 /*------------------------------------ */
 #define SPI_Cfg_AFE                                          0x0008
@@ -1886,7 +1856,6 @@
 #define SPI_Cfg_SSDly_2                                      0x0002
 #define SPI_Cfg_SSDly_2_BM                                   0x0002
 
-
 /* SPI 16-bit Control Register */
 /*------------------------------------ */
 #define SPI_Ctl_AFE                                          0x000A
@@ -1930,7 +1899,6 @@
 #define SPI_Ctl_RxBitLen_FullByte                            0x0000
 #define SPI_Ctl_RxBitLen_FullByte_BM                         0x0000
 
-
 /* SPI Interrupt Type Bits */
 /* for all Interrupt Registers */
 /* ----------------------------------- */
@@ -1951,7 +1919,6 @@
 #define SPI_IntEnab_Rx_BM                                    0x0004
 #define SPI_IntEnab_Tx_BM                                    0x0002
 #define SPI_IntEnab_XfrBk_BM                                 0x0001
-
 
 /* SPI 16-bit Interrupt Value Register */
 /*------------------------------------ */
@@ -1979,7 +1946,6 @@
 /* reserved BITS                              7 - 2 */
 #define SPI_IntClr_Tx_BM                                     0x0002
 #define SPI_IntClr_XfrBk_BM                                  0x0001
-
 
 /* SPI 16-bit CRC Control Register */
 /*------------------------------------ */
@@ -2015,14 +1981,12 @@
 
 /* reserved BITS                              7 - 0 */
 
-
 /* SPI 16-bit CRC Value Register */
 /*------------------------------------ */
 #define SPI_CRCVal_AFE                                       0x0014
 #define SPI_CRCVal_ADR                                       0xC0D4
 #define SPI_CRCVal_Port_POS                                  0x0000
 #define SPI_CRCVal_Port_SIZ                                  0x0010
-
 
 /* SPI 8-bit transmit & receive port (PIO) */
 /*------------------------------------ */
@@ -2031,14 +1995,12 @@
 #define SPI_TxRxData_Port_POS                                0x0000
 #define SPI_TxRxData_Port_SIZ                                0x0008
 
-
 /* SPI 16-bit DMA transmit base address */
 /*------------------------------------ */
 #define SPI_TxBlk_AFE                                        0x0018
 #define SPI_TxBlk_ADR                                        0xC0D8
 #define SPI_TxBlk_Base_POS                                   0x0000
 #define SPI_TxBlk_Base_SIZ                                   0x0010
-
 
 /* SPI 11-bit DMA transmit length */
 /*------------------------------------ */
@@ -2047,14 +2009,12 @@
 #define SPI_TxLen_Bytes_POS                                  0x0000
 #define SPI_TxLen_Bytes_SIZ                                  0x0010
 
-
 /* SPI 16-bit DMA recieve base address */
 /*------------------------------------ */
 #define SPI_RxBlk_AFE                                        0x001C
 #define SPI_RxBlk_ADR                                        0xC0DC
 #define SPI_RxBlk_Base_POS                                   0x0000
 #define SPI_RxBlk_Base_SIZ                                   0x0010
-
 
 /* SPI 11-bit DMA recieve length */
 /*------------------------------------ */
@@ -2121,7 +2081,6 @@
 #define IDE_AltStat_Reg_POS                                  0x0000
 #define IDE_AltStat_Reg_SIZ                                  0x0008
 
-
 /*********************************************************/
 /*********************************************************/
 /* UART REGISTERS                                        */
@@ -2177,7 +2136,6 @@
 
 /* FIELDS */
 #define UART_DATA                                            0x00FF /* UART Data */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -2257,7 +2215,6 @@
 /*********************************************************/
 
 #define PWM_CYCLE_CNT_REG                                    0xC0FA /* PWM Cycle Count Register [R/W] */
-
 
 /*********************************************************/
 /*********************************************************/
@@ -2375,10 +2332,10 @@
 /*********************************************************/
 
 /*
-** The HPI Status port is only accessible by an external host over the
-** HPI interface. It is accessed by performing an HPI read at the HPI
-** base address + 3.
-*/
+ ** The HPI Status port is only accessible by an external host over the
+ ** HPI interface. It is accessed by performing an HPI read at the HPI
+ ** base address + 3.
+ */
 
 #define HPI_STAT_PORT                                        0x0003 /* HPI Status Port */
 
@@ -2492,7 +2449,6 @@
 #define O_EP_GF_BYTES_LEFT                                   0x000C
 #define O_EP_P_GF                                            0x000E
 
-
 /* Endpoint Control Register Bitmasks */
 #define bmEP_CTRL_STICKY                                     0x0080
 #define bmEP_CTRL_DATA1                                      0x0040
@@ -2517,7 +2473,6 @@
 #define bmEP_PSR_IN_ERR                                      0x0100
 #define bmEP_PSR_OUT_ERR                                     0x0200
 
-
 /* SIE Interrupt Status/Enable Register Bitmasks */
 #define bmISR_EP0                                            0x0001
 #define bmISR_EP1                                            0x0002
@@ -2531,7 +2486,6 @@
 #define bmISR_USB_RESET                                      0x0100
 #define bmISR_SOF                                            0x0200
 #define bmISR_WAKEUP                                         0x0400
-
 
 #define bmISR_USBA                                           0x0001
 #define bmISR_ALL                                            0x0F6F
@@ -2598,7 +2552,6 @@
 #define STRING                                               0x0003
 #define INTERFACE                                            0x0004
 #define ENDPOINT                                             0x0005
-
 
 /* Request Type Bitmasks */
 #define bmRT_DEVICE2HOST                                     0x0080
@@ -2737,7 +2690,6 @@
 #define UART_TX_VEC                                          0x0008
 #define UART_RX_INT                                          0x0005
 #define UART_RX_VEC                                          0x000A
-
 
 #define HSS_BLK_DONE_INT                                     0x0006
 #define HSS_BLK_DONE_VEC                                     0x000C
