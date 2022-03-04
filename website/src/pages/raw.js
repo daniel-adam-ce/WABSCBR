@@ -11,6 +11,7 @@ import rawImg from '../images/raw.jpg'
 
 import Spinner from 'react-bootstrap/Spinner'
 
+import { styled } from '@mui/system';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -26,6 +27,18 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+
+const StyledTable = styled(Table)(({ theme }) => ({
+    '.css-1ex1afd-MuiTableCell-root': {
+        fontSize: '0.7rem',
+        padding: '0px',
+    },
+    '.css-1ygcj2i-MuiTableCell-root' : {
+        fontSize: '0.7rem',
+        padding: '0px',
+    }
+}));
 
 
 const RawPage = () => {
@@ -52,13 +65,13 @@ const RawPage = () => {
             return (("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2))
         }
         return  table.map((item) => (
-            <TableRow key={item._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell>{formatDate(item.dateReceived)}</TableCell>
-                <TableCell>{numDisplayHex ? item.arbId.toString(16) : item.arbId}</TableCell>
-                <TableCell>{numDisplayHex ? item.payload.toString(16) : item.payload}</TableCell>
-                <TableCell>{item.deviceSerial}</TableCell>
-                <TableCell>{item.vehicleName}</TableCell>
-            </TableRow>
+            <tr key={item._id}>
+                <td>{formatDate(item.dateReceived)}</td>
+                <td>{numDisplayHex ? item.arbId.toString(16) : item.arbId}</td>
+                <td>{numDisplayHex ? item.payload.toString(16) : item.payload}</td>
+                <td>{item.deviceSerial}</td>
+                <td>{item.vehicleName}</td>
+            </tr>
         ))
     }
 
@@ -177,26 +190,22 @@ const RawPage = () => {
             
             {loadState ? 
                 <Container className="table-container" fixed>
-                    <Paper>
-                        <Table size='medium' sx={{ minWidth: 650, border: 0.5 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                <TableCell>Date Received</TableCell>
-                                <TableCell>Arbitration ID</TableCell>
-                                <TableCell>Payload Data</TableCell>
-                                <TableCell>Device Serial #</TableCell>
-                                <TableCell>Vehicle Name</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {displayTable()}
-                            </TableBody>
-                        </Table>
+                    <Paper elevation={8}>
+                        <table className='raw-can-table'>
+                            <tr>
+                                <th>Date Received</th>
+                                <th>Arbitration ID</th>
+                                <th>Payload Data</th>
+                                <th>Device Serial #</th>
+                                <th>Vehicle Name</th>
+                            </tr>
+                            {displayTable()}
+                        </table>
                     </Paper>
 
                 </Container>
             : <div className='loading'><Spinner animation="border" size='lg'/></div>}
-
+            
             <Stack spacing={2}>
                 <Pagination color="primary" className='pagination' count={pages} page={pageSelected} onChange={(event, value) => {
                         setPageSelected(value)
