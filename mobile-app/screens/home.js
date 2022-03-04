@@ -23,6 +23,22 @@ const HomeScreen = ({navigation}) => {
         >
             <Text style={{color: 'white'}}>Get Started</Text>
         </Pressable>
+        <Pressable 
+        style={styles.btn}
+        onPress={()=>{
+          navigation.navigate('Bluetooth')
+        }}
+        >
+            <Text style={{color: 'white'}}>Bluetooth test</Text>
+        </Pressable>
+        <Pressable 
+        style={styles.btn}
+        onPress={()=>{
+          navigation.navigate('Website')
+        }}
+        >
+            <Text style={{color: 'white'}}>Website</Text>
+        </Pressable>
       </ImageBackground>
     )
 }
