@@ -1,23 +1,13 @@
 import React from 'react'
 import {useState, useEffect, useContext} from 'react'
 import { AuthContext } from '../App';
-// import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import {useNavigate, useSearchParams } from 'react-router-dom'
-// import Pagination from 'react-bootstrap/Pagination'
-// import Container from 'react-bootstrap/esm/Container'
 import "../styles/raw.css"
-import rawImg from '../images/raw.jpg'
 
 import Spinner from 'react-bootstrap/Spinner'
 
-import { styled } from '@mui/system';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
 import Pagination from '@mui/material/Pagination';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -27,19 +17,56 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
 
-const StyledTable = styled(Table)(({ theme }) => ({
-    '.css-1ex1afd-MuiTableCell-root': {
-        fontSize: '0.7rem',
-        padding: '0px',
-    },
-    '.css-1ygcj2i-MuiTableCell-root' : {
-        fontSize: '0.7rem',
-        padding: '0px',
+const sortByDate = (table, key, state) => {
+    const array = [...table]
+    if (state === 1) {
+        return array.sort((a, b)=>{
+            if (a[key] > b[key]) {
+                return 1
+            }
+            if (a[key] < b[key]) {
+                return -1
+            }
+            return 0
+        })
     }
-}));
+    if (state === -1) {
+        return array.sort((a, b)=>{
+            if (a[key] < b[key]) {
+                return 1
+            }
+            if (a[key] > b[key]) {
+                return -1
+            }
+            return 0
+        })
+    }
+    
+}
 
+const changeSortState = (state) => {
+    if (state === 0) {
+        return -1
+    }
+    if (state === 1) {
+        return -1
+    }
+    if (state === -1) {
+        return 1
+    }
+    return 0
+}
+
+const displaySortSymbol = (state) => {
+    if (state === 1) {
+        return '\u25bc'
+    }
+    if (state === -1) {
+        return '\u25b2'
+    }
+    return '-'
+}
 
 const RawPage = () => {
     const [authState, setAuthState] = useContext(AuthContext)
@@ -48,13 +75,18 @@ const RawPage = () => {
     const [pages, setPages] = useState(1)
     const [pageSelected, setPageSelected] = useState(parseInt(searchParams.get('p')))
     const [loadState, setLoadState] = useState(false)
-    const [numDisplayHex, setNumDisplayHex] = useState(false)
+    const [numDisplayHex, setNumDisplayHex] = useState(true)
     const navigate = useNavigate()
-    const numPerPage = 10;
+    const numPerPage = window.innerWidth >= 650 ? 10 : 5;
     const [deviceSerialSelected, setDeviceSerialSelected] = useState(searchParams.get('device') === 'All Devices' ? '' : searchParams.get('device') )
     const [vehicleNameSelected, setVehicleNameSelected] = useState(searchParams.get('vehicle') === 'All Vehicles' ? '' : searchParams.get('vehicle'))
     const [deviceArray, setDeviceArray] = useState([])
     const [vehicleArray, setVehicleArray] = useState([])
+    const [sortStates, setSortStates] = useState({
+        dateReceived: -1, 
+        arbId: 0,
+    })
+    const [sort, setSort] = useState([-1, 'dateReceived'])
     const url = 'https://can-connect-server.herokuapp.com'
     // const url = 'http://localhost:5000'
 
@@ -64,15 +96,17 @@ const RawPage = () => {
             const d = new Date(date)
             return (("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2))
         }
-        return  table.map((item) => (
-            <tr key={item._id}>
+        return table.map((item) => {
+            return (
+                <tr key={item._id}>
                 <td>{formatDate(item.dateReceived)}</td>
                 <td>{numDisplayHex ? item.arbId.toString(16) : item.arbId}</td>
                 <td>{numDisplayHex ? item.payload.toString(16) : item.payload}</td>
                 <td>{item.deviceSerial}</td>
                 <td>{item.vehicleName}</td>
-            </tr>
-        ))
+                </tr>
+            )
+        })
     }
 
     const displayVehicleOptions = () => {
@@ -106,7 +140,7 @@ const RawPage = () => {
         
                 const user = JSON.parse(localStorage.getItem('user'))
                 try {
-                    let res = await axios.get(`${url}/can/?num=${numPerPage}&sort=-1&vehicleName=${vehicleNameSelected}&deviceSerial=${deviceSerialSelected}&skip=${numPerPage*(pageSelected-1)}`, {
+                    let res = await axios.get(`${url}/can/?num=${numPerPage}&sort[]=${sort[0]}&sort[]=${sort[1]}&vehicleName=${vehicleNameSelected}&deviceSerial=${deviceSerialSelected}&skip=${numPerPage*(pageSelected-1)}`, {
                         headers: {
                             'Authorization': `Bearer ${user.token}`
                         }
@@ -141,65 +175,78 @@ const RawPage = () => {
         return () => {
             source.cancel()
         }
-    }, [vehicleNameSelected, deviceSerialSelected, pageSelected, navigate, searchParams])
+    }, [vehicleNameSelected, deviceSerialSelected, pageSelected, navigate, searchParams, sort, setAuthState, numPerPage])
 
     return (
         <div className="raw-body">
             
-            <FormControl>
+            {/* <FormControl>
                 <FormControlLabel className='hex-button' control={<Checkbox onChange={()=>{
                     setNumDisplayHex(!(numDisplayHex))
                 }}/>} label="Display as Hex" />
-            </FormControl>
+            </FormControl> */}
 
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
-            <InputLabel id="device-dropdown-label">Device</InputLabel>
-            <Select
-                className="dropdown"
-                labelId="device-dropdown-label"
-                id="device-dropdown"
-                value={deviceSerialSelected}
-                label="Device"
-                onChange={(event)=>{
-                    setDeviceSerialSelected(event.target.value === "All Devices" ? '' : event.target.value)
-                    navigate(`/raw-can?p=${1}&device=${event.target.value}&vehicle=${vehicleNameSelected}`)
-                }}
-            >
-                <MenuItem value={'All Devices'}>All Devices</MenuItem>
-                {displayDeviceOptions()}
-            </Select>
-            </FormControl>
-
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
-            <InputLabel id="vehicle-dropdown-label">Vehicle Name</InputLabel>
-            <Select
-                className="dropdown"
-                labelId="vehicle-dropdown-label"
-                id="vehicle-dropdown"
-                value={vehicleNameSelected}
-                label="Vehicle Name"
-                onChange={(event)=>{
-                    setVehicleNameSelected(event.target.value === "All Vehicles" ? '' : event.target.value)
-                    navigate(`/raw-can?p=${1}&device=${deviceSerialSelected}&vehicle=${event.target.value}`)
-                }}
-            >
-                <MenuItem value={'All Vehicles'}>All Vehicles</MenuItem>
-                {displayVehicleOptions()}
-            </Select>
-            </FormControl>
             
+            <div style={{margin: '0 auto', width: '50%', textAlign:'center'}}>
+                <div >
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
+                    <InputLabel id="device-dropdown-label">Device</InputLabel>
+                    <Select
+                        className="dropdown"
+                        labelId="device-dropdown-label"
+                        id="device-dropdown"
+                        value={deviceSerialSelected}
+                        label="Device"
+                        onChange={(event)=>{
+                            setDeviceSerialSelected(event.target.value === "All Devices" ? '' : event.target.value)
+                            navigate(`/raw-can?p=${1}&device=${event.target.value}&vehicle=${vehicleNameSelected}`)
+                        }}
+                    >
+                        <MenuItem value={'All Devices'}>All Devices</MenuItem>
+                        {displayDeviceOptions()}
+                    </Select>
+                    </FormControl>
+
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
+                    <InputLabel id="vehicle-dropdown-label">Vehicle Name</InputLabel>
+                    <Select
+                        className="dropdown"
+                        labelId="vehicle-dropdown-label"
+                        id="vehicle-dropdown"
+                        value={vehicleNameSelected}
+                        label="Vehicle Name"
+                        onChange={(event)=>{
+                            setVehicleNameSelected(event.target.value === "All Vehicles" ? '' : event.target.value)
+                            navigate(`/raw-can?p=${1}&device=${deviceSerialSelected}&vehicle=${event.target.value}`)
+                        }}
+                    >
+                        <MenuItem value={'All Vehicles'}>All Vehicles</MenuItem>
+                        {displayVehicleOptions()}
+                    </Select>
+                    </FormControl>
+                    
+                </div>
+            </div>
+
             {loadState ? 
                 <Container className="table-container" fixed>
                     <Paper elevation={8}>
-                        <table className='raw-can-table'>
-                            <tr>
-                                <th>Date Received</th>
-                                <th>Arbitration ID</th>
-                                <th>Payload Data</th>
-                                <th>Device Serial #</th>
-                                <th>Vehicle Name</th>
-                            </tr>
-                            {displayTable()}
+                        <table className='raw-can-table' style={{fontSize: '2vmin'}}>
+                            <tbody>
+                                <tr>
+                                    <th>Date Received <button className='sort-button'onClick={()=>{
+                                        setSort([sort[0] === -1 ? 1 : -1, 'dateReceived'])
+                                    }}>{sort[1] === 'dateReceived' ? displaySortSymbol(sort[0]) : '-'}</button></th>
+                                    <th >Arbitration ID<button className='sort-button'onClick={()=>{
+                                        setSort([sort[0] === -1 ? 1 : -1, 'arbId'])
+                                    }}>{sort[1] === 'arbId' ? displaySortSymbol(sort[0]) : '-'}</button></th>
+                                    <th>Payload Data</th>
+                                    <th>Device Serial #</th>
+                                    <th>Vehicle Name</th>
+                                </tr>
+                                {displayTable()}
+                            </tbody>
+                            
                         </table>
                     </Paper>
 
