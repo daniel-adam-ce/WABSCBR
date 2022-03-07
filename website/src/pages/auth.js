@@ -1,8 +1,8 @@
 import React from 'react'
-import {useContext, useState} from 'react'
+import {useContext, useState, useEffect} from 'react'
 import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate, useSearchParams } from 'react-router-dom'
 import { AuthContext } from '../App';
 import '../styles/auth.css'
 
@@ -13,10 +13,12 @@ import {Link} from 'react-router-dom'
 
 const AuthPage = () => {
     const [authState, setAuthState] = useContext(AuthContext)
+    const [searchParams, setSearchParams] = useSearchParams()
     const [passwordError, setPasswordError] = useState({state: false, message: ''})
     const [emailError, setEmailError] = useState({state: false, message: ''})
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [log, setLog] = useState({t: '', error: ''})
     const navigate = useNavigate()
     const url = 'https://can-connect-server.herokuapp.com'
     // const url = 'http://localhost:5000'
@@ -42,6 +44,40 @@ const AuthPage = () => {
     const googleFailure = (res) => {
         console.log(res)
     }
+
+    const appToken = async () => {
+        console.log('token:', searchParams.get('token'))
+        try {
+            const token = searchParams.get('token')
+            setLog({...log, t: token})
+            console.log(token)
+            const res = await axios.post(`${url}/user/auth`, {}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            console.log(res.data)
+            let user = res.data.user
+            user.isApp = true
+            localStorage.setItem('user', JSON.stringify(user))
+            navigate('/dashboard')
+        } catch (error) {
+            console.log(error.response)   
+            setLog({...log, error: error.response.message})
+        }
+    }
+
+    useEffect(()=>{
+        
+        const source = axios.CancelToken.source()
+        if (searchParams.get('token')){
+            appToken()
+        }
+        
+        return () => {
+            source.cancel()
+        }
+    }, [])
 
     const nativeLoginSubmit = async () => {
         try {
@@ -95,6 +131,8 @@ const AuthPage = () => {
                     cookiePolicy={'single_host_origin'}
                 />
             </Paper>
+            {/* <div>token: {log.t} {'        '}</div>
+            <div>error: {log.error}</div> */}
         </div>
 
         
