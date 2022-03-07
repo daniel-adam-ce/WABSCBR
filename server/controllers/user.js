@@ -20,7 +20,7 @@ export const getUser = async (req, res) => {
         const user = await UserData.findOne(query).exec()
         res.status(200).json(user)
     } catch (error) {
-        res.status(400).json({message: error.message})
+        res.status(500).json({message: error.message})
     }
 }
 
@@ -31,11 +31,11 @@ export const deleteUser = async (req, res) => {
             let id = req.query.id
             await UserData.findByIdAndDelete(id).exec()
         } else {
-            throw new Error('Must provide id')
+            res.status(400).send({message: 'Email must be provided'})
         }
         res.status(200).json('Deletion successful')
     } catch (error) {
-        res.status(400).json({message: error.message})
+        res.status(500).json({message: error.message})
     }
 }
 
@@ -61,10 +61,10 @@ export const googleAuth = async (req, res) => {
             }
             res.status(200).json({message: 'Google login successful'})
         } else {
-            throw new Error('Email is not verified')
+            res.status(401).json({message: 'Email is not verified'})
         }
     } catch (error) {
-        res.status(400).json({message: error.message})
+        res.status(500).json({message: error.message})
     }
 }
 
@@ -76,12 +76,12 @@ export const getVehiclesAndDevices = async (req, res) => {
         if (req.email) {
             query.where("email", req.email)
         } else {
-            throw new Error('Email must be provided')
+            res.status(400).send({message: 'Email must be provided'})
         }
         const user = await UserData.findOne(query).exec()
         res.status(200).send([user.vehicles, user.devices])
     } catch (error) {
-        res.status(400).send({message: error.message})
+        res.status(500).send({message: error.message})
     }
 }
 
@@ -133,8 +133,7 @@ export const loginUser = async (req, res) => {
         }
         const user = await UserData.findOne(query).exec()
         if (!user) {
-            return res.status(400).json({message: {error: 'No account exists with the given id or email', type: 'email'}})
-            // throw new Error("No account exists with the given id or email")
+            return res.status(404).json({message: {error: 'No account exists with the given id or email', type: 'email'}})
         }
         const passwordCompare = bcrypt.compareSync(req.query.password, user.password)
         
@@ -143,7 +142,6 @@ export const loginUser = async (req, res) => {
             return res.status(200).json({profileObj: {email: user.email}, token: token, isGoogle: false}) 
         } else {
             return res.status(400).json({message: {error: 'Wrong password', type: 'password'}})
-            // throw new Error("Passwords do not match")
         }
     } catch (error) {
         res.status(500).json({message: error.message})
