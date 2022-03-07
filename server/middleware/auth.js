@@ -8,7 +8,7 @@ const client = new OAuth2Client.OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 const auth = async (req, res, next) => {
     try {
         if (!req.headers.authorization) {
-            return res.status(404).send({message: 'No authorization header provided'})
+            return res.status(401).send({message: 'No authorization header provided'})
         }
         const token = req.headers.authorization.split(" ")[1]
         const isGoogleAuth = token.length > 500
@@ -41,7 +41,7 @@ const auth = async (req, res, next) => {
         next()
     } catch (error) {
         console.log(error)
-        res.status(400).send({message: error.message})
+        res.status(401).send({message: error.message})
     }
 }
 

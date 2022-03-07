@@ -49,6 +49,13 @@ td, th {
     padding: 8px;
 }
 
+
 tr:nth-child(even) {
     background-color: #eeeeee;
+}
+
+.sort-button {
+    border: none;
+    background-color: white;
+    font-weight:600;
 }

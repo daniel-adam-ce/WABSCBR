@@ -10,6 +10,9 @@ const WebsiteScreen = ({navigation}) => {
     const loadToken = async () => {
       try {
         const user = await AsyncStorage.getItem('user')
+        if (user === undefined) {
+          navigation.navigate('Login')
+        }
         setToken(JSON.parse(user).token)
         console.log('storage: ', token)
         setLoadState(false)
