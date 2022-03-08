@@ -1,16 +1,6 @@
 #pragma once <iostream> 
 using namespace std;
 
-int sboxlookup(int x);
-
-int main(){
-    int a; 
-    int x = 0x0b ;
-    a = sboxlookup(x);
-    cout << a << endl;
-    return 0;
-}
-
 int sboxlookup(int x){
     int out; 
     switch(x){

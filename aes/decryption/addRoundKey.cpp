@@ -1,33 +1,7 @@
-/*
-#include <iostream> 
-using namespace std;
-
-int standardKey[10] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x1B,0x36};
-unsigned long int keyExpand(int data[16],int round){
-    unsigned long int keyVal;
-    unsigned long int w0 = (data[0]<<24) + (data[4]<<16) + (data[8]<<8) + (data[12]);
-    unsigned long int w1 = (data[1]<<24) + (data[5]<<16) + (data[9]<<8) + (data[13]);
-    unsigned long int w2 = (data[2]<<24) + (data[6]<<16) + (data[10]<<8) + (data[14]);
-    unsigned long int w3 = (data[3]<<24) + (data[7]<<16) + (data[11]<<8) + (data[15]);
-
-    cout << w1;
-    return keyVal;
-}
-
-
-int main(){
-    int data[16] = {0x01,0xc6,0xd5,0x8e,
-					0x01,0xc6,0xd5,0x4d,
-					0x01,0xc6,0xd7,0xa1,
-					0x01,0xc6,0xd6,0xbc};
-    keyExpand(data,1);
-
-    return 0;
-}
-/*
-
 #include <iostream>
+#include </Users/nicholasskumar 1/Documents/Y4S2/186B/WABSCBR/aes/decryption/invSbox.h>
 using namespace std;
+
 
 
 void GFunct(int array[4],int round){
@@ -105,7 +79,13 @@ int keyExpand (int array[16], int round){
     int w2[4] = {array[6] , array[10] , array[14] , array[2]};
     int w3[4] = {array[7] , array[11] , array[15] , array[3]};
     
-    //call the sbox here
+    for (int i=0; i<4; i++) {
+        w0[i] = sboxlookup(w0[i]);
+        w1[i] = sboxlookup(w1[i]);
+        w2[i] = sboxlookup(w2[i]);
+        w3[i] = sboxlookup(w3[i]);
+    }
+
     
     GFunct(w0,round);
     GFunct(w0,round);
