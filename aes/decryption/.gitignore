@@ -1,3 +1,5 @@
 /.vscode
 columnMix.exe
 rowShift.exe
+addRoundKey.exe
+SBox.exe

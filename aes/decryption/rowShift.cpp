@@ -2,7 +2,6 @@
 using namespace std;
 
  void cyclicShift(int row0[4],int it){
-     cout<< "in prog" << endl;
     int temp[4];
 
      for(int i = 0; i<4; i++) {
@@ -43,16 +42,24 @@ void rowShift( int array[16]){
     row2[3]=array[14];
     row3[3]=array[15];
 
-    for (int x = 0; x<4; x++){
-        cout << row3[x] << "\t";
-    }
-
     cyclicShift(row1,1);
     cyclicShift(row2,2);
     cyclicShift(row3,3);
-    
+
     for (int x = 0; x<4; x++){
-        cout << row3[x] << "\t";
+        cout << row0[x] << " ";
+    }
+    cout << endl;
+    for (int x = 0; x<4; x++){
+        cout << row1[x] << " ";
+    }    
+    cout << endl;
+    for (int x = 0; x<4; x++){
+        cout << row2[x] << " ";
+    }
+    cout << endl;
+    for (int x = 0; x<4; x++){
+        cout << row3[x] << " ";
     }
     cout << endl;
 }
