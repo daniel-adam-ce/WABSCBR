@@ -19,8 +19,8 @@ import { useState, useEffect } from 'react'
 
 export const AuthContext = React.createContext()
 
-// const url = 'https://can-connect-server.herokuapp.com'
-const url = 'http://localhost:5000'
+const url = 'https://can-connect-server.herokuapp.com'
+// const url = 'http://localhost:5000'
 
 function useTokenVerify() {
   const [authState, setAuthState] = useState(false)
