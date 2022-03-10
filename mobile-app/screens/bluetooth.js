@@ -17,7 +17,8 @@
     View,
     Text,
     Pressable,
-    ScrollView
+    ScrollView,
+    NativeModules
   } from 'react-native';
   
   import {
@@ -28,77 +29,76 @@
     BluetoothDevice
   } from 'react-native-bluetooth-classic';
   
-  
+  const { EnableDiscovery } = NativeModules;
   
 
   const BluetoothScreen = ({navigation}) => {
 
     const [bluetoothState, setBluetoothState] = useState({})
-    
-    const requestAccessFineLocationPermission = async () => {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Access fine location required for discovery',
-          message:
-            'In order to perform discovery, you must enable/allow ' +
-            'fine location access.',
-          buttonNeutral: 'Ask Me Later"',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK'
-        }
-      );
-      return granted === PermissionsAndroid.RESULTS.GRANTED;
-    };
-    
-    startDiscovery = async () => {
-      try {
-        console.log('starting...')
-        let granted = await requestAccessFineLocationPermission();
-    
-        if (!granted) {
-        throw new Error(`Access fine location was not granted`);
-        }
-    
-        setBluetoothState({ discovering: true });
-    
-        let unpaired = await RNBluetoothClassic.startDiscovery();
-        console.log(`Found ${unpaired.length} unpaired devices.`)
-        ToastAndroid.show(`Found ${unpaired.length} unpaired devices.`, 2000);
-        setBluetoothState({ unpaired, discovering: false });
-        
 
-      } catch (err) {
-        ToastAndroid.show(err.message, 2000);
+
+    const acceptConnections = async () => {
+      setBluetoothState({ accepting: true });
+      console.log('accept connections')
+      try {
+        const granted = await requestBluetoothAdvertise();
+        console.log(granted)
+        if (!granted) {
+          throw new Error('Advertisement was not granted');
+          }
+        console.log('accepting...')
+        let device = await RNBluetoothClassic.accept({});
+        console.log('finished acception')
+        console.log(device)
+        console.log(device?._nativeDevice)
+        console.log(device?.name, device?.address)
+        setBluetoothState({device});
+      } catch (error) {
+        // Handle error accordingly
+        console.error(error)
+        setBluetoothState({accepting:false})
+      } finally {
+        setBluetoothState({ accepting: false });
       }
     }
 
     useEffect(()=>{
-      startDiscovery()
+      return () => {
+        if (bluetoothState.acceptimg) {
+          RNBluetoothClassic.cancelAccept()
+        }
+      }
     }, [])
   
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
-          {bluetoothState.discovering ? 
-          <Text style={{marginTop: 10, color: 'black'}}>Searching...</Text> :<Text style={{marginTop: 10, color: 'black'}}>Select a device to pair:</Text> }
-          {bluetoothState.unpaired !== undefined && (bluetoothState.unpaired.map((device)=>{
-            return (
-                <Pressable 
-                key={device._nativeDevice.address}
-                style={styles.btn}
-                onPress={async ()=>{
-                  try {
-                    await RNBluetoothClassic.pairDevice(device._nativeDevice.address)
-                  } catch (error) {
-                    console.error(error)
-                  }
-                }}
-                >
-                <Text style={{color: 'white'}}>Address: {device._nativeDevice.address}</Text>
-                <Text style={{color: 'white'}}>Device Name: {device._nativeDevice.name}</Text>
-              </Pressable> 
-            )
-          }))}
+          <Pressable
+          style={styles.btn}
+          onPress={()=> {
+              console.log(EnableDiscovery)
+              // EnableDiscovery.Test((res)=>{
+              //   console.log(res)
+              // })
+              EnableDiscovery.EnableAppDiscovery()
+              console.log('done')
+            
+          }}
+          >
+            <Text>accept</Text>
+          </Pressable>
+          <Pressable
+          style={styles.btn}
+          onPress={() => {
+              RNBluetoothClassic.cancelAccept().then((res)=>{
+                console.log('cancel',res)
+              })
+            }}
+          >
+            <Text>cancel</Text>
+          </Pressable>
+          {bluetoothState.accepting ? <Text>
+            accepting
+          </Text> : <Text>{`address: ${bluetoothState.device?.address}`} {`name: ${bluetoothState.device?.name}`}</Text>}
         </ScrollView>
     );
   };
