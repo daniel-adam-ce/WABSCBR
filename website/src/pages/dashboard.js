@@ -3,6 +3,10 @@ import {useEffect, useContext, useState} from 'react'
 import { AuthContext } from '../App'
 import axios from 'axios'
 import { useNavigate, } from 'react-router-dom'
+import '../styles/dashboard.css'
+
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
 const DashboardPage = () => {
     const [authState, setAuthState] = useContext(AuthContext)
     const [loadState, setLoadState] = useState(false)
@@ -39,32 +43,39 @@ const DashboardPage = () => {
     }, [navigate, setAuthState])
 
     return (
-        <div style={{marginTop:'10%'}}>
-            dashboard
-            {!loadState && <div> 
-                <button onClick={()=>{
-                    navigate('/raw-can?p=1&device=All Devices&vehicle=All Vehicles')
-                }}>
-                raw can data
-                </button>
-                <button onClick={()=>{
-                    navigate('/vehicle-data')
-                }}>
-                vehicle codes
-                </button>
-                <button onClick={()=>{
-                    navigate('/trouble-codes')
-                }}>
-                trouble codes
-                </button>
-                <button onClick={()=>{
-                    navigate('/device')
-                }}>
-                Configure Vehicles and Devices
-                </button>
-            </div>}
-        </div>
-        
+            !loadState && <div style={{marginTop: '5rem', backgroundColor:'#eeeeee'}}>
+                <Paper className='paper-dashboard-bg' elevation={8}><div className='dashboard-button-container'>
+                    <button className='dashboard-button' onClick={()=>{
+                        navigate('/raw-can?p=1&device=All Devices&vehicle=All Vehicles')
+                    }}>
+                    Raw CAN Data
+                    </button>
+                </div>
+                <div className='dashboard-button-container'>
+                    <button className='dashboard-button' onClick={()=>{
+                        navigate('/vehicle-data')
+                    }}>
+                    Vehicle Codes
+                    </button>
+                </div>
+                <div className='dashboard-button-container'>
+                    <button className='dashboard-button' onClick={()=>{
+                        navigate('/trouble-codes')
+                    }}>
+                    Trouble Codes
+                    </button>
+                </div>
+                <div className='dashboard-button-container'>
+                    <button className='dashboard-button' onClick={()=>{
+                        navigate('/device')
+                    }}>
+                    Configure Vehicles and Devices
+                    </button>
+                </div></Paper> 
+                
+
+                
+            </div>
     )
 }
 

@@ -31,9 +31,6 @@ const canSchema = mongoose.Schema({
     }
 })
 
-// canSchema.pre('save', async function(next) {
-//     // ...
-// })
 
 const CanData = mongoose.model('can', canSchema);
 export default CanData;
