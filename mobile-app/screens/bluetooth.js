@@ -8,6 +8,7 @@
  import React, {
     useState,
     useEffect,
+    useRef,
   } from 'react';
   import {
     StyleSheet,
@@ -17,7 +18,8 @@
     View,
     Text,
     Pressable,
-    ScrollView
+    ScrollView,
+    NativeModules
   } from 'react-native';
   
   import {
@@ -28,77 +30,108 @@
     BluetoothDevice
   } from 'react-native-bluetooth-classic';
   
-  
-  
+  const { EnableDiscovery } = NativeModules;
 
   const BluetoothScreen = ({navigation}) => {
 
-    const [bluetoothState, setBluetoothState] = useState({})
-    
-    const requestAccessFineLocationPermission = async () => {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Access fine location required for discovery',
-          message:
-            'In order to perform discovery, you must enable/allow ' +
-            'fine location access.',
-          buttonNeutral: 'Ask Me Later"',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK'
-        }
-      );
-      return granted === PermissionsAndroid.RESULTS.GRANTED;
-    };
-    
-    startDiscovery = async () => {
-      try {
-        console.log('starting...')
-        let granted = await requestAccessFineLocationPermission();
-    
-        if (!granted) {
-        throw new Error(`Access fine location was not granted`);
-        }
-    
-        setBluetoothState({ discovering: true });
-    
-        let unpaired = await RNBluetoothClassic.startDiscovery();
-        console.log(`Found ${unpaired.length} unpaired devices.`)
-        ToastAndroid.show(`Found ${unpaired.length} unpaired devices.`, 2000);
-        setBluetoothState({ unpaired, discovering: false });
-        
+    const [bluetoothState, setBluetoothState] = useState({test:true});
+    const idRef = useRef()
 
-      } catch (err) {
-        ToastAndroid.show(err.message, 2000);
+    const acceptConnections = async () => {
+      setBluetoothState({...bluetoothState, accepting: true, device: null });
+      console.log('accept connections')
+      try {
+        console.log('accepting...')
+        const device = await RNBluetoothClassic.accept({});
+        console.log('finished acception')
+        console.log(device)
+        console.log(device?._nativeDevice)
+        console.log(device?.name, device?.address)
+        device.onDataReceived((res)=>{
+          console.log(res)
+        })
+        setBluetoothState({...bluetoothState, device: device});
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setBluetoothState({ accepting: false });
       }
-    }
+    };
+
+    // may not be necessary - session may continue without needing discoverability to be reenabled
+    // const discoveryTimer = () => {
+    //   console.log(bluetoothState)
+    //   const id = setTimeout(()=>{
+    //     console.log('timer no use')
+    //     setBluetoothState({...bluetoothState, discoveryEnabled: false})
+    //   }, 5000)
+    //   idRef.current = id;
+    // }
 
     useEffect(()=>{
-      startDiscovery()
-    }, [])
+      const disableSub = RNBluetoothClassic.onBluetoothDisabled(()=>{
+        ToastAndroid.show(`Please enable Bluetooth.`, 5000);
+        RNBluetoothClassic.openBluetoothSettings();
+      });
+      RNBluetoothClassic.isBluetoothEnabled().then((res)=>{
+        console.log(res ? 'Bluetooth is enabled' : 'Bluetooth is disabled')
+        if (!res) {
+          ToastAndroid.show(`Please enable Bluetooth.`, 5000);
+          RNBluetoothClassic.openBluetoothSettings();
+        }
+      }).catch((res)=>{
+        console.log(res)
+      });
+      return () => {
+        clearTimeout(idRef.current)
+        if (bluetoothState.acceptimg) {
+          RNBluetoothClassic.cancelAccept();
+          disableSub.remove();
+        }
+      }
+    }, []);
   
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
-          {bluetoothState.discovering ? 
-          <Text style={{marginTop: 10, color: 'black'}}>Searching...</Text> :<Text style={{marginTop: 10, color: 'black'}}>Select a device to pair:</Text> }
-          {bluetoothState.unpaired !== undefined && (bluetoothState.unpaired.map((device)=>{
-            return (
-                <Pressable 
-                key={device._nativeDevice.address}
-                style={styles.btn}
-                onPress={async ()=>{
-                  try {
-                    await RNBluetoothClassic.pairDevice(device._nativeDevice.address)
-                  } catch (error) {
-                    console.error(error)
-                  }
-                }}
-                >
-                <Text style={{color: 'white'}}>Address: {device._nativeDevice.address}</Text>
-                <Text style={{color: 'white'}}>Device Name: {device._nativeDevice.name}</Text>
-              </Pressable> 
-            )
-          }))}
+
+          {!bluetoothState.discoveryEnabled && <Pressable
+          style={styles.btn}
+          onPress={()=> {
+              EnableDiscovery.EnableAppDiscovery((res)=> {
+                if (res) {
+                  console.log('cb', res);
+                  setBluetoothState({...bluetoothState, discoveryEnabled: true})
+                  // see definition of discoveryTimer
+                  // discoveryTimer()
+                }
+              });
+          }}
+          >
+            <Text style={{color: 'white'}}>Turn on Discoverability</Text>
+          </Pressable>}
+          {(bluetoothState.discoveryEnabled && !bluetoothState.accepting) && <Pressable
+          style={styles.btn}
+          onPress={() => {
+              acceptConnections()
+            }}
+          >
+            <Text style={{color: 'white'}}>Search for a Device</Text>
+          </Pressable>}
+          {bluetoothState.accepting && <Pressable
+          style={styles.btn}
+          onPress={() => {
+              RNBluetoothClassic.cancelAccept().then((res)=>{
+                console.log('cancel',res)
+                setBluetoothState({...bluetoothState, accepting: false})
+              });
+            }}
+          >
+            <Text style={{color: 'white'}}>Cancel Search</Text>
+          </Pressable>}
+
+          {bluetoothState.accepting && <Text style={{color: "black"}}> Searching for a Device... </Text>} 
+          {bluetoothState.device && <Text style={{color: "black"}}>{`address: ${bluetoothState.device?.address}`} {`name: ${bluetoothState.device?.name}`}</Text>}
+
         </ScrollView>
     );
   };
@@ -148,7 +181,7 @@
       // elevation: 10,
       backgroundColor: '#38a1f1',
       width: '50%',
-      marginTop: 10,
+      marginTop: '50%',
       marginBottom: 10,
       borderStyle: 'solid',
       borderColor: 'red'
