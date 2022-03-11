@@ -8,6 +8,7 @@
  import React, {
     useState,
     useEffect,
+    useRef,
   } from 'react';
   import {
     StyleSheet,
@@ -30,75 +31,107 @@
   } from 'react-native-bluetooth-classic';
   
   const { EnableDiscovery } = NativeModules;
-  
 
   const BluetoothScreen = ({navigation}) => {
 
-    const [bluetoothState, setBluetoothState] = useState({})
-
+    const [bluetoothState, setBluetoothState] = useState({test:true});
+    const idRef = useRef()
 
     const acceptConnections = async () => {
-      setBluetoothState({ accepting: true });
+      setBluetoothState({...bluetoothState, accepting: true, device: null });
       console.log('accept connections')
       try {
-        const granted = await requestBluetoothAdvertise();
-        console.log(granted)
-        if (!granted) {
-          throw new Error('Advertisement was not granted');
-          }
         console.log('accepting...')
-        let device = await RNBluetoothClassic.accept({});
+        const device = await RNBluetoothClassic.accept({});
         console.log('finished acception')
         console.log(device)
         console.log(device?._nativeDevice)
         console.log(device?.name, device?.address)
-        setBluetoothState({device});
+        device.onDataReceived((res)=>{
+          console.log(res)
+        })
+        setBluetoothState({...bluetoothState, device: device});
       } catch (error) {
-        // Handle error accordingly
         console.error(error)
-        setBluetoothState({accepting:false})
       } finally {
         setBluetoothState({ accepting: false });
       }
-    }
+    };
+
+    // may not be necessary - session may continue without needing discoverability to be reenabled
+    // const discoveryTimer = () => {
+    //   console.log(bluetoothState)
+    //   const id = setTimeout(()=>{
+    //     console.log('timer no use')
+    //     setBluetoothState({...bluetoothState, discoveryEnabled: false})
+    //   }, 5000)
+    //   idRef.current = id;
+    // }
 
     useEffect(()=>{
+      const disableSub = RNBluetoothClassic.onBluetoothDisabled(()=>{
+        ToastAndroid.show(`Please enable Bluetooth.`, 5000);
+        RNBluetoothClassic.openBluetoothSettings();
+      });
+      RNBluetoothClassic.isBluetoothEnabled().then((res)=>{
+        console.log(res ? 'Bluetooth is enabled' : 'Bluetooth is disabled')
+        if (!res) {
+          ToastAndroid.show(`Please enable Bluetooth.`, 5000);
+          RNBluetoothClassic.openBluetoothSettings();
+        }
+      }).catch((res)=>{
+        console.log(res)
+      });
       return () => {
+        clearTimeout(idRef.current)
         if (bluetoothState.acceptimg) {
-          RNBluetoothClassic.cancelAccept()
+          RNBluetoothClassic.cancelAccept();
+          disableSub.remove();
         }
       }
-    }, [])
+    }, []);
   
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
-          <Pressable
+
+          {!bluetoothState.discoveryEnabled && <Pressable
           style={styles.btn}
           onPress={()=> {
-              console.log(EnableDiscovery)
-              // EnableDiscovery.Test((res)=>{
-              //   console.log(res)
-              // })
-              EnableDiscovery.EnableAppDiscovery()
-              console.log('done')
-            
+              EnableDiscovery.EnableAppDiscovery((res)=> {
+                if (res) {
+                  console.log('cb', res);
+                  setBluetoothState({...bluetoothState, discoveryEnabled: true})
+                  // see definition of discoveryTimer
+                  // discoveryTimer()
+                }
+              });
           }}
           >
-            <Text>accept</Text>
-          </Pressable>
-          <Pressable
+            <Text style={{color: 'white'}}>Turn on Discoverability</Text>
+          </Pressable>}
+          {(bluetoothState.discoveryEnabled && !bluetoothState.accepting) && <Pressable
+          style={styles.btn}
+          onPress={() => {
+              acceptConnections()
+            }}
+          >
+            <Text style={{color: 'white'}}>Search for a Device</Text>
+          </Pressable>}
+          {bluetoothState.accepting && <Pressable
           style={styles.btn}
           onPress={() => {
               RNBluetoothClassic.cancelAccept().then((res)=>{
                 console.log('cancel',res)
-              })
+                setBluetoothState({...bluetoothState, accepting: false})
+              });
             }}
           >
-            <Text>cancel</Text>
-          </Pressable>
-          {bluetoothState.accepting ? <Text>
-            accepting
-          </Text> : <Text>{`address: ${bluetoothState.device?.address}`} {`name: ${bluetoothState.device?.name}`}</Text>}
+            <Text style={{color: 'white'}}>Cancel Search</Text>
+          </Pressable>}
+
+          {bluetoothState.accepting && <Text style={{color: "black"}}> Searching for a Device... </Text>} 
+          {bluetoothState.device && <Text style={{color: "black"}}>{`address: ${bluetoothState.device?.address}`} {`name: ${bluetoothState.device?.name}`}</Text>}
+
         </ScrollView>
     );
   };
@@ -148,7 +181,7 @@
       // elevation: 10,
       backgroundColor: '#38a1f1',
       width: '50%',
-      marginTop: 10,
+      marginTop: '50%',
       marginBottom: 10,
       borderStyle: 'solid',
       borderColor: 'red'
