@@ -6,7 +6,7 @@ import AuthPage from './pages/auth.js'
 import RawPage from './pages/raw.js'
 import TroublePage from './pages/trouble.js'
 import VehiclePage from './pages/vehicle.js'
-import DevicePage from './pages/device.js'
+import ConfigPage from './pages/config.js'
 import NotFoundPage from './pages/notFound.js'
 import NavBar from './components/navbar'
 import AboutPage from './pages/about.js'
@@ -67,7 +67,7 @@ function App() {
             <Route path='/raw-can' element={<RawPage/>}></Route>
             <Route path='/trouble-codes' element={<TroublePage/>}></Route>
             <Route path='/vehicle-data' element={<VehiclePage/>}></Route>
-            <Route path='/device' element={<DevicePage/>}></Route>
+            <Route path='/configure' element={<ConfigPage/>}></Route>
             <Route path='/not-found' element={<NotFoundPage/>}></Route>
             <Route path='*' element={<NotFoundRedirect/>}></Route>
           </Routes>
