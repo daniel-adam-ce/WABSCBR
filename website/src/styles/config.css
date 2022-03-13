@@ -1,0 +1,26 @@
+.row-button {
+    border: none;
+    border-radius: 12px;
+    width: 4vmin;
+    color: rgb(233, 233, 233);
+    
+    transition: background-color 1000ms
+}
+
+
+
+.remove-button {
+    background-color: #d82828b6;
+}
+
+.remove-button:hover {
+    background-color: #d82828;
+}
+
+.add-button {
+    background-color: #11b624b6;
+}
+
+.add-button:hover {
+    background-color: #11b624;
+}
