@@ -35,13 +35,26 @@
   const BluetoothScreen = ({navigation}) => {
 
     const [bluetoothState, setBluetoothState] = useState({test:true});
-    const idRef = useRef()
+    const enableDiscoveryTimeoutRef = useRef()
+    const acceptTimeoutRef = useRef()
+
+    const acceptTimer = () => {
+      console.log(bluetoothState)
+      const id = setTimeout(()=>{
+        console.log('accept timer')
+        RNBluetoothClassic.cancelAccept().then(()=>{  
+          setBluetoothState({...bluetoothState, accepting: false})
+        })
+      }, 20000)
+      acceptTimeoutRef.current = id;
+    }
 
     const acceptConnections = async () => {
       setBluetoothState({...bluetoothState, accepting: true, device: null });
       console.log('accept connections')
       try {
         console.log('accepting...')
+        acceptTimer()
         const device = await RNBluetoothClassic.accept({});
         console.log('finished acception')
         console.log(device)
@@ -59,14 +72,16 @@
     };
 
     // may not be necessary - session may continue without needing discoverability to be reenabled
-    // const discoveryTimer = () => {
+    // const enableDiscoveryTimer = () => {
     //   console.log(bluetoothState)
     //   const id = setTimeout(()=>{
-    //     console.log('timer no use')
+    //     console.log('enDisc timer')
     //     setBluetoothState({...bluetoothState, discoveryEnabled: false})
-    //   }, 5000)
-    //   idRef.current = id;
+    //   }, 300000)
+    //   enableDiscoveryTimeoutRef.current = id;
     // }
+
+    
 
     useEffect(()=>{
       const disableSub = RNBluetoothClassic.onBluetoothDisabled(()=>{
@@ -83,7 +98,8 @@
         console.log(res)
       });
       return () => {
-        clearTimeout(idRef.current)
+        clearTimeout(enableDiscoveryTimeoutRef.current)
+        clearTimeout(acceptTimeoutRef.current)
         if (bluetoothState.acceptimg) {
           RNBluetoothClassic.cancelAccept();
           disableSub.remove();
@@ -102,7 +118,7 @@
                   console.log('cb', res);
                   setBluetoothState({...bluetoothState, discoveryEnabled: true})
                   // see definition of discoveryTimer
-                  // discoveryTimer()
+                  // enableDiscoveryTimer()
                 }
               });
           }}
