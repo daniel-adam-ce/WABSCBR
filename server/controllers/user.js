@@ -117,9 +117,42 @@ export const addVehicleOrDevice = async (req, res) => {
             checkUniqueAndAdd(user, 'devices', req.body.deviceSerial)
         }
         await user.save()
-        res.status(200).json({message: 'Device or vehicle successfully added'})
+        res.status(200).send([user.vehicles, user.devices])
     } catch (error) {
         res.status(400).json({message: error.message})
+    }
+}
+
+export const removeVehicleOrDevice = async (req, res) => {
+    try {
+        const checkAndRemove = (object, field, itemToAdd) => {
+            const index = object[`${field}`].findIndex((element)=> (
+                element === itemToAdd
+            ))
+            if (index !== -1) {
+                object[`${field}`].splice(index, 1);
+            } else {
+                // throw new Error(`Attempt to remove item in ${field} failed. Item does not exists.`)
+                res.status(400).json({message: `Attempt to remove item in ${field} failed. Item does not exists.`})
+            }
+        }
+        let query = UserData.find();
+        if (req.email) {
+            query.where('email', req.email);
+        } else {
+            res.status(400).json({message: 'Email must be provided'});
+        }
+        let user = await UserData.findOne(query).exec();
+        if (req.body.vehicleName) {
+            checkAndRemove(user, 'vehicles', req.body.vehicleName);
+        }
+        if (req.body.deviceSerial) {
+            checkAndRemove(user, 'devices', req.body.deviceSerial);
+        }
+        await user.save()
+        res.status(200).send([user.vehicles, user.devices])
+    } catch (error) {
+        res.status(500).json({message: error.message})
     }
 }
 
