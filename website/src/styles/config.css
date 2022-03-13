@@ -1,16 +1,14 @@
 .row-button {
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     width: 4vmin;
     color: rgb(233, 233, 233);
-    
-    transition: background-color 1000ms
+    font-weight: 500;
+    transition: background-color 500ms;
 }
 
-
-
 .remove-button {
-    background-color: #d82828b6;
+    background-color: #d8282864;
 }
 
 .remove-button:hover {
@@ -18,9 +16,22 @@
 }
 
 .add-button {
-    background-color: #11b624b6;
+    background-color: #11b62464;
 }
 
 .add-button:hover {
     background-color: #11b624;
+}
+
+.cfg-text-field {
+    outline: none;
+    border-style: solid;
+    border-color: #a5a5a5;
+    border-radius: 8px;
+    padding: 4px 4px 4px 4px;
+    transition: border-color 500ms;
+}
+
+.cfg-text-field:focus {
+    border-color: #2a79b5;
 }

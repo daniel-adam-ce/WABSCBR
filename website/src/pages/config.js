@@ -18,6 +18,7 @@ const ConfigPage = () => {
     const [newItem, setNewItem] = useState('');
     const [itemType, setItemType] = useState('vehicles');
     const [loadState, setLoadState] = useState(false);
+    const [authState, setAuthState] = useContext(AuthContext)
     const url = 'https://can-connect-server.herokuapp.com'
 
     const navigate = useNavigate()
@@ -54,7 +55,8 @@ const ConfigPage = () => {
             setLoadState(false);
         } catch (error) {
             if (error.response.status === 401) {
-                navigate('/auth')
+                setAuthState(false);
+                navigate('/auth');
             }
             if (error.response.status === 400) {
                 alert(error.response.data.message)
@@ -79,7 +81,8 @@ const ConfigPage = () => {
             setLoadState(false);
         } catch (error) {
             if (error.response.status === 401) {
-                navigate('/auth')
+                setAuthState(false);
+                navigate('/auth');
             }
             if (error.response.status === 400) {
                 alert(error.response.data.message)
@@ -110,7 +113,8 @@ const ConfigPage = () => {
                 setLoadState(false);
             } catch (error) {
                 if (error.response.status === 401) {
-                    navigate('/auth')
+                    setAuthState(false);
+                    navigate('/auth');
                 }
                 if (error.response.status === 400) {
                     alert(error.response.data.message)
@@ -154,7 +158,7 @@ const ConfigPage = () => {
                             {displayTable(itemType)}
                             <tr>
                                 <td>New</td>
-                                <td><input type='text' value={newItem} onChange={(event)=>{
+                                <td><input className="cfg-text-field" type='text' value={newItem} onChange={(event)=>{
                                     setNewItem(event.target.value)
                                 }} style={{width:"110%"}}></input></td>
                                 <td style={{textAlign:'right'}}><button className='row-button add-button' disabled={loadState} onClick={addNewItem}>+</button></td>
