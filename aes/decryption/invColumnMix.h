@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 using namespace std;
 int NinesFeild[16][16] =
@@ -68,13 +69,12 @@ int FourFeild[16][16] =
 {0x0c,0x02,0x10,0x1e,0x34,0x3a,0x28,0x26,0x7c,0x72,0x60,0x6e,0x44,0x4a,0x58,0x56},
 {0x37,0x39,0x2b,0x25,0x0f,0x01,0x13,0x1d,0x47,0x49,0x5b,0x55,0x7f,0x71,0x63,0x6d},
 {0xd7,0xd9,0xcb,0xc5,0xef,0xe1,0xf3,0xfd,0xa7,0xa9,0xbb,0xb5,0x9f,0x91,0x83,0x8d} };
-void print(int array[4][4]) {
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			cout << std::hex <<array[i][j] << "\t";
-		}
-		cout << endl;
-	}
+void printArrayx(int array[16]){
+    for(int i = 0; i<16; i++){
+        cout << array[i] << "\t";
+    }
+    cout << endl;
+    return;
 }
 int GMul(int M0, int val) {
 	int d0p = val & 15;
@@ -106,6 +106,7 @@ int FullMix(int con[4], int data[4]) {
 	return backdata;
 }
 void ColumnMix(int array[16]) {
+	//printArrayx(array);
 	int c0[4] = { array[0],array[1],array[2],array[3] };
 	int c1[4] = { array[4],array[5],array[6],array[7] };
 	int c2[4] = { array[8],array[9],array[10],array[11] };
@@ -114,18 +115,13 @@ void ColumnMix(int array[16]) {
 	int m1[4] = { 9,14,11,13 };
 	int m2[4] = { 13,9,14,11 };
 	int m3[4] = { 11,13,9,14 };
-	int c10[4][4] = { {array[0],array[1],array[2],array[3]},
-					{array[4],array[5],array[6],array[7]},
-					{array[8],array[9],array[10],array[11]},
-					{array[12],array[13],array[14],array[15]} };
-	print(c10);
 	array[0] = FullMix(m0, c0);
 	array[1] = FullMix(m1, c0);
 	array[2] = FullMix(m2, c0);
 	array[3] = FullMix(m3, c0);
 	array[4] = FullMix(m0, c1);
 	array[5] = FullMix(m1, c1);
-	array[5] = FullMix(m2, c1);
+	array[6] = FullMix(m2, c1);
 	array[7] = FullMix(m3, c1);
 	array[8] = FullMix(m0, c2);
 	array[9] = FullMix(m1, c2);
@@ -135,20 +131,11 @@ void ColumnMix(int array[16]) {
 	array[13] = FullMix(m1, c3);
 	array[14] = FullMix(m2, c3);
 	array[15] = FullMix(m3, c3);
-	int c11[4][4] = { {array[0],array[1],array[2],array[3]},
-					{array[4],array[5],array[6],array[7]},
-					{array[8],array[9],array[10],array[11]},
-					{array[12],array[13],array[14],array[15]} };
-	cout << endl << endl;
-	cout << "Final Array:" << endl;
-	print(c11);
-}
-int main() {
-	int data[16] = { 0x1,0xc6,0xd5,0x8e,
-					0x1,0xc6,0xd5,0x4d,
-					0x1,0xc6,0xd7,0xa1,
-					0x1,0xc6,0xd6,0xbc };
-	ColumnMix(data);
-	return 0;
-
+	//int c11[4][4] = { {array[0],array[1],array[2],array[3]},
+	//				{array[4],array[5],array[6],array[7]},
+	//				{array[8],array[9],array[10],array[11]},
+	//				{array[12],array[13],array[14],array[15]} };
+	//cout << endl << endl;
+	//cout << "Final Array:" << endl;
+	//print(c11);
 }
