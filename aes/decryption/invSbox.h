@@ -1,5 +1,8 @@
-#pragma once <iostream> 
+#pragma once
+#include <iostream> 
 using namespace std;
+
+
 
 int sboxlookup(int x){
     int out; 
@@ -777,4 +780,11 @@ int sboxlookup(int x){
         break;
     }
     return out;
+}
+
+void invSBox(int array[16]){
+    for (int i =0; i< 16; i++){
+        array[i] = sboxlookup(array[i]);
+    }
+    return;
 }

@@ -1,8 +1,5 @@
 #include <iostream>
-//#include </Users/nicholasskumar 1/Documents/Y4S2/186B/WABSCBR/aes/decryption/invSbox.h>
-#include <C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\decryption\invSbox.h>
 using namespace std;
-
 int sbox[16][16] = 
 {{99, 124, 119, 123, 242, 107, 111, 197, 48, 1, 103, 43, 254, 215, 171, 118},
 {202, 130, 201, 125, 250, 89, 71, 240, 173, 212, 162, 175, 156, 164, 114, 192},
@@ -20,22 +17,8 @@ int sbox[16][16] =
 {112, 62, 181, 102, 72, 3, 246, 14, 97, 53, 87, 185, 134, 193, 29, 158},
 {225, 248, 152, 17, 105, 217, 142, 148, 155, 30, 135, 233, 206, 85, 40, 223},
 {140, 161, 137, 13, 191, 230, 66, 104, 65, 153, 45, 15, 176, 84, 187, 22}};
-
-void addRndKey(int data[16], int key[16]){
-    for(int i =0; i<16; i++){
-        data[i] ^= key[i];
-    }
-    return;
-}
 void MulRC(int w0[4],int round){
-    switch (round){
-        //case 0:
-        //    w0[0] = w0[0] ^ 0x08;
-        //    w0[1] = w0[1] ^ 0x0;
-        //    w0[2] = w0[2] ^ 0x0;
-       //     w0[3] = w0[3] ^ 0x0;
-        //    break;
-        
+    switch (round){        
         case 1:
             w0[0] = w0[0] ^ 0x01;
             w0[1] = w0[1] ^ 0x0;
@@ -99,13 +82,6 @@ void MulRC(int w0[4],int round){
     }
     return;
 }
-void Print(int array[4]){
-    for(int i=0; i<4; i++){
-        cout << array[i] << "\t";
-    }
-    cout << endl;
-    return;
-}
 void RotWord(int w0[4]){
     int tem0[4] = {w0[1] , w0[2] , w0[3] , w0[0]};
 
@@ -128,20 +104,16 @@ void GFun(int w0[4],int round){
         temp[i] = w0[i];
     }
     RotWord(temp);
-    cout << "RotWord : ";
-    Print(temp);
+
     invertSubBytes(temp);
-    cout << "SubBytes : ";
-    Print(temp);
+
     MulRC(temp,round);
-    cout << round <<": RCMul : ";
-    Print(temp);
-    cout << endl << endl;
+
     for(int i =0; i<4; i++){
       w0[i] = temp[i];
     }
 }
-void keyExpand (int words [44][4], int array[16]){
+void keyExpand (int words[44][4], int array[16]){
     
     words[0][0] = array[0];
     words[0][1] = array[1];
@@ -162,19 +134,14 @@ void keyExpand (int words [44][4], int array[16]){
     words[3][1] = array[13];
     words[3][2] = array[14];
     words[3][3] = array[15];
-
-    //Do the G Function to every third word
-        //invserse Sbox 
-        //multiply by the RC constant 
-        //start to generate new words    
+ 
     int tem[4];
     tem[0] = words[3][0];
     tem[1] = words[3][1];
     tem[2] = words[3][2];
     tem[3] = words[3][3];
-    Print(tem);
-    GFun(tem,1);
 
+    GFun(tem,1);
     for(int i=1;i<11;i++){
         for(int n =0; n<4; n++){
             words[(i*4)][n] = tem[n]^words[((i-1)*4)][n];
@@ -196,54 +163,13 @@ void keyExpand (int words [44][4], int array[16]){
             tem[a] = words[(i*4)+3][a]; 
         } 
         GFun(tem,i+1);
-        //cout << i << ": " << endl;
-        //Print(words[(i*4)]);
-        //Print(words[(i*4)+1]);
-        //Print(words[(i*4)+2]);
-        //Print(words[(i*4)+3]);
-        Print(tem);
     }
     return;
-
 }
 
-int main(){
-    
-    int words[44][4];
-    //int data[16] = { 0x54, 0x68, 0x61, 0x74,
-    //                 0x73, 0x20, 0x6D, 0x79,
-    //                 0x20, 0x4B, 0x75, 0x6E,
-    //                 0x67, 0x20, 0x46, 0x75};
-    int data[16] = { 0x0, 0x0, 0x0, 0x0,
-                     0x0, 0x0, 0x0, 0x0,
-                     0x0, 0x0, 0x0, 0x0,
-                     0x0, 0x0, 0x0, 0x0 };
-    
-    keyExpand(words,data);
-    
-    
-    
-    for(int i =0;i<11;i++){
-        for(int j =0; j<4; j++){
-            cout << words[i*4][j] << "\t" ;
-        }
-        cout << "\t";
-        for(int j =0; j<4; j++){
-            cout << words[(i*4)+1][j] << "\t" ;
-        }
-        cout << "\t";
-        for(int j =0; j<4; j++){
-            cout << words[(i*4)+2][j] << "\t" ;
-        }
-        cout << "\t";
-        for(int j =0; j<4; j++){
-            cout << words[(i*4)+3][j] << "\t" ;
-        }
-        cout << "\t";
-        cout << endl;
+void addRndKey(int data[16], int key[16]){
+    for(int i =0; i<16; i++){
+        data[i] ^= key[i];
     }
-    
-    
-    return 0;
+    return;
 }
- 
