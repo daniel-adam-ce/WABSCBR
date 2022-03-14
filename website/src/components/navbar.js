@@ -31,7 +31,7 @@ const NavBar = () => {
                 <Nav.Link as={NavLink} to="/raw-can?p=1&device=All Devices&vehicle=All Vehicles">CAN Data</Nav.Link>
                 <Nav.Link as={NavLink} to="/trouble-codes">Trouble Codes</Nav.Link>
                 <Nav.Link as={NavLink} to="/vehicle-data">Vehicle Data</Nav.Link>
-                <Nav.Link as={NavLink} to="/device">Device</Nav.Link>
+                <Nav.Link as={NavLink} to="/configure">Configure</Nav.Link>
             </Nav>
             <Nav>
                 <Nav.Link onClick={()=>{
