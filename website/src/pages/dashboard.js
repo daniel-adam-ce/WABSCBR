@@ -67,7 +67,7 @@ const DashboardPage = () => {
                 </div>
                 <div className='dashboard-button-container'>
                     <button className='dashboard-button' onClick={()=>{
-                        navigate('/device')
+                        navigate('/configure')
                     }}>
                     Configure Vehicles and Devices
                     </button>
