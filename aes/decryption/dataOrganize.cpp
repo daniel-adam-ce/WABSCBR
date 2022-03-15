@@ -1,16 +1,19 @@
 #include <iostream>
-#include <C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\decryption\invAddRoundKey.h>
-#include <C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\decryption\invColumnMix.h>
-#include <C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\decryption\invRowShift.h>
-#include <C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\decryption\invSbox.h>
+#include "invAddRoundKey.h"
+#include "invColumnMix.h"
+#include "invRowShift.h"
+#include "invSbox.h"
 using namespace std;
 
-void printArray(int array[16]){{
+void printArray(int array[16]){
     for(int i = 0; i<16; i++){
-        cout << std::hex << array[i] << "\t";
+        if (array[i] > 0xF) {
+            cout << std::hex << array[i];
+        } else {
+            cout << std::hex << "0" << array[i];
+        }
     }
     cout << endl;
-}
 
     return;
 }
@@ -23,21 +26,23 @@ int main(int argc, char** argv){
     for (int i = 0; i < 16; i++) {
         ciphertxt[i] = 0;
     }
-    std::cout << argv[1] << std::endl;
+    std::cout << "arg1 " << argv[1] << std::endl;
+    std::cout << "arg2 " << argv[2] << std::endl;
     char tempCString[3] = {0};
     char tempCString2[3] = {0};
     int size = 0;
-    for (int i = 0, j = 0; i < 16; (i=i+2), j++){
+    for (int i = 0, j = 0; i < 32; (i=i+2), j++){
         tempCString[0] = argv[1][i];
         tempCString[1] = argv[1][i+1];
         tempCString2[0] = argv[2][i];
         tempCString2[1] = argv[2][i+1];
-        std::cout << tempCString[0] << " " << tempCString[1] << std::endl;
         ciphertxt[j] = std::strtoul(tempCString, nullptr, 16);
         key[j] = std::strtoul(tempCString2, nullptr, 16);
         size = j;
     }
 
+    printArray(ciphertxt);
+    printArray(key);
     int words[44][4];
 
     keyExpand(words,key);
@@ -90,6 +95,7 @@ int main(int argc, char** argv){
         rowShift(ciphertxt);
         invSBox(ciphertxt);
         addRndKey(ciphertxt, exkeys[0]);
+    printArray(ciphertxt);
     return 0;
 
 }
