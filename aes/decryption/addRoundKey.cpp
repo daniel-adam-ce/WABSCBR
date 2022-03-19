@@ -1,6 +1,6 @@
 #include <iostream>
 //#include </Users/nicholasskumar 1/Documents/Y4S2/186B/WABSCBR/aes/decryption/invSbox.h>
-#include <C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\decryption\invSbox.h>
+#include "invSbox.h"
 using namespace std;
 
 int sbox[16][16] = 
