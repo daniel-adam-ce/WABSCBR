@@ -12,12 +12,13 @@ import { useNavigate, } from 'react-router-dom'
 import { Container } from '@mui/material';
 
 import '../styles/config.css'
+import Spinner from '../components/spinner';
 const ConfigPage = () => {
 
     const [tables, setTable] = useState({devices: [], vehicles: []});
     const [newItem, setNewItem] = useState('');
     const [itemType, setItemType] = useState('vehicles');
-    const [loadState, setLoadState] = useState(false);
+    const [loadState, setLoadState] = useState(true);
     const [authState, setAuthState] = useContext(AuthContext)
     const url = 'https://can-connect-server.herokuapp.com'
 
@@ -130,7 +131,7 @@ const ConfigPage = () => {
 
     return (
         <div className="raw-body">
-            <div style={{margin: '0 auto', width: '50%', textAlign:'center'}}> 
+            {!loadState ? <div style={{margin: '0 auto', width: '50%', textAlign:'center'}}> 
             <Container fixed>
                 {/* replace with native html components */}
                 <FormControl>
@@ -149,7 +150,7 @@ const ConfigPage = () => {
                     </RadioGroup>
                 </FormControl>
                 <Paper elevation={8}>
-                    <table className='raw-can-table' style={{fontSize: 'calc(4px + 2vmin)',}}>
+                    {!loadState && <table className='raw-can-table' style={{fontSize: 'calc(4px + 2vmin)',}}>
                         <tbody>
                             <tr style={{textAlign:"left"}}>
                                 <th>#</th>
@@ -163,11 +164,11 @@ const ConfigPage = () => {
                                 }} style={{width:"110%"}}></input></td>
                                 <td style={{textAlign:'right'}}><button className='row-button add-button' disabled={loadState} onClick={addNewItem}>+</button></td>
                             </tr>
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>}
                 </Paper>
             </Container>
-            </div>
+            </div> : <Spinner size="small" backgroundColor="#eeeeee"/>}
             
             
         </div>

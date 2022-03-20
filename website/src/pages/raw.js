@@ -5,7 +5,7 @@ import axios from 'axios'
 import {useNavigate, useSearchParams } from 'react-router-dom'
 import "../styles/raw.css"
 
-import Spinner from 'react-bootstrap/Spinner'
+// import Spinner from 'react-bootstrap/Spinner'
 
 import Pagination from '@mui/material/Pagination';
 import Paper from '@mui/material/Paper';
@@ -15,58 +15,9 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
-const sortByDate = (table, key, state) => {
-    const array = [...table]
-    if (state === 1) {
-        return array.sort((a, b)=>{
-            if (a[key] > b[key]) {
-                return 1
-            }
-            if (a[key] < b[key]) {
-                return -1
-            }
-            return 0
-        })
-    }
-    if (state === -1) {
-        return array.sort((a, b)=>{
-            if (a[key] < b[key]) {
-                return 1
-            }
-            if (a[key] > b[key]) {
-                return -1
-            }
-            return 0
-        })
-    }
-    
-}
+import Spinner from '../components/spinner.js';
 
-const changeSortState = (state) => {
-    if (state === 0) {
-        return -1
-    }
-    if (state === 1) {
-        return -1
-    }
-    if (state === -1) {
-        return 1
-    }
-    return 0
-}
-
-const displaySortSymbol = (state) => {
-    if (state === 1) {
-        return '\u25bc'
-    }
-    if (state === -1) {
-        return '\u25b2'
-    }
-    return '-'
-}
 
 const RawPage = () => {
     const [authState, setAuthState] = useContext(AuthContext)
@@ -89,6 +40,16 @@ const RawPage = () => {
     const [sort, setSort] = useState([-1, 'dateReceived'])
     const url = 'https://can-connect-server.herokuapp.com'
     // const url = 'http://localhost:5000'
+
+    const displaySortSymbol = (state) => {
+        if (state === 1) {
+            return '\u25bc'
+        }
+        if (state === -1) {
+            return '\u25b2'
+        }
+        return '-'
+    }
 
     const displayTable = () => {
 
@@ -140,13 +101,15 @@ const RawPage = () => {
         
                 const user = JSON.parse(localStorage.getItem('user'))
                 try {
+                    
+                    setLoadState(true)
                     let res = await axios.get(`${url}/can/?num=${numPerPage}&sort[]=${sort[0]}&sort[]=${sort[1]}&vehicleName=${vehicleNameSelected}&deviceSerial=${deviceSerialSelected}&skip=${numPerPage*(pageSelected-1)}`, {
                         headers: {
                             'Authorization': `Bearer ${user.token}`
                         }
                     })
                     setTable(res.data)
-                    setLoadState(true)
+                    
                     res = await axios.get(`${url}/can/count?deviceSerial=${deviceSerialSelected}&vehicleName=${vehicleNameSelected}`, {
                         headers: {
                             'Authorization': `Bearer ${user.token}`
@@ -160,6 +123,8 @@ const RawPage = () => {
                     })
                     setVehicleArray(res.data[0])
                     setDeviceArray(res.data[1])
+                    
+                    setLoadState(false)
                 } catch (error) {
                     // if (error.response.data.message === "Email is not verified" || error.response.data.message.search(/late/i) > -1) {
                     // need to finish error checking here
@@ -170,7 +135,6 @@ const RawPage = () => {
                 }
             }
             retrieveData()
-            setLoadState(false)
         }
         return () => {
             source.cancel()
@@ -179,14 +143,7 @@ const RawPage = () => {
 
     return (
         <div className="raw-body">
-            
-            {/* <FormControl>
-                <FormControlLabel className='hex-button' control={<Checkbox onChange={()=>{
-                    setNumDisplayHex(!(numDisplayHex))
-                }}/>} label="Display as Hex" />
-            </FormControl> */}
 
-            
             <div style={{margin: '0 auto', width: '50%', textAlign:'center'}}>
                 <div >
                     <FormControl sx={{ m: 1, minWidth: 150 }}>
@@ -228,7 +185,7 @@ const RawPage = () => {
                 </div>
             </div>
 
-            {loadState ? 
+            {!loadState ? 
                 <Container className="table-container" fixed>
                     <Paper elevation={8}>
                         <table className='raw-can-table' style={{fontSize: '2vmin'}}>
@@ -251,7 +208,7 @@ const RawPage = () => {
                     </Paper>
 
                 </Container>
-            : <div className='loading'><Spinner animation="border" size='lg'/></div>}
+            : <Spinner size="small" backgroundColor="#eeeeee"/>}
             
             <Stack spacing={2}>
                 <Pagination color="primary" className='pagination' count={pages} page={pageSelected} onChange={(event, value) => {
