@@ -126,11 +126,13 @@ const RawPage = () => {
                     
                     setLoadState(false)
                 } catch (error) {
-                    // if (error.response.data.message === "Email is not verified" || error.response.data.message.search(/late/i) > -1) {
-                    // need to finish error checking here
-                    navigate('/auth')
-                    setAuthState(false)
-                    // }
+                    if (error.response.status === 401) {
+                        navigate('/auth')
+                        setAuthState(false)
+                    }
+                    if (error.response.status === 400) {
+                        alert(error.response.data.message)
+                    }
                     console.log(error.response)
                 }
             }
