@@ -10,22 +10,22 @@ z2
 cModel Technology
 dC:/intelFPGA_pro/21.1
 vcolumnMix
-Z0 !s110 1647482719
+Z0 !s110 1647841236
 !i10b 1
-!s100 heKHNEY89^D:J;V<F>J:Q0
-I9Acd?]EA;=be7B4ABDjTj2
+!s100 7SHTQ6nd1GmRH0I4[lWmQ3
+IW9j[YLEK0G9>FNo86oHE32
 Z1 dC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption
-w1647482715
+w1647547292
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v
-!i122 51
-L0 1 37
+!i122 212
+L0 1 32
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 OV;L;2021.1;73
 r1
 !s85 0
 31
-Z4 !s108 1647482719.000000
+Z4 !s108 1647841236.000000
 !s107 C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v|
 !i113 1
@@ -36,12 +36,12 @@ vfullMix
 R0
 !i10b 1
 !s100 QBEaI[A9DMn=Q;nh0P0J70
-I:7aL6;F8j<gldOA=>YmD:2
+IIaR82TH@bGY@DE;fNg5Q`2
 R1
 w1647464042
-8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v
-FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v
-!i122 55
+8C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\fullMix.v
+FC:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\fullMix.v
+!i122 216
 Z7 L0 1 19
 R2
 R3
@@ -49,12 +49,35 @@ r1
 !s85 0
 31
 R4
-!s107 C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v|
+!s107 C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\fullMix.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\fullMix.v|
 !i113 1
 R5
 R6
 nfull@mix
+vGFunction
+R0
+!i10b 1
+!s100 :nb]@X=86elJBo7TI45731
+IO8SG6d>P^Zo6BO_I4l5<22
+R1
+w1647841114
+8C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\GFunction.v
+FC:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\GFunction.v
+!i122 219
+L0 1 31
+R2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\GFunction.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\GFunction.v|
+!i113 1
+R5
+R6
+n@g@function
 vGmul
 !s110 1647462476
 !i10b 1
@@ -87,7 +110,7 @@ R1
 w1647473745
 R8
 R9
-!i122 54
+!i122 215
 R7
 R2
 R3
@@ -101,6 +124,52 @@ R11
 R5
 R6
 n@g@mul
+vkeyExpansion
+R0
+!i10b 1
+!s100 KA7_m;co4JMiHIM32M0eM1
+I4TSZgJlQz9foaX__en[Em1
+R1
+w1647841233
+8C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\KeyExpansion.v
+FC:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\KeyExpansion.v
+!i122 217
+L0 1 45
+R2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\KeyExpansion.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\KeyExpansion.v|
+!i113 1
+R5
+R6
+nkey@expansion
+vMulRC
+R0
+!i10b 1
+!s100 k@hN]oz_K:X0KCT_4;WfE0
+IV1hZbJAZC1A[oP6gLkGJ91
+R1
+w1647841140
+8C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\MulRC.v
+FC:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\MulRC.v
+!i122 218
+L0 1 20
+R2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\MulRC.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\MulRC.v|
+!i113 1
+R5
+R6
+n@mul@r@c
 vrightcyclicshifter
 !s110 1647333077
 !i10b 1
@@ -124,7 +193,7 @@ r1
 R5
 R6
 vrowShift
-Z12 !s110 1647482718
+!s110 1647841235
 !i10b 1
 !s100 faH]l5I`M4NWjYnzJ00AO3
 IgmbAafJa91Fja9<HYcnNK3
@@ -132,14 +201,14 @@ R1
 w1647333185
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v
-!i122 47
+!i122 208
 L0 1 6
 R2
 R3
 r1
 !s85 0
 31
-Z13 !s108 1647482718.000000
+!s108 1647841235.000000
 !s107 C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v|
 !i113 1
@@ -147,7 +216,7 @@ R5
 R6
 nrow@shift
 vsbox
-R12
+R0
 !i10b 1
 !s100 ZGK7D43`kohYlVg:`9HgQ2
 IPJXG47mjF624bN_6e:NHD2
@@ -155,21 +224,21 @@ R1
 w1606886384
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v
-!i122 48
+!i122 209
 L0 1 26
 R2
 R3
 r1
 !s85 0
 31
-R13
+R4
 !s107 C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v|
 !i113 1
 R5
 R6
 vsbox32
-R12
+R0
 !i10b 1
 !s100 8ZDE^CB@7FEO4Fg;f=UYZ1
 IOgLLBb9Phd5BVo?4L8NAA3
@@ -177,14 +246,14 @@ R1
 w1605773892
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
-!i122 49
+!i122 210
 L0 2 26
 R2
 R3
 r1
 !s85 0
 31
-R13
+R4
 !s107 C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v|
 !i113 1
@@ -199,14 +268,14 @@ R1
 w1647380888
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v
-!i122 50
+!i122 211
 L0 1 267
 R2
 R3
 r1
 !s85 0
 31
-R13
+R4
 !s107 C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v|
 !i113 1
@@ -221,7 +290,7 @@ R1
 w1647379499
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/threesField.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/threesField.v
-!i122 53
+!i122 214
 L0 1 265
 R2
 R3
@@ -244,7 +313,7 @@ R1
 w1647379804
 8C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TwosFeild.v
 FC:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TwosFeild.v
-!i122 52
+!i122 213
 L0 1 264
 R2
 R3
