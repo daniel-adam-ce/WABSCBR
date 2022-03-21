@@ -172,7 +172,7 @@ export const loginUser = async (req, res) => {
         
         if (passwordCompare) {
             const token = jwt.sign({id: user._id}, process.env.TOKEN_SECRET, { expiresIn: '1h'})
-            return res.status(200).json({profileObj: {email: user.email}, token: token, isGoogle: false}) 
+            return res.status(200).json({profileObj: {id: user._id}, token: token, isGoogle: false}) 
         } else {
             return res.status(400).json({message: {error: 'Wrong password', type: 'password'}})
         }
