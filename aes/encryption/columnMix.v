@@ -1,11 +1,6 @@
 module columnMix(
 	input [127:0] indata,
 	output [127:0] outdata);
-	
-	//wire [31:0] c0 = {indata[7:0],indata[15:8],indata[23:16],indata[31:24]};
-	//wire [31:0] c1 = {indata[39:32],indata[47:40],indata[55:48],indata[63:56]};
-	//wire [31:0] c2 = {indata[71:64],indata[79:72],indata[87:80],indata[95:88]};
-	//wire [31:0] c3 = {indata[103:96],indata[111:104],indata[119:112],indata[127:120]};
 
 	wire [31:0] c0 = {indata[127:120],indata[119:112],indata[111:104],indata[103:96]};
 	wire [31:0] c1 = {indata[95:88],indata[87:80],indata[79:72],indata[71:64]};
