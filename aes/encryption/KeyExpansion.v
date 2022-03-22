@@ -81,23 +81,5 @@ module keyExpansion(
 	assign ekey8 = {words[32],words[33],words[34],words[35]};
 	assign ekey9 = {words[36],words[37],words[38],words[39]};
 	assign ekey10 = {words[40],words[41],words[42],words[43]};
-
-		
-
-
-	genvar i;
-	//always@(*)begin
-		//GFunction u0 (.val(words))
-		
-		generate 
-			for(i=4'b0001; i<10; i=i+1) begin
-				assign words[i*4] = words[(i-1)*4] ^ reg0[i-1];
-				assign words[(i*4)+1] = words[((i-1)*4)+1] ^ words[i*4];
-				assign words[(i*4)+2] = words[((i-1)*4)+2] ^ words[(i*4)+1];
-				assign words[(i*4)+3] = words[((i-1)*4)+3] ^ words[(i*4)+2];
-				assign reg0[i] = words[(i*4)+3];
-				GFunction u1 (.val(reg0[i]) , .round(i),.gVal(reg0[i+1]));
-			end
-		endgenerate
 	//end
 endmodule 
