@@ -28,12 +28,13 @@ public class EnableDiscovery extends ReactContextBaseJavaModule {
      }
 
     @ReactMethod
-    public void EnableAppDiscovery(){
+    public void EnableAppDiscovery(Callback cb){
         ReactApplicationContext context = getReactApplicationContext();
         int requestCode = 1;
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoverableIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         context.startActivity(discoverableIntent);
+        cb.invoke(true);
     }
 }
