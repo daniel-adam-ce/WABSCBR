@@ -1,4 +1,4 @@
-/.work
+./work
 Encyrption.mpf
 Encyrption.mpf_new
 vsim.wlf
@@ -15,3 +15,4 @@ workspace.code-workspace
 MulRc.v.bak
 KeyExpansion.v.bak
 GFunction.v.bak
+TopModule.v.bak
