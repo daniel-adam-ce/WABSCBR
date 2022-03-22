@@ -10,9 +10,11 @@ import Paper from '@mui/material/Paper';
 import TextField  from '@mui/material/TextField'
 
 import {Link} from 'react-router-dom'
+import Spinner from '../components/spinner'
 
 const AuthPage = () => {
-    const [authState, setAuthState] = useContext(AuthContext)
+    const [authState, setAuthState] = useContext(AuthContext);
+    const [loadState, setLoadState] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams()
     const [passwordError, setPasswordError] = useState({state: false, message: ''})
     const [emailError, setEmailError] = useState({state: false, message: ''})
@@ -23,6 +25,7 @@ const AuthPage = () => {
     const url = 'https://can-connect-server.herokuapp.com'
     // const url = 'http://localhost:5000'
     const googleSuccess = async (res) => {
+        setLoadState(true);
         const token = res?.tokenId
         const user = {
             profileObj: res?.profileObj,
@@ -81,6 +84,7 @@ const AuthPage = () => {
 
     const nativeLoginSubmit = async () => {
         try {
+            setLoadState(true)
             setEmailError({state:false, message: ''})
             setPasswordError({state:false, message: ''})
             const res = await axios.post(`${url}/user/auth/login?email=${email}&password=${password}`)
@@ -95,11 +99,14 @@ const AuthPage = () => {
                 setPasswordError({state: true, message: error.response.data.message.error})
             }
             console.log(error.response)
+        } finally {
+            setLoadState(false)
         }
+        
     }
 
     return (
-        <div className='auth-body'>
+        !loadState ? <div className='auth-body'>
             <Paper className='paper-auth-bg' key={1} elevation={12}>
                 <div className="login-text">{"Login"}</div>
                 <div className="auth-text-field">
@@ -133,7 +140,7 @@ const AuthPage = () => {
             </Paper>
             {/* <div>token: {log.t} {'        '}</div>
             <div>error: {log.error}</div> */}
-        </div>
+        </div> : <Spinner size="small" backgroundColor="#eeeeee"/>
 
         
     )
