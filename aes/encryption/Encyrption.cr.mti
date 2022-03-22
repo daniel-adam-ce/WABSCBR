@@ -1,9 +1,37 @@
-C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v {1 {vlog -work work -stats=none C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
+C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\fullMix.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module fullMix
+
+Top level modules:
+	fullMix
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v {1 {vlog -work work -stats=none C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
 -- Compiling module sbox32
 
 Top level modules:
 	sbox32
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\sbox.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module sbox
+
+Top level modules:
+	sbox
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\columnMix.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module columnMix
+
+Top level modules:
+	columnMix
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/GFunction.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\GFunction.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module GFunction
+
+Top level modules:
+	GFunction
 
 } {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\rowShift.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
@@ -12,6 +40,27 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb 
 Top level modules:
 	rowShift
 
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/threesField.v {1 {vlog -work work -stats=none C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/threesField.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module threesField
+
+Top level modules:
+	threesField
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TopModule.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\TopModule.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module AESTopModule
+
+Top level modules:
+	AESTopModule
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TwosFeild.v {1 {vlog -work work -stats=none C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TwosFeild.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module twosField
+
+Top level modules:
+	twosField
+
 } {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v {1 {vlog -work work -stats=none C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
 -- Compiling module sboxinst1
@@ -19,18 +68,25 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb 
 Top level modules:
 	sboxinst1
 
-} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v {1 {vlog -work work -stats=none C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/MulRC.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\MulRC.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
--- Compiling module sbox
+-- Compiling module MulRC
 
 Top level modules:
-	sbox
+	MulRC
 
-} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/cyclicshifter.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\cyclicshifter.v}
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/GMul.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\GMul.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
--- Compiling module rightcyclicshifter
+-- Compiling module GMul
 
 Top level modules:
-	rightcyclicshifter
+	GMul
+
+} {} {}} C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/KeyExpansion.v {1 {vlog -work work -stats=none {C:\Users\nicej\Documents\School\Y4S2\186B\WABSCBR\aes\encryption\KeyExpansion.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module keyExpansion
+
+Top level modules:
+	keyExpansion
 
 } {} {}}

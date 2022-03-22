@@ -1,260 +1,88 @@
-; Copyright 1991-2017 Mentor Graphics Corporation
-;
-; All Rights Reserved.
-;
-; THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION WHICH IS THE PROPERTY OF 
-; MENTOR GRAPHICS CORPORATION OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.
-;   
-
-[Library]
-std = $MODEL_TECH/../std
-ieee = $MODEL_TECH/../ieee
-vital2000 = $MODEL_TECH/../vital2000
-;
-; VITAL concerns:
-;
-; The library ieee contains (among other packages) the packages of the
-; VITAL 2000 standard.  When a design uses VITAL 2000 exclusively, it should use
-; the physical library ieee (recommended), or use the physical library
-; vital2000, but not both.  The design can use logical library ieee and/or
-; vital2000 as long as each of these maps to the same physical library, either
-; ieee or vital2000.
-;
-; A design using the 1995 version of the VITAL packages, whether or not
-; it also uses the 2000 version of the VITAL packages, must have logical library
-; name ieee mapped to physical library vital1995.  (A design cannot use library
-; vital1995 directly because some packages in this library use logical name ieee
-; when referring to the other packages in the library.)  The design source
-; should use logical name ieee when referring to any packages there except the
-; VITAL 2000 packages.  Any VITAL 2000 present in the design must use logical
-; name vital2000 (mapped to physical library vital2000) to refer to those
-; packages.
-; ieee = $MODEL_TECH/../vital1995
-;
-; For compatiblity with previous releases, logical library name vital2000 maps
-; to library vital2000 (a different library than library ieee, containing the
-; same packages).
-; A design should not reference VITAL from both the ieee library and the
-; vital2000 library because the vital packages are effectively different.
-; A design that references both the ieee and vital2000 libraries must have
-; both logical names ieee and vital2000 mapped to the same library, either of
-; these:
-;   $MODEL_TECH/../ieee
-;   $MODEL_TECH/../vital2000
-;
-verilog = $MODEL_TECH/../verilog
-std_developerskit = $MODEL_TECH/../std_developerskit
-synopsys = $MODEL_TECH/../synopsys
-modelsim_lib = $MODEL_TECH/../modelsim_lib
-sv_std = $MODEL_TECH/../sv_std
-floatfixlib = $MODEL_TECH/../floatfixlib
-osvvm = $MODEL_TECH/../osvvm
-
-; Altera Primitive libraries
-;
-; VHDL Section
-;
-altera_mf = $MODEL_TECH/../altera/vhdl/altera_mf
-altera = $MODEL_TECH/../altera/vhdl/altera
-altera_lnsim = $MODEL_TECH/../altera/vhdl/altera_lnsim
-lpm = $MODEL_TECH/../altera/vhdl/220model
-220model = $MODEL_TECH/../altera/vhdl/220model
-sgate = $MODEL_TECH/../altera/vhdl/sgate
-twentynm = $MODEL_TECH/../altera/vhdl/twentynm
-twentynm_hssi = $MODEL_TECH/../altera/vhdl/twentynm_hssi
-twentynm_hip = $MODEL_TECH/../altera/vhdl/twentynm_hip
-fourteennm = $MODEL_TECH/../altera/vhdl/fourteennm
-fourteennm_hssi = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_all = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_a = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_e = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_p = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_a0 = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_e0 = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_p0 = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_a1 = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_e1 = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-fourteennm_hssi_p1 = $MODEL_TECH/../altera/vhdl/fourteennm_hssi_all
-tennm = $MODEL_TECH/../altera/vhdl/tennm
-tennm_hssi = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_all = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_a = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_e = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_p = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_a0 = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_e0 = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_p0 = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_a1 = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_e1 = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-tennm_hssi_p1 = $MODEL_TECH/../altera/vhdl/tennm_hssi_all
-cyclone10gx = $MODEL_TECH/../altera/vhdl/cyclone10gx
-cyclone10gx_hssi = $MODEL_TECH/../altera/vhdl/cyclone10gx_hssi
-cyclone10gx_hip = $MODEL_TECH/../altera/vhdl/cyclone10gx_hip
-;
-; Verilog Section
-;
-altera_mf_ver = $MODEL_TECH/../altera/verilog/altera_mf
-altera_ver = $MODEL_TECH/../altera/verilog/altera
-altera_lnsim_ver = $MODEL_TECH/../altera/verilog/altera_lnsim
-lpm_ver = $MODEL_TECH/../altera/verilog/220model
-220model_ver = $MODEL_TECH/../altera/verilog/220model
-sgate_ver = $MODEL_TECH/../altera/verilog/sgate
-twentynm_ver = $MODEL_TECH/../altera/verilog/twentynm
-twentynm_hssi_ver = $MODEL_TECH/../altera/verilog/twentynm_hssi
-twentynm_hip_ver = $MODEL_TECH/../altera/verilog/twentynm_hip
-fourteennm_ver = $MODEL_TECH/../altera/verilog/fourteennm
-fourteennm_hssi_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_all_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_a_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_e_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_p_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_a0_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_e0_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_p0_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_a1_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_e1_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-fourteennm_hssi_p1_ver = $MODEL_TECH/../altera/verilog/fourteennm_hssi_all
-tennm_ver = $MODEL_TECH/../altera/verilog/tennm
-tennm_hssi_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_all_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_a_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_e_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_p_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_a0_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_e0_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_p0_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_a1_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_e1_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-tennm_hssi_p1_ver = $MODEL_TECH/../altera/verilog/tennm_hssi_all
-cyclone10gx_ver = $MODEL_TECH/../altera/verilog/cyclone10gx
-cyclone10gx_hssi_ver = $MODEL_TECH/../altera/verilog/cyclone10gx_hssi
-cyclone10gx_hip_ver = $MODEL_TECH/../altera/verilog/cyclone10gx_hip
-
-work = work
-[vcom]
-; VHDL93 variable selects language version as the default. 
-; Default is VHDL-2002.
-; Value of 0 or 1987 for VHDL-1987.
-; Value of 1 or 1993 for VHDL-1993.
-; Default or value of 2 or 2002 for VHDL-2002.
-; Value of 3 or 2008 for VHDL-2008
-VHDL93 = 2002
-
-; Show source line containing error. Default is off.
-; Show_source = 1
-
-; Turn off unbound-component warnings. Default is on.
-; Show_Warning1 = 0
-
-; Turn off process-without-a-wait-statement warnings. Default is on.
-; Show_Warning2 = 0
-
-; Turn off null-range warnings. Default is on.
-; Show_Warning3 = 0
-
-; Turn off no-space-in-time-literal warnings. Default is on.
-; Show_Warning4 = 0
-
-; Turn off multiple-drivers-on-unresolved-signal warnings. Default is on.
-; Show_Warning5 = 0
-
-; Turn off optimization for IEEE std_logic_1164 package. Default is on.
-; Optimize_1164 = 0
-
-; Turn on resolving of ambiguous function overloading in favor of the
-; "explicit" function declaration (not the one automatically created by
-; the compiler for each type declaration). Default is off.
-; The .ini file has Explicit enabled so that std_logic_signed/unsigned
-; will match the behavior of synthesis tools.
-Explicit = 1
-
-; Turn off acceleration of the VITAL packages. Default is to accelerate.
-; NoVital = 1
-
-; Turn off VITAL compliance checking. Default is checking on.
-; NoVitalCheck = 1
-
-; Ignore VITAL compliance checking errors. Default is to not ignore.
-; IgnoreVitalErrors = 1
-
-; Turn off VITAL compliance checking warnings. Default is to show warnings.
-; Show_VitalChecksWarnings = 0
-
-; Keep silent about case statement static warnings.
-; Default is to give a warning.
-; NoCaseStaticError = 1
-
-; Keep silent about warnings caused by aggregates that are not locally static.
-; Default is to give a warning.
-; NoOthersStaticError = 1
-
-; Treat as errors:
-;   case statement static warnings
-;   warnings caused by aggregates that are not locally static
-; Overrides NoCaseStaticError, NoOthersStaticError settings.
-; PedanticErrors = 1
-
-; Turn off inclusion of debugging info within design units.
-; Default is to include debugging info.
-; NoDebug = 1
-
-; Turn off "Loading..." messages. Default is messages on.
-; Quiet = 1
-
-; Turn on some limited synthesis rule compliance checking. Checks only:
-;    -- signals used (read) by a process must be in the sensitivity list
-; CheckSynthesis = 1
-
-; Activate optimizations on expressions that do not involve signals,
-; waits, or function/procedure/task invocations. Default is off.
-; ScalarOpts = 1
-
-; Turns on lint-style checking.
-; Show_Lint = 1
-
-; Require the user to specify a configuration for all bindings,
-; and do not generate a compile time default binding for the
-; component. This will result in an elaboration error of
-; 'component not bound' if the user fails to do so. Avoids the rare
-; issue of a false dependency upon the unused default binding.
-; RequireConfigForAllDefaultBinding = 1
-
-; Perform default binding at compile time.
-; Default is to do default binding at load time.
-; BindAtCompile = 1;
-
-; Inhibit range checking on subscripts of arrays. Range checking on
-; scalars defined with subtypes is inhibited by default.
-; NoIndexCheck = 1
-
-; Inhibit range checks on all (implicit and explicit) assignments to
-; scalar objects defined with subtypes.
-; NoRangeCheck = 1
-
-; Use this directory for compiler temporary files instead of "work/_temp"
-; CompilerTempDir = /tmp
-
-; Set this to cause the compilers to force data to be committed to disk
-; when the files are closed.
-; SyncCompilerFiles = 1
-
-; Range and length checking will be performed on array indices and discrete
-; ranges, and when violations are found within subprograms, errors will be
-; reported. Default is to issue warnings for violations, because subprograms
-; may not be invoked.
-; NoDeferSubpgmCheck = 0
-
-;Controls if VHDL identifiers are store lower case or left in the
-;case of the declaration. Does not make the langauge case sensitive.
-;Only effect how identifiers are printed. Default is to preserve the
-;users case.  Value of 0 indicates lower case identifers
-; PreserveCase = 1
-
-;In Configuraiton, Controls the visibility of use clause in the design
-;units being configurated.  If 1, then pre-6.7 behavior. Extends the visibility
-;of objects made visible through use clauses into nested component configurations
-; OldVHDLConfigurationVisibility = 0
-
+[Project]
+** Warning: ; Warning -- Do not edit the project properties directly.
+;            Property names are dynamic in nature and property
+;            values have special syntax.  Changing property data directly
+;            can result in a corrupt MPF file.  All project properties
+;            can be modified through project window dialogs.
+Project_Version = 6
+Project_DefaultLib = work
+Project_SortMethod = unused
+Project_Files_Count = 13
+Project_File_0 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v
+Project_File_P_0 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1647464042 cover_fsm 0 cover_branch 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 8 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_1 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
+Project_File_P_1 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1605773892 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 2 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_2 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v
+Project_File_P_2 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1647547292 cover_fsm 0 cover_branch 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 4 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_3 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v
+Project_File_P_3 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1606886384 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 1 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_4 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/GFunction.v
+Project_File_P_4 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647841114 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 11 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_5 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v
+Project_File_P_5 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 folder {Top Level} last_compile 1647903142 cover_fsm 0 cover_branch 0 vlog_noload 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 0 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_6 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/threesField.v
+Project_File_P_6 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647379499 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 6 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_7 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TopModule.v
+Project_File_P_7 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1647985397 cover_fsm 0 cover_branch 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 12 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_8 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TwosFeild.v
+Project_File_P_8 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647379804 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 5 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_9 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v
+Project_File_P_9 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647380888 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 3 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_10 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/MulRC.v
+Project_File_P_10 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647841140 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 10 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_11 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/GMul.v
+Project_File_P_11 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647473745 cover_fsm 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 7 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_12 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/KeyExpansion.v
+Project_File_P_12 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647979471 cover_fsm 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 9 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_Sim_Count = 0
+Project_Folder_Count = 0
+Echo_Compile_Output = 0
+Save_Compile_Report = 1
+Project_Opt_Count = 0
+ForceSoftPaths = 0
+ProjectStatusDelay = 5000
+VERILOG_DoubleClick = Edit
+VERILOG_CustomDoubleClick = 
+SYSTEMVERILOG_DoubleClick = Edit
+SYSTEMVERILOG_CustomDoubleClick = 
+VHDL_DoubleClick = Edit
+VHDL_CustomDoubleClick = 
+PSL_DoubleClick = Edit
+PSL_CustomDoubleClick = 
+TEXT_DoubleClick = Edit
+TEXT_CustomDoubleClick = 
+SYSTEMC_DoubleClick = Edit
+SYSTEMC_CustomDoubleClick = 
+TCL_DoubleClick = Edit
+TCL_CustomDoubleClick = 
+MACRO_DoubleClick = Edit
+MACRO_CustomDoubleClick = 
+VCD_DoubleClick = Edit
+VCD_CustomDoubleClick = 
+SDF_DoubleClick = Edit
+SDF_CustomDoubleClick = 
+XML_DoubleClick = Edit
+XML_CustomDoubleClick = 
+LOGFILE_DoubleClick = Edit
+LOGFILE_CustomDoubleClick = 
+UCDB_DoubleClick = Edit
+UCDB_CustomDoubleClick = 
+TDB_DoubleClick = Edit
+TDB_CustomDoubleClick = 
+UPF_DoubleClick = Edit
+UPF_CustomDoubleClick = 
+PCF_DoubleClick = Edit
+PCF_CustomDoubleClick = 
+PROJECT_DoubleClick = Edit
+PROJECT_CustomDoubleClick = 
+VRM_DoubleClick = Edit
+VRM_CustomDoubleClick = 
+DEBUGDATABASE_DoubleClick = Edit
+DEBUGDATABASE_CustomDoubleClick = 
+DEBUGARCHIVE_DoubleClick = Edit
+DEBUGARCHIVE_CustomDoubleClick = 
+Project_Major_Version = 2021
+Project_Minor_Version = 1
 [vlog]
 
 ; Turn off inclusion of debugging info within design units.
@@ -308,7 +136,7 @@ Resolution = ps
 UserTimeUnit = default
 
 ; Default run length
-RunLength = 100
+RunLength = 100 ps
 
 ; Maximum iterations that can be run without advancing simulation time
 IterationLimit = 5000
@@ -623,17 +451,31 @@ DumpportsCollapse = 1
 Project_Version = 6
 Project_DefaultLib = work
 Project_SortMethod = unused
-Project_Files_Count = 5
-Project_File_0 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
-Project_File_P_0 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1605773892 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 3 cover_expr 0 dont_compile 0 cover_stmt 0
-Project_File_1 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v
-Project_File_P_1 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1605770880 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 1 cover_expr 0 dont_compile 0 cover_stmt 0
-Project_File_2 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v
-Project_File_P_2 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1646692714 cover_fsm 0 cover_branch 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 1 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 4 dont_compile 0 cover_expr 0 cover_stmt 0
-Project_File_3 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/cyclicshifter.v
-Project_File_P_3 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1605252764 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 0 cover_expr 0 dont_compile 0 cover_stmt 0
-Project_File_4 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v
-Project_File_P_4 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1606886384 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 2 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_Files_Count = 12
+Project_File_0 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/fullMix.v
+Project_File_P_0 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 last_compile 1647464042 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 8 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_1 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox32.v
+Project_File_P_1 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1605773892 cover_fsm 0 cover_branch 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 2 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_2 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/columnMix.v
+Project_File_P_2 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 last_compile 1647547292 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 4 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_3 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sbox.v
+Project_File_P_3 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1606886384 cover_fsm 0 cover_branch 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 1 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_4 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/GFunction.v
+Project_File_P_4 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 folder {Top Level} last_compile 1647841114 cover_fsm 0 cover_branch 0 vlog_noload 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 11 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_5 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/rowShift.v
+Project_File_P_5 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} last_compile 1647903142 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 0 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_6 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/threesField.v
+Project_File_P_6 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1647379499 cover_fsm 0 cover_branch 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 6 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_7 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/TwosFeild.v
+Project_File_P_7 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1647379804 cover_fsm 0 cover_branch 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 5 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_8 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/sboxinst1.v
+Project_File_P_8 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 folder {Top Level} last_compile 1647380888 cover_fsm 0 cover_branch 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 3 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_9 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/MulRC.v
+Project_File_P_9 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 folder {Top Level} last_compile 1647841140 cover_fsm 0 cover_branch 0 vlog_noload 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 vlog_showsource 0 vlog_hazard 0 cover_optlevel 3 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 10 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_10 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/GMul.v
+Project_File_P_10 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 folder {Top Level} last_compile 1647473745 cover_fsm 0 cover_branch 0 vlog_noload 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 7 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_11 = C:/Users/nicej/Documents/School/Y4S2/186B/WABSCBR/aes/encryption/KeyExpansion.v
+Project_File_P_11 = cover_toggle 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 last_compile 1647841233 cover_fsm 0 cover_branch 0 vlog_noload 0 folder {Top Level} vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 cover_optlevel 3 vlog_hazard 0 vlog_showsource 0 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 9 dont_compile 0 cover_expr 0 cover_stmt 0
 Project_Sim_Count = 0
 Project_Folder_Count = 0
 Echo_Compile_Output = 0
@@ -681,5 +523,3 @@ DEBUGDATABASE_DoubleClick = Edit
 DEBUGDATABASE_CustomDoubleClick = 
 DEBUGARCHIVE_DoubleClick = Edit
 DEBUGARCHIVE_CustomDoubleClick = 
-Project_Major_Version = 2021
-Project_Minor_Version = 1
