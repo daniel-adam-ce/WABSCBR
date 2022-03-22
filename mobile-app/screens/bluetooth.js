@@ -35,9 +35,12 @@
   const BluetoothScreen = ({navigation}) => {
 
     const [bluetoothState, setBluetoothState] = useState({test:true});
+    const [address, setAddress] = useState('');
+    const [name, setName] = useState('');
+    const [device, setDevice] = useState(null);
     const enableDiscoveryTimeoutRef = useRef()
     const acceptTimeoutRef = useRef()
-
+    // console.log(bluetoothState?.device?.name, bluetoothState)
     const acceptTimer = () => {
       console.log(bluetoothState)
       const id = setTimeout(()=>{
@@ -45,7 +48,7 @@
         RNBluetoothClassic.cancelAccept().then(()=>{  
           setBluetoothState({...bluetoothState, accepting: false})
         })
-      }, 20000)
+      }, 60000)
       acceptTimeoutRef.current = id;
     }
 
@@ -57,17 +60,19 @@
         acceptTimer()
         const device = await RNBluetoothClassic.accept({});
         console.log('finished acception')
-        console.log(device)
         console.log(device?._nativeDevice)
         console.log(device?.name, device?.address)
+        setDevice(device);
+        setAddress(device.address)
+        setName(device.name)
+        setBluetoothState({...bluetoothState, paired: true})
         device.onDataReceived((res)=>{
           console.log(res)
-        })
-        setBluetoothState({...bluetoothState, device: device});
+        });
       } catch (error) {
         console.error(error)
       } finally {
-        setBluetoothState({ accepting: false });
+        setBluetoothState({accepting: false });
       }
     };
 
@@ -81,13 +86,32 @@
     //   enableDiscoveryTimeoutRef.current = id;
     // }
 
-    
+    const sendData = async () => {
+      try {
+        const res = device.write("Test Write");
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const returnDeviceText = () => {
+      console.log('display')
+      return (
+        <>
+          <Text style={{color: "black"}}>Paired Device: </Text>
+          <Text style={{color: "black"}}> {`address: ${address}`}</Text>
+          <Text style={{color: "black"}}> {`name: ${name}`}</Text>
+        </>
+      )
+    }
 
     useEffect(()=>{
       const disableSub = RNBluetoothClassic.onBluetoothDisabled(()=>{
         ToastAndroid.show(`Please enable Bluetooth.`, 5000);
         RNBluetoothClassic.openBluetoothSettings();
       });
+
       RNBluetoothClassic.isBluetoothEnabled().then((res)=>{
         console.log(res ? 'Bluetooth is enabled' : 'Bluetooth is disabled')
         if (!res) {
@@ -146,7 +170,16 @@
           </Pressable>}
 
           {bluetoothState.accepting && <Text style={{color: "black"}}> Searching for a Device... </Text>} 
-          {bluetoothState.device && <Text style={{color: "black"}}>{`address: ${bluetoothState.device?.address}`} {`name: ${bluetoothState.device?.name}`}</Text>}
+          
+          {returnDeviceText()}
+          {device && <Pressable
+          style={styles.btn2}
+          onPress={() => {
+              sendData()
+            }}
+          >
+            <Text style={{color: 'white'}}>Send Data</Text>
+          </Pressable>}
 
         </ScrollView>
     );
@@ -202,7 +235,21 @@
       borderStyle: 'solid',
       borderColor: 'red'
       // marginLeft: '25%'
-  }
+  },
+  btn2: {
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    // elevation: 10,
+    backgroundColor: '#38a1f1',
+    width: '50%',
+    marginTop: 10,
+    marginBottom: 10,
+    borderStyle: 'solid',
+    borderColor: 'red'
+    // marginLeft: '25%'
+}
   });
   
   export default BluetoothScreen;
