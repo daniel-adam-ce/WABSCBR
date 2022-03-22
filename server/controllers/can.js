@@ -10,7 +10,7 @@ export const getCAN = async (req, res) => {
         let sortDir = 1
         let sortKey = ''
         if (req.query.id) {
-            query.where("_id", `${req.query.id}`)
+            query.where("_id", `${req.id}`)
         }
         if (req.query.num) {
             num = req.query.num
@@ -26,8 +26,8 @@ export const getCAN = async (req, res) => {
         if(req.query.skip) {
             skip = 1 * req.query.skip
         }
-        if(req.email) {
-            query.where("sentBy", req.email)
+        if(req.id) {
+            query.where("sentBy", req.id)
         }
         if (req.query.vehicleName) {
             query.where("vehicleName", req.query.vehicleName)
@@ -49,9 +49,10 @@ export const getTotalCAN = async (req, res) => {
         if (req.query.deviceSerial){
             query = {...query, deviceSerial: req.query.deviceSerial}
         }
-        if (req.email) {
-            query = {...query, sentBy: req.email}
+        if (req.id) {
+            query = {...query, sentBy: req.id}
         }
+        console.log(req.id)
         if (req.query.vehicleName){
             query = {...query, vehicleName: req.query.vehicleName}
         }
@@ -74,7 +75,8 @@ export const deleteCAN = async (req, res) => {
 export const createCAN = async (req, res) => { 
     try {
         const can = req.body
-        can['sentBy'] = req.email
+        console.log(req.id)
+        can['sentBy'] = req.id
         // decrypt payload, may not accurately reflect how this will be handled
         // encryption/decryption is not developed yet
         // --------------------------------------------------------------
@@ -97,6 +99,7 @@ export const createCAN = async (req, res) => {
         await newCAN.save()
         res.status(200).json(newCAN)
     } catch (error) {
+        console.log(error.message)
         res.status(500).json({message: error.message})
     }
 }

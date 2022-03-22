@@ -7,13 +7,14 @@ const router = express.Router()
 // GET requests
 router.get('', auth, getCAN)
 router.get('/count', auth, getTotalCAN)
-// DELETE requests
+
+// DELETE requests (unused)
 router.delete('', auth, deleteCAN)
 
 // POST requests
 router.post('', auth, createCAN)
 
-// PUT requests
+// PUT requests (unused)
 router.put('', auth, updateCAN)
 
 export default router
