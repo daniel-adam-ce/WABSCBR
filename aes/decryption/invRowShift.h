@@ -46,37 +46,25 @@ void rowShift( int array[16]){
     cyclicShift(row2,2);
     cyclicShift(row3,3);
 
-    for (int x = 0; x<4; x++){
-        cout << row0[x] << " ";
-    }
-    cout << endl;
-    for (int x = 0; x<4; x++){
-        cout << row1[x] << " ";
-    }    
-    cout << endl;
-    for (int x = 0; x<4; x++){
-        cout << row2[x] << " ";
-    }
-    cout << endl;
-    for (int x = 0; x<4; x++){
-        cout << row3[x] << " ";
-    }
-    cout << endl;
+
+    array[1] = row1[0];
+    array[2] = row2[0];
+    array[3] = row3[0];
+ 
+    array[5] = row1[1];
+    array[6] = row2[1];
+    array[7] = row3[1];
+
+    array[9] = row1[2];
+    array[10] = row2[2];
+    array[11] = row3[2];
+
+    array[13] = row1[3];
+    array[14] = row2[3];
+    array[15] = row3[3];
+ 
+    
+
+    
 }
 
-int main(){
-
-    int array[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-
-
-    cout << "current array is: " << endl;
-
-    for (int a=0; a<16; a++){
-        cout << array[a] << " ";
-    }
-    cout << endl;
-
-    rowShift( array );
-
-    return 0;
-}
