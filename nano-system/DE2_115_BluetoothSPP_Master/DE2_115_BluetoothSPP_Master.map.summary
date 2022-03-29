@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Jan 12 14:58:14 2017
+Quartus Prime Version : 16.1.1 Build 200 11/30/2016 SJ Standard Edition
+Revision Name : DE2_115_BluetoothSPP_Master
+Top-level Entity Name : DE2_115_BluetoothSPP_Master
+Family : Cyclone IV E
+Total logic elements : 4,955
+    Total combinational functions : 3,843
+    Dedicated logic registers : 2,997
+Total registers : 2997
+Total pins : 434
+Total virtual pins : 0
+Total memory bits : 66,032
+Embedded Multiplier 9-bit elements : 6
+Total PLLs : 1

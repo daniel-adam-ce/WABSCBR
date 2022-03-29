@@ -1,0 +1,16 @@
+Fitter Status : Successful - Thu Jan 12 14:58:55 2017
+Quartus Prime Version : 16.1.1 Build 200 11/30/2016 SJ Standard Edition
+Revision Name : DE2_115_BluetoothSPP_Master
+Top-level Entity Name : DE2_115_BluetoothSPP_Master
+Family : Cyclone IV E
+Device : EP4CE115F29C7
+Timing Models : Final
+Total logic elements : 4,489 / 114,480 ( 4 % )
+    Total combinational functions : 3,852 / 114,480 ( 3 % )
+    Dedicated logic registers : 2,824 / 114,480 ( 2 % )
+Total registers : 2943
+Total pins : 434 / 529 ( 82 % )
+Total virtual pins : 0
+Total memory bits : 66,032 / 3,981,312 ( 2 % )
+Embedded Multiplier 9-bit elements : 6 / 532 ( 1 % )
+Total PLLs : 1 / 4 ( 25 % )
