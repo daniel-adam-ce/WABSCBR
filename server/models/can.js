@@ -6,8 +6,8 @@ const canSchema = mongoose.Schema({
         default: -1,
     },
     payload: {
-        type: Number,
-        default: -1,
+        type: String,
+        default: '-1',
     },
     dateReceived: {
         type: Date,
