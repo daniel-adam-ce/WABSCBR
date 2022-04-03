@@ -74,33 +74,46 @@ export const deleteCAN = async (req, res) => {
 
 export const createCAN = async (req, res) => { 
     try {
-        const can = req.body
-        console.log(req.id)
-        can['sentBy'] = req.id
+        const can = req.body;
+        console.log(req.id);
+        can['sentBy'] = req.id;
+        console.log(can)
         // decrypt payload, may not accurately reflect how this will be handled
         // encryption/decryption is not developed yet
         // --------------------------------------------------------------
-        // const AEScpp = spawn('../../aes/decryption/main.exe', [can.payload])
-        // let temp_stdout = 0
-        // AEScpp.stdout.on('data', function(data){ 
-        //     temp_stdout = data
-        // })
-        // AEScpp.on('close', (code)=>{
-        //     if(code == 0) {
-        //         can.payload = temp_stdout
-        //     } else {
-        //         throw new Error("Non zero exit from AES decryption")
-        //     }
-        // })
+        const AEScpp = spawn('C:/Users/Daniel/Desktop/course_content/s8-spring-2022/ece186b/repos/WABSCBR-server/server/utils/decryption.exe', [can?.payload, can?.key]);
+        let temp_stdout = 0;
+        AEScpp.stdout.on('data', function(data){ 
+            console.log(data.toString())
+            temp_stdout = data.toString();
+        })
+        AEScpp.on('close', (code)=>{
+            if(code == 0) {
+                console.log(temp_stdout)
+                temp_stdout = temp_stdout.replace('\r', '')
+                temp_stdout = temp_stdout.replace('\n', '')
+                can.payload = temp_stdout;
+                can.dateReceived = new Date(Date.now());
+                delete can.key;
+                console.log(can)
+                const newCAN = new CanData(can);
+                newCAN.save().then((r)=>{
+                    res.status(200).json(newCAN);
+                }).catch((r)=>{
+                    res.status(500).json({message: error.message});
+                })
+                
+            } else {
+                res.status(400).json({message: 'Non-zero exit from AES decryption'})
+                console.log('Non-zero exit from AES decryption');
+            }
+        })
         // --------------------------------------------------------------
 
-        can.dateReceived = new Date(Date.now())
-        const newCAN = new CanData(can)
-        await newCAN.save()
-        res.status(200).json(newCAN)
+        
     } catch (error) {
-        console.log(error.message)
-        res.status(500).json({message: error.message})
+        console.log(error.message);
+        res.status(500).json({message: error.message});
     }
 }
 
