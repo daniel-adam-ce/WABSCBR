@@ -7,27 +7,27 @@ preplace inst Qsys.pio_key -pg 1 -lvl 4 -y 690
 preplace inst Qsys.clk_0 -pg 1 -lvl 1 -y 130
 preplace inst Qsys.nios2_gen2_0.reset_bridge -pg 1
 preplace inst Qsys.nios2_gen2_0.clock_bridge -pg 1
+preplace inst Qsys.gpio_controller -pg 1 -lvl 4 -y 270
 preplace inst Qsys -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst Qsys.pio_key_0 -pg 1 -lvl 4 -y 270
 preplace inst Qsys.timer_0 -pg 1 -lvl 4 -y 470
-preplace inst Qsys.nios2_gen2_0 -pg 1 -lvl 2 -y 220
+preplace inst Qsys.nios2_gen2_0 -pg 1 -lvl 2 -y 200
 preplace inst Qsys.hc_05_uart -pg 1 -lvl 4 -y 570
 preplace inst Qsys.mm_clock_crossing_bridge_0 -pg 1 -lvl 3 -y 150
 preplace inst Qsys.jtag_uart_0 -pg 1 -lvl 4 -y 370
-preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)pio_key_0.external_connection,(SLAVE)Qsys.pio_key_0_external_connection) 1 0 4 NJ 360 NJ 360 NJ 300 NJ
+preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)timer_0.clk,(SLAVE)pio_key.clk,(SLAVE)gpio_controller.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)altpll_0.inclk_interface,(SLAVE)mm_clock_crossing_bridge_0.m0_clk,(MASTER)clk_0.clk,(SLAVE)hc_05_uart.clk) 1 1 3 N 140 870 100 1220
+preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)Qsys.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
 preplace netloc EXPORT<net_container>Qsys</net_container>(MASTER)altpll_0.c1,(MASTER)Qsys.altpll_0_c1) 1 4 1 N
-preplace netloc FAN_OUT<net_container>Qsys</net_container>(MASTER)altpll_0.c0,(SLAVE)nios2_gen2_0.clk,(SLAVE)sdram.clk,(SLAVE)mm_clock_crossing_bridge_0.s0_clk) 1 1 4 470 180 890 140 1160 160 1440
+preplace netloc FAN_OUT<net_container>Qsys</net_container>(MASTER)clk_0.clk_reset,(SLAVE)altpll_0.inclk_interface_reset,(SLAVE)mm_clock_crossing_bridge_0.m0_reset,(SLAVE)hc_05_uart.reset,(SLAVE)pio_key.reset,(SLAVE)mm_clock_crossing_bridge_0.s0_reset,(SLAVE)sdram.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)timer_0.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)gpio_controller.reset) 1 1 3 410 120 830 60 1200
 preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)sdram.wire,(SLAVE)Qsys.sdram_wire) 1 0 4 NJ 380 NJ 380 NJ 320 NJ
-preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)hc_05_uart.external_connection,(SLAVE)Qsys.hc_05_uart_external_connection) 1 0 4 NJ 600 NJ 600 NJ 600 NJ
 preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)Qsys.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)Qsys.altpll_0_locked_conduit,(SLAVE)altpll_0.locked_conduit) 1 0 4 NJ 100 NJ 100 NJ 100 NJ
-preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)Qsys.reset) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)jtag_uart_0.reset,(SLAVE)hc_05_uart.reset,(MASTER)clk_0.clk_reset,(SLAVE)altpll_0.inclk_interface_reset,(SLAVE)pio_key_0.reset,(SLAVE)sdram.reset,(SLAVE)timer_0.reset,(SLAVE)mm_clock_crossing_bridge_0.s0_reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)pio_key.reset,(SLAVE)mm_clock_crossing_bridge_0.m0_reset) 1 1 3 430 140 870 80 1140
-preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)Qsys.pio_key_external_connection,(SLAVE)pio_key.external_connection) 1 0 4 NJ 720 NJ 720 NJ 720 NJ
-preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)jtag_uart_0.irq,(MASTER)nios2_gen2_0.irq,(SLAVE)timer_0.irq,(SLAVE)hc_05_uart.irq) 1 2 2 830 620 1180
-preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)Qsys.altpll_0_areset_conduit,(SLAVE)altpll_0.areset_conduit) 1 0 4 NJ 40 NJ 40 NJ 40 NJ
-preplace netloc INTERCONNECT<net_container>Qsys</net_container>(MASTER)nios2_gen2_0.instruction_master,(SLAVE)sdram.s1,(SLAVE)mm_clock_crossing_bridge_0.s0,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.data_master,(SLAVE)altpll_0.pll_slave) 1 1 3 450 160 850 120 1180
-preplace netloc FAN_OUT<net_container>Qsys</net_container>(MASTER)mm_clock_crossing_bridge_0.m0,(SLAVE)timer_0.s1,(SLAVE)hc_05_uart.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)pio_key.s1,(SLAVE)pio_key_0.s1) 1 3 1 1100
-preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)hc_05_uart.clk,(SLAVE)pio_key_0.clk,(SLAVE)mm_clock_crossing_bridge_0.m0_clk,(SLAVE)timer_0.clk,(SLAVE)jtag_uart_0.clk,(MASTER)clk_0.clk,(SLAVE)pio_key.clk,(SLAVE)altpll_0.inclk_interface) 1 1 3 410 120 830 60 1200
-levelinfo -pg 1 0 200 1560
-levelinfo -hier Qsys 210 240 590 970 1250 1460
+preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)hc_05_uart.irq,(SLAVE)timer_0.irq,(SLAVE)jtag_uart_0.irq,(MASTER)nios2_gen2_0.irq) 1 2 2 850 300 1160
+preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)altpll_0.areset_conduit,(SLAVE)Qsys.altpll_0_areset_conduit) 1 0 4 NJ 40 NJ 40 NJ 40 NJ
+preplace netloc INTERCONNECT<net_container>Qsys</net_container>(SLAVE)altpll_0.pll_slave,(SLAVE)mm_clock_crossing_bridge_0.s0,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.data_master,(SLAVE)sdram.s1) 1 1 3 430 340 890 140 1260
+preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)nios2_gen2_0.clk,(SLAVE)mm_clock_crossing_bridge_0.s0_clk,(MASTER)altpll_0.c0,(SLAVE)sdram.clk) 1 1 4 430 160 850 120 1240 160 1480
+preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)gpio_controller.external_connection,(SLAVE)Qsys.gpio_controller_external_connection) 1 0 4 NJ 360 NJ 360 NJ 280 NJ
+preplace netloc FAN_OUT<net_container>Qsys</net_container>(SLAVE)gpio_controller.s1,(SLAVE)timer_0.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)hc_05_uart.s1,(MASTER)mm_clock_crossing_bridge_0.m0,(SLAVE)pio_key.s1) 1 3 1 1120
+preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)Qsys.hc_05_uart_external_connection,(SLAVE)hc_05_uart.external_connection) 1 0 4 NJ 600 NJ 600 NJ 600 NJ
+preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)pio_key.external_connection,(SLAVE)Qsys.pio_key_external_connection) 1 0 4 NJ 720 NJ 720 NJ 720 NJ
+preplace netloc EXPORT<net_container>Qsys</net_container>(SLAVE)altpll_0.locked_conduit,(SLAVE)Qsys.altpll_0_locked_conduit) 1 0 4 NJ 80 NJ 80 NJ 80 NJ
+levelinfo -pg 1 0 200 1600
+levelinfo -hier Qsys 210 240 590 990 1290 1500

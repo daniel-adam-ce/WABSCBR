@@ -4,6 +4,7 @@ module Qsys (
 	altpll_0_c1_clk,
 	altpll_0_locked_conduit_export,
 	clk_clk,
+	gpio_controller_external_connection_export,
 	hc_05_uart_external_connection_rxd,
 	hc_05_uart_external_connection_txd,
 	pio_key_external_connection_export,
@@ -17,12 +18,16 @@ module Qsys (
 	sdram_wire_dqm,
 	sdram_wire_ras_n,
 	sdram_wire_we_n,
-	gpio_controller_external_connection_export);	
+	spi_csn_export,
+	spi_sck_export,
+	spi_mosi_export,
+	spi_miso_export);	
 
 	input		altpll_0_areset_conduit_export;
 	output		altpll_0_c1_clk;
 	output		altpll_0_locked_conduit_export;
 	input		clk_clk;
+	output		gpio_controller_external_connection_export;
 	input		hc_05_uart_external_connection_rxd;
 	output		hc_05_uart_external_connection_txd;
 	input		pio_key_external_connection_export;
@@ -36,5 +41,8 @@ module Qsys (
 	output	[3:0]	sdram_wire_dqm;
 	output		sdram_wire_ras_n;
 	output		sdram_wire_we_n;
-	output		gpio_controller_external_connection_export;
+	input		spi_csn_export;
+	input		spi_sck_export;
+	input		spi_mosi_export;
+	output		spi_miso_export;
 endmodule

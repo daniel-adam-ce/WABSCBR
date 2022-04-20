@@ -46,6 +46,12 @@ module DE2_115_BluetoothSPP_Master(
 	output		          		UART2USB_RTS,
 	input 		          		UART2USB_RX,
 	output		          		UART2USB_TX,
+	
+	//////////// GPIO, SPIO communcation for CANPico ////////////
+	input SPI_CSN,
+	input SPI_CSK,
+	input SPI_MOSI,
+	output SPI_MISO
 );
 
 
@@ -78,7 +84,11 @@ assign  BT_KEY = Control;
         .sdram_wire_we_n                         (DRAM_WE_N),                         //                                 .we_n
         .altpll_0_c1_clk                         (DRAM_CLK),                         //                      altpll_0_c1.clk
         .altpll_0_areset_conduit_export          (),          //          altpll_0_areset_conduit.export
-        .altpll_0_locked_conduit_export          ()           //          altpll_0_locked_conduit.export
+        .altpll_0_locked_conduit_export          (),           //          altpll_0_locked_conduit.export
+		  .spi_csn_export                          (SPI_CSN),                             //                             spi_csn.export
+		  .spi_miso_export                         (SPI_MISO),                            //                            spi_miso.export
+		  .spi_mosi_export                         (SPI_MOSI),                            //                            spi_mosi.export
+		  .spi_sck_export                          (SPI_SCK),                              //  
     );
 
 
