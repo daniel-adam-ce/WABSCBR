@@ -1,12 +1,12 @@
-import React from 'react'
-import {useEffect, useContext, useState} from 'react'
-import { AuthContext } from '../App'
-import axios from 'axios'
-import { useNavigate, } from 'react-router-dom'
-import '../styles/dashboard.css'
+import React from 'react';
+import {useEffect, useContext, useState} from 'react';
+import { AuthContext } from '../App';
+import axios from 'axios';
+import { useNavigate, } from 'react-router-dom';
+import '../styles/dashboard.css';
+import Spinner from '../components/spinner';
 
 import Paper from '@mui/material/Paper';
-import Container from '@mui/material/Container';
 const DashboardPage = () => {
     const [authState, setAuthState] = useContext(AuthContext)
     const [loadState, setLoadState] = useState(false)
@@ -43,8 +43,9 @@ const DashboardPage = () => {
     }, [navigate, setAuthState])
 
     return (
-            !loadState && <div style={{marginTop: '5rem', backgroundColor:'#eeeeee'}}>
-                <Paper className='paper-dashboard-bg' elevation={8}><div className='dashboard-button-container'>
+        !loadState ? <div style={{marginTop: '5rem', backgroundColor:'#eeeeee'}}>
+            <Paper className='paper-dashboard-bg' elevation={8}>
+                <div className='dashboard-button-container'>
                     <button className='dashboard-button' onClick={()=>{
                         navigate('/raw-can?p=1&device=All Devices&vehicle=All Vehicles')
                     }}>
@@ -67,15 +68,14 @@ const DashboardPage = () => {
                 </div>
                 <div className='dashboard-button-container'>
                     <button className='dashboard-button' onClick={()=>{
-                        navigate('/device')
+                        navigate('/configure')
                     }}>
                     Configure Vehicles and Devices
                     </button>
-                </div></Paper> 
-                
-
-                
-            </div>
+                </div>
+            </Paper> 
+                    
+        </div> : <Spinner size="small" backgroundColor="#eeeeee"></Spinner>
     )
 }
 

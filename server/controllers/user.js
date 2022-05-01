@@ -28,14 +28,14 @@ export const deleteUser = async (req, res) => {
     try {
         
         if (req.query.id) {
-            let id = req.query.id
-            await UserData.findByIdAndDelete(id).exec()
+            let id = req.query.id;
+            await UserData.findByIdAndDelete(id).exec();
         } else {
-            res.status(400).send({message: 'Email must be provided'})
+            res.status(400).send({message: 'Id must be provided'});
         }
-        res.status(200).json('Deletion successful')
+        res.status(200).json('Deletion successful');
     } catch (error) {
-        res.status(500).json({message: error.message})
+        res.status(500).json({message: error.message});
     }
 }
 
@@ -73,10 +73,10 @@ export const getVehiclesAndDevices = async (req, res) => {
     try {
         
         let query = UserData.find()
-        if (req.email) {
-            query.where("email", req.email)
+        if (req.id) {
+            query.where("_id", req.id)
         } else {
-            res.status(400).send({message: 'Email must be provided'})
+            res.status(400).send({message: 'id must be provided'})
         }
         const user = await UserData.findOne(query).exec()
         res.status(200).send([user.vehicles, user.devices])
@@ -99,10 +99,10 @@ export const addVehicleOrDevice = async (req, res) => {
             }
         }
 
-        if (req.email) {
-            query.where("email", req.email)
+        if (req.id) {
+            query.where("_id", req.id)
         } else {
-            throw new Error('Email must be provided')
+            throw new Error('id must be provided')
         }
 
         if (!(req.body.vehicleName || req.body.deviceSerial)){
@@ -117,9 +117,42 @@ export const addVehicleOrDevice = async (req, res) => {
             checkUniqueAndAdd(user, 'devices', req.body.deviceSerial)
         }
         await user.save()
-        res.status(200).json({message: 'Device or vehicle successfully added'})
+        res.status(200).send([user.vehicles, user.devices])
     } catch (error) {
         res.status(400).json({message: error.message})
+    }
+}
+
+export const removeVehicleOrDevice = async (req, res) => {
+    try {
+        const checkAndRemove = (object, field, itemToAdd) => {
+            const index = object[`${field}`].findIndex((element)=> (
+                element === itemToAdd
+            ))
+            if (index !== -1) {
+                object[`${field}`].splice(index, 1);
+            } else {
+                // throw new Error(`Attempt to remove item in ${field} failed. Item does not exists.`)
+                res.status(400).json({message: `Attempt to remove item in ${field} failed. Item does not exists.`})
+            }
+        }
+        let query = UserData.find();
+        if (req.id) {
+            query.where('_id', req.id);
+        } else {
+            res.status(400).json({message: 'id must be provided'});
+        }
+        let user = await UserData.findOne(query).exec();
+        if (req.body.vehicleName) {
+            checkAndRemove(user, 'vehicles', req.body.vehicleName);
+        }
+        if (req.body.deviceSerial) {
+            checkAndRemove(user, 'devices', req.body.deviceSerial);
+        }
+        await user.save()
+        res.status(200).send([user.vehicles, user.devices])
+    } catch (error) {
+        res.status(500).json({message: error.message})
     }
 }
 
@@ -138,8 +171,8 @@ export const loginUser = async (req, res) => {
         const passwordCompare = bcrypt.compareSync(req.query.password, user.password)
         
         if (passwordCompare) {
-            const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET, { expiresIn: '1h'})
-            return res.status(200).json({profileObj: {email: user.email}, token: token, isGoogle: false}) 
+            const token = jwt.sign({id: user._id}, process.env.TOKEN_SECRET, { expiresIn: '1h'})
+            return res.status(200).json({profileObj: {id: user._id}, token: token, isGoogle: false}) 
         } else {
             return res.status(400).json({message: {error: 'Wrong password', type: 'password'}})
         }

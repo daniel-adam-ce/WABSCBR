@@ -1,15 +1,13 @@
 import mongoose from 'mongoose'
 
-import isEmail from 'validator/lib/isEmail.js'
-
 const canSchema = mongoose.Schema({
     arbId: {
         type: Number,
         default: -1,
     },
     payload: {
-        type: Number,
-        default: -1,
+        type: String,
+        default: '-1',
     },
     dateReceived: {
         type: Date,
@@ -26,8 +24,7 @@ const canSchema = mongoose.Schema({
     sentBy: {
         type: String,
         lowercase: true,
-        required: [true, 'Email is required'],
-        validate: [isEmail, 'Enter a valid email']
+        required: true
     }
 })
 

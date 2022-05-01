@@ -8,70 +8,28 @@ import {
   ImageBackground
 } from 'react-native';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import landingImg from '../capture.jpg'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContext } from '../App';
 
 const url = 'https://can-connect-server.herokuapp.com'
 
-const checkAuth = async () => {
-  const [authState, setAuthState] = useState(false)
-  useEffect(()=>{
-      let user = ''
-      AsyncStorage.getItem('user').then((res)=>{
-        console.log(res)
-        user = JSON.parse(res)
-        if (user === null) {
-          console.log('user is null')
-        } else {
-          axios.post(`${url}/user/auth`, {}, {
-            headers: {
-              'Authorization': `Bearer ${user.token}`
-            }
-          }).then((res)=>{
-            console.log(res)
-            setAuthState(true)
-          })
-        }
-      }).catch((res)=>{
-        console.log(res.response)
-      })
-      
-  }, [])
-  return [authState, setAuthState]
-}
+
  
 const HomeScreen = ({navigation}) => {
+  const [authState, setAuthState] = useContext(AuthContext)
 
-  const [authState, setAuthState] = useState(false)
-
-  useEffect(()=>{
-    let user = ''
-    AsyncStorage.getItem('user').then((res)=>{
-      user = JSON.parse(res)
-      // console.log('user:', user)
-      if (user === null) {
-        console.log('user is null')
-      } else {
-        axios.post(`${url}/user/auth`, {}, {
-          headers: {
-            'Authorization': `Bearer ${user.token}`
-          }
-        }).then((res)=>{
-          // console.log(res)
-          setAuthState(true)
-        }).catch((res)=>{
-          setAuthState(false)
-          console.log(res.response)
-        })
-      }
-    }).catch((res)=>{
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('user');
       setAuthState(false)
-      console.log(res.response)
-    })
-    
-}, [])
+      navigation.navigate('Login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <ImageBackground source={landingImg} imageStyle={{opacity:0.85}} style={styles.backgroundImg}>
@@ -100,6 +58,15 @@ const HomeScreen = ({navigation}) => {
       }}
       >
         <Text style={{color: 'white'}}>Website</Text>
+      </Pressable>}
+
+      {authState && <Pressable 
+      style={styles.btn}
+      onPress={()=>{
+        handleLogout()
+      }}
+      >
+        <Text style={{color: 'white'}}>Logout</Text>
       </Pressable>}
     </ImageBackground>
   )
