@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'Qsys'
  * SOPC Builder design path: ../../Qsys.sopcinfo
  *
- * Generated: Thu Jan 12 15:00:23 CST 2017
+ * Generated: Mon May 02 15:49:55 PDT 2022
  */
 
 /*
@@ -191,7 +191,7 @@
  *
  */
 
-#define ALTPLL_0_BASE 0x11001000
+#define ALTPLL_0_BASE 0x11001040
 #define ALTPLL_0_IRQ -1
 #define ALTPLL_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define ALTPLL_0_NAME "/dev/altpll_0"
@@ -345,6 +345,114 @@
 #define SDRAM_T_RFC 70.0
 #define SDRAM_T_RP 15.0
 #define SDRAM_T_WR 14.0
+
+
+/*
+ * spi_csn configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_spi_csn altera_avalon_pio
+#define SPI_CSN_BASE 0x11001030
+#define SPI_CSN_BIT_CLEARING_EDGE_REGISTER 0
+#define SPI_CSN_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define SPI_CSN_CAPTURE 0
+#define SPI_CSN_DATA_WIDTH 1
+#define SPI_CSN_DO_TEST_BENCH_WIRING 0
+#define SPI_CSN_DRIVEN_SIM_VALUE 0
+#define SPI_CSN_EDGE_TYPE "NONE"
+#define SPI_CSN_FREQ 50000000
+#define SPI_CSN_HAS_IN 1
+#define SPI_CSN_HAS_OUT 0
+#define SPI_CSN_HAS_TRI 0
+#define SPI_CSN_IRQ 3
+#define SPI_CSN_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define SPI_CSN_IRQ_TYPE "LEVEL"
+#define SPI_CSN_NAME "/dev/spi_csn"
+#define SPI_CSN_RESET_VALUE 0
+#define SPI_CSN_SPAN 16
+#define SPI_CSN_TYPE "altera_avalon_pio"
+
+
+/*
+ * spi_miso configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_spi_miso altera_avalon_pio
+#define SPI_MISO_BASE 0x11001000
+#define SPI_MISO_BIT_CLEARING_EDGE_REGISTER 0
+#define SPI_MISO_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define SPI_MISO_CAPTURE 0
+#define SPI_MISO_DATA_WIDTH 1
+#define SPI_MISO_DO_TEST_BENCH_WIRING 0
+#define SPI_MISO_DRIVEN_SIM_VALUE 0
+#define SPI_MISO_EDGE_TYPE "NONE"
+#define SPI_MISO_FREQ 50000000
+#define SPI_MISO_HAS_IN 0
+#define SPI_MISO_HAS_OUT 1
+#define SPI_MISO_HAS_TRI 0
+#define SPI_MISO_IRQ -1
+#define SPI_MISO_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SPI_MISO_IRQ_TYPE "NONE"
+#define SPI_MISO_NAME "/dev/spi_miso"
+#define SPI_MISO_RESET_VALUE 0
+#define SPI_MISO_SPAN 16
+#define SPI_MISO_TYPE "altera_avalon_pio"
+
+
+/*
+ * spi_mosi configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_spi_mosi altera_avalon_pio
+#define SPI_MOSI_BASE 0x11001010
+#define SPI_MOSI_BIT_CLEARING_EDGE_REGISTER 0
+#define SPI_MOSI_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define SPI_MOSI_CAPTURE 0
+#define SPI_MOSI_DATA_WIDTH 1
+#define SPI_MOSI_DO_TEST_BENCH_WIRING 0
+#define SPI_MOSI_DRIVEN_SIM_VALUE 0
+#define SPI_MOSI_EDGE_TYPE "NONE"
+#define SPI_MOSI_FREQ 50000000
+#define SPI_MOSI_HAS_IN 1
+#define SPI_MOSI_HAS_OUT 0
+#define SPI_MOSI_HAS_TRI 0
+#define SPI_MOSI_IRQ -1
+#define SPI_MOSI_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SPI_MOSI_IRQ_TYPE "NONE"
+#define SPI_MOSI_NAME "/dev/spi_mosi"
+#define SPI_MOSI_RESET_VALUE 0
+#define SPI_MOSI_SPAN 16
+#define SPI_MOSI_TYPE "altera_avalon_pio"
+
+
+/*
+ * spi_sck configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_spi_sck altera_avalon_pio
+#define SPI_SCK_BASE 0x11001020
+#define SPI_SCK_BIT_CLEARING_EDGE_REGISTER 0
+#define SPI_SCK_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define SPI_SCK_CAPTURE 0
+#define SPI_SCK_DATA_WIDTH 1
+#define SPI_SCK_DO_TEST_BENCH_WIRING 0
+#define SPI_SCK_DRIVEN_SIM_VALUE 0
+#define SPI_SCK_EDGE_TYPE "NONE"
+#define SPI_SCK_FREQ 50000000
+#define SPI_SCK_HAS_IN 1
+#define SPI_SCK_HAS_OUT 0
+#define SPI_SCK_HAS_TRI 0
+#define SPI_SCK_IRQ 4
+#define SPI_SCK_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define SPI_SCK_IRQ_TYPE "LEVEL"
+#define SPI_SCK_NAME "/dev/spi_sck"
+#define SPI_SCK_RESET_VALUE 0
+#define SPI_SCK_SPAN 16
+#define SPI_SCK_TYPE "altera_avalon_pio"
 
 
 /*

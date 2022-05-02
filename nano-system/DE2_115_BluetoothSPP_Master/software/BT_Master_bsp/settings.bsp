@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 12, 2017 3:00:30 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1484204430999</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>K:\RTS\cd\system_cd\Demonstrations\DE2_115_BluetoothSPP_Master\software\BT_Master_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>May 2, 2022 3:52:36 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1651531956838</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\Users\micae\Documents\Senior-Design-B\WABSCBR\nano-system\DE2_115_BluetoothSPP_Master\software\BT_Master_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\Qsys.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -959,8 +959,32 @@
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>altpll_0</slaveDescriptor>
+                <slaveDescriptor>spi_miso</slaveDescriptor>
                 <addressRange>0x11001000 - 0x1100100F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>spi_mosi</slaveDescriptor>
+                <addressRange>0x11001010 - 0x1100101F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>spi_sck</slaveDescriptor>
+                <addressRange>0x11001020 - 0x1100102F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>spi_csn</slaveDescriptor>
+                <addressRange>0x11001030 - 0x1100103F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>altpll_0</slaveDescriptor>
+                <addressRange>0x11001040 - 0x1100104F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>

@@ -1,5 +1,5 @@
 Flow report for DE2_115_BluetoothSPP_Master
-Sun May 01 21:38:01 2022
+Mon May 02 15:24:24 2022
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun May 01 21:37:56 2022       ;
+; Flow Status                        ; Successful - Mon May 02 15:24:18 2022       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_BluetoothSPP_Master                 ;
 ; Top-level Entity Name              ; DE2_115_BluetoothSPP_Master                 ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+-----------------------------+
 ; Option            ; Setting                     ;
 +-------------------+-----------------------------+
-; Start date & time ; 05/01/2022 21:36:27         ;
+; Start date & time ; 05/02/2022 15:22:45         ;
 ; Main task         ; Compilation                 ;
 ; Revision Name     ; DE2_115_BluetoothSPP_Master ;
 +-------------------+-----------------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +-------------------------------------+--------------------------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+--------------------------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 123719801958938.165146618714680                        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 123719801958938.165153016432664                        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Qsys/synthesis/../Qsys.cmp                             ; --            ; --          ; --         ;
@@ -99,11 +99,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:42     ; 1.0                     ; 5150 MB             ; 00:00:59                           ;
-; Fitter                    ; 00:00:37     ; 1.2                     ; 6419 MB             ; 00:01:15                           ;
-; Assembler                 ; 00:00:03     ; 1.0                     ; 4709 MB             ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:04     ; 1.4                     ; 5012 MB             ; 00:00:05                           ;
-; Total                     ; 00:01:26     ; --                      ; --                  ; 00:02:22                           ;
+; Analysis & Synthesis      ; 00:00:44     ; 1.0                     ; 5157 MB             ; 00:01:00                           ;
+; Fitter                    ; 00:00:39     ; 1.2                     ; 6417 MB             ; 00:01:20                           ;
+; Assembler                 ; 00:00:04     ; 1.0                     ; 4709 MB             ; 00:00:03                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.5                     ; 5011 MB             ; 00:00:05                           ;
+; Total                     ; 00:01:31     ; --                      ; --                  ; 00:02:28                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

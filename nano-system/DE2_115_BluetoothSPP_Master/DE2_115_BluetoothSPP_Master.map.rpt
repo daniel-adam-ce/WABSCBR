@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_115_BluetoothSPP_Master
-Sun May 01 21:37:12 2022
+Mon May 02 15:23:32 2022
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -423,7 +423,7 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun May 01 21:37:12 2022       ;
+; Analysis & Synthesis Status        ; Successful - Mon May 02 15:23:32 2022       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_BluetoothSPP_Master                 ;
 ; Top-level Entity Name              ; DE2_115_BluetoothSPP_Master                 ;
@@ -10270,7 +10270,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:09     ;
+; Top            ; 00:00:10     ;
 ; pzdyqx:nabboc  ; 00:00:00     ;
 +----------------+--------------+
 
@@ -10281,7 +10281,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun May 01 21:36:26 2022
+    Info: Processing started: Mon May 02 15:22:44 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_115_BluetoothSPP_Master -c DE2_115_BluetoothSPP_Master
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -10791,7 +10791,7 @@ Info (12128): Elaborating entity "twosField" for hierarchy "AESTopModule:comb_6|
 Info (12128): Elaborating entity "threesField" for hierarchy "AESTopModule:comb_6|columnMix:cm1|fullMix:u0|GMul:u0|threesField:u3" File: C:/Users/micae/Documents/Senior-Design-B/WABSCBR/aes/encryption/GMul.v Line: 10
 Warning (12020): Port "jdo" on the entity instantiation of "the_Qsys_nios2_gen2_0_cpu_nios2_oci_itrace" is connected to a signal of width 38. The formal width of the signal in the module is 16.  The extra bits will be ignored. File: C:/Users/micae/Documents/Senior-Design-B/WABSCBR/nano-system/DE2_115_BluetoothSPP_Master/Qsys/synthesis/submodules/Qsys_nios2_gen2_0_cpu.v Line: 3216
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2022.05.01.21:36:50 Progress: Loading sld317cfed1/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2022.05.02.15:23:09 Progress: Loading sld317cfed1/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -10994,10 +10994,10 @@ Info (21057): Implemented 6280 device resources after synthesis - the final reso
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 6 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 105 warnings
-    Info: Peak virtual memory: 5150 megabytes
-    Info: Processing ended: Sun May 01 21:37:12 2022
-    Info: Elapsed time: 00:00:46
-    Info: Total CPU time (on all processors): 00:01:02
+    Info: Peak virtual memory: 5157 megabytes
+    Info: Processing ended: Mon May 02 15:23:32 2022
+    Info: Elapsed time: 00:00:48
+    Info: Total CPU time (on all processors): 00:01:04
 
 
 +------------------------------------------+
