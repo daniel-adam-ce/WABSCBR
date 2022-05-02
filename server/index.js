@@ -22,7 +22,7 @@ app.use('/can', canRoutes);
 const DB = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5000;
 
-const compileCPP = spawn('g++', ['decryption-utils/dataOrganize.cpp', '-o', 'decryption'])
+const compileCPP = spawn('g++', ['decryption-utils/dataOrganize1.cpp', '-o', 'decryption'])
 compileCPP.stdout.on('data', (data)=> {
     console.log(data.toString());
 })
