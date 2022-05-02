@@ -35,43 +35,43 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   8 .debug_aranges 00001920  00000000  00000000  000230b0  2**3
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_info   00041052  00000000  00000000  000249d0  2**0
+  9 .debug_info   000410a0  00000000  00000000  000249d0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00010c11  00000000  00000000  00065a22  2**0
+ 10 .debug_abbrev 00010c11  00000000  00000000  00065a70  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   00015f7a  00000000  00000000  00076633  2**0
+ 11 .debug_line   00015fca  00000000  00000000  00076681  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_frame  00003e4c  00000000  00000000  0008c5b0  2**2
+ 12 .debug_frame  00003e4c  00000000  00000000  0008c64c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    00007b7f  00000000  00000000  000903fc  2**0
+ 13 .debug_str    00007b5e  00000000  00000000  00090498  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    0002bcc7  00000000  00000000  00097f7b  2**0
+ 14 .debug_loc    0002bcc7  00000000  00000000  00097ff6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_alt_sim_info 00000060  00000000  00000000  000c3c44  2**2
+ 15 .debug_alt_sim_info 00000060  00000000  00000000  000c3cc0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 00002b10  00000000  00000000  000c3ca8  2**3
+ 16 .debug_ranges 00002b10  00000000  00000000  000c3d20  2**3
                   CONTENTS, READONLY, DEBUGGING
- 17 .thread_model 00000003  00000000  00000000  000cc572  2**0
+ 17 .thread_model 00000003  00000000  00000000  000cc5ea  2**0
                   CONTENTS, READONLY
- 18 .cpu          0000000c  00000000  00000000  000cc575  2**0
+ 18 .cpu          0000000c  00000000  00000000  000cc5ed  2**0
                   CONTENTS, READONLY
- 19 .qsys         00000001  00000000  00000000  000cc581  2**0
+ 19 .qsys         00000001  00000000  00000000  000cc5f9  2**0
                   CONTENTS, READONLY
- 20 .simulation_enabled 00000001  00000000  00000000  000cc582  2**0
+ 20 .simulation_enabled 00000001  00000000  00000000  000cc5fa  2**0
                   CONTENTS, READONLY
- 21 .stderr_dev   0000000b  00000000  00000000  000cc583  2**0
+ 21 .stderr_dev   0000000b  00000000  00000000  000cc5fb  2**0
                   CONTENTS, READONLY
- 22 .stdin_dev    0000000b  00000000  00000000  000cc58e  2**0
+ 22 .stdin_dev    0000000b  00000000  00000000  000cc606  2**0
                   CONTENTS, READONLY
- 23 .stdout_dev   0000000b  00000000  00000000  000cc599  2**0
+ 23 .stdout_dev   0000000b  00000000  00000000  000cc611  2**0
                   CONTENTS, READONLY
- 24 .sopc_system_name 00000004  00000000  00000000  000cc5a4  2**0
+ 24 .sopc_system_name 00000004  00000000  00000000  000cc61c  2**0
                   CONTENTS, READONLY
- 25 .quartus_project_dir 0000003e  00000000  00000000  000cc5a8  2**0
+ 25 .quartus_project_dir 00000058  00000000  00000000  000cc620  2**0
                   CONTENTS, READONLY
- 26 .jdi          00003d2c  00000000  00000000  000cc5e6  2**0
+ 26 .jdi          000043c1  00000000  00000000  000cc678  2**0
                   CONTENTS, READONLY
- 27 .sopcinfo     0005ba77  00000000  00000000  000d0312  2**0
+ 27 .sopcinfo     0007968a  00000000  00000000  000d0a39  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 08000000 l    d  .entry	00000000 .entry
@@ -812,7 +812,7 @@ Disassembly of section .entry:
  8000014:	08409114 	ori	at,at,580
     jmp r1
  8000018:	0800683a 	jmp	at
- 800001c:	00000000 	call	0 <__alt_mem_sdram-0x8000000>
+ 800001c:	00000000 	call	0 <__reset-0x8000000>
 
 Disassembly of section .exceptions:
 
@@ -3592,7 +3592,7 @@ int main()
  8001bf0:	1000683a 	jmp	r2
  8001bf4:	08001c28 	cmpgeui	zero,at,112
  8001bf8:	08001d44 	addi	zero,at,117
- 8001bfc:	08001d80 	call	8001d8 <__alt_mem_sdram-0x77ffe28>
+ 8001bfc:	08001d80 	call	8001d8 <__reset-0x77ffe28>
  8001c00:	08001c28 	cmpgeui	zero,at,112
  8001c04:	08001c8c 	andi	zero,at,114
  8001c08:	08001ce0 	cmpeqi	zero,at,115
@@ -7541,7 +7541,7 @@ int main()
  80055cc:	08005f30 	cmpltui	zero,at,380
  80055d0:	08006020 	cmpeqi	zero,at,384
  80055d4:	08006020 	cmpeqi	zero,at,384
- 80055d8:	08005f40 	call	8005f4 <__alt_mem_sdram-0x77ffa0c>
+ 80055d8:	08005f40 	call	8005f4 <__reset-0x77ffa0c>
  80055dc:	d9003117 	ldw	r4,196(sp)
  80055e0:	d8802d15 	stw	r2,180(sp)
  80055e4:	0109c83a 	sub	r4,zero,r4
@@ -9677,7 +9677,7 @@ int main()
  8007724:	08007890 	cmplti	zero,at,482
  8007728:	08007890 	cmplti	zero,at,482
  800772c:	08007890 	cmplti	zero,at,482
- 8007730:	08007980 	call	800798 <__alt_mem_sdram-0x77ff868>
+ 8007730:	08007980 	call	800798 <__reset-0x77ff868>
  8007734:	08007a30 	cmpltui	zero,at,488
  8007738:	08007890 	cmplti	zero,at,482
  800773c:	08007a30 	cmpltui	zero,at,488
@@ -9709,7 +9709,7 @@ int main()
  80077a4:	08007890 	cmplti	zero,at,482
  80077a8:	08007890 	cmplti	zero,at,482
  80077ac:	08007ae8 	cmpgeui	zero,at,491
- 80077b0:	08007ac0 	call	8007ac <__alt_mem_sdram-0x77ff854>
+ 80077b0:	08007ac0 	call	8007ac <__reset-0x77ff854>
  80077b4:	08007a30 	cmpltui	zero,at,488
  80077b8:	08007a30 	cmpltui	zero,at,488
  80077bc:	08007a30 	cmpltui	zero,at,488
@@ -9724,7 +9724,7 @@ int main()
  80077e0:	08007954 	ori	zero,at,485
  80077e4:	08007890 	cmplti	zero,at,482
  80077e8:	08007890 	cmplti	zero,at,482
- 80077ec:	08007940 	call	800794 <__alt_mem_sdram-0x77ff86c>
+ 80077ec:	08007940 	call	800794 <__reset-0x77ff86c>
  80077f0:	08007890 	cmplti	zero,at,482
  80077f4:	080078c8 	cmpgei	zero,at,483
  80077f8:	08007890 	cmplti	zero,at,482
@@ -10266,10 +10266,10 @@ int main()
  8008058:	10800017 	ldw	r2,0(r2)
  800805c:	1000683a 	jmp	r2
  8008060:	08008358 	cmpnei	zero,at,525
- 8008064:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 8008064:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008068:	08008358 	cmpnei	zero,at,525
- 800806c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008070:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 800806c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008070:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008074:	0800832c 	andhi	zero,at,524
  8008078:	0800819c 	xori	zero,at,518
  800807c:	0800819c 	xori	zero,at,518
@@ -10280,69 +10280,69 @@ int main()
  8008090:	0800819c 	xori	zero,at,518
  8008094:	0800819c 	xori	zero,at,518
  8008098:	0800819c 	xori	zero,at,518
- 800809c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080a0:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080a4:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080a8:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080ac:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080b0:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080b4:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 800809c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080a0:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080a4:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080a8:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080ac:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080b0:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080b4:	08008480 	call	800848 <__reset-0x77ff7b8>
  80080b8:	08008470 	cmpltui	zero,at,529
- 80080bc:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080c0:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080c4:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 80080bc:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080c0:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080c4:	08008480 	call	800848 <__reset-0x77ff7b8>
  80080c8:	0800842c 	andhi	zero,at,528
  80080cc:	08008410 	cmplti	zero,at,528
- 80080d0:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080d4:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 80080d0:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080d4:	08008480 	call	800848 <__reset-0x77ff7b8>
  80080d8:	080083dc 	xori	zero,at,527
- 80080dc:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080e0:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080e4:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080e8:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 80080dc:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080e0:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080e4:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080e8:	08008480 	call	800848 <__reset-0x77ff7b8>
  80080ec:	080083a4 	muli	zero,at,526
- 80080f0:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080f4:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080f8:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 80080fc:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008100:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 80080f0:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080f4:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080f8:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 80080fc:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008100:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008104:	08008388 	cmpgei	zero,at,526
- 8008108:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 800810c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008110:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008114:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 8008108:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 800810c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008110:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008114:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008118:	0800836c 	andhi	zero,at,525
- 800811c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008120:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008124:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008128:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 800812c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008130:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008134:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 800811c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008120:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008124:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008128:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 800812c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008130:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008134:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008138:	08008470 	cmpltui	zero,at,529
- 800813c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008140:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008144:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 800813c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008140:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008144:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008148:	0800842c 	andhi	zero,at,528
  800814c:	08008410 	cmplti	zero,at,528
- 8008150:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008154:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 8008150:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008154:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008158:	080083dc 	xori	zero,at,527
- 800815c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008160:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008164:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008168:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 800815c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008160:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008164:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008168:	08008480 	call	800848 <__reset-0x77ff7b8>
  800816c:	080083a4 	muli	zero,at,526
- 8008170:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008174:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008178:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 800817c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008180:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 8008170:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008174:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008178:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 800817c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008180:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008184:	08008388 	cmpgei	zero,at,526
- 8008188:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 800818c:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008190:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
- 8008194:	08008480 	call	800848 <__alt_mem_sdram-0x77ff7b8>
+ 8008188:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 800818c:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008190:	08008480 	call	800848 <__reset-0x77ff7b8>
+ 8008194:	08008480 	call	800848 <__reset-0x77ff7b8>
  8008198:	0800836c 	andhi	zero,at,525
  800819c:	a8803fcc 	andi	r2,r21,255
  80081a0:	1080201c 	xori	r2,r2,128
@@ -10582,10 +10582,10 @@ int main()
  8008548:	10800017 	ldw	r2,0(r2)
  800854c:	1000683a 	jmp	r2
  8008550:	08008784 	addi	zero,at,542
- 8008554:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
+ 8008554:	08008700 	call	800870 <__reset-0x77ff790>
  8008558:	08008784 	addi	zero,at,542
- 800855c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008560:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
+ 800855c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008560:	08008700 	call	800870 <__reset-0x77ff790>
  8008564:	0800875c 	xori	zero,at,541
  8008568:	0800873c 	xorhi	zero,at,540
  800856c:	0800873c 	xorhi	zero,at,540
@@ -10596,68 +10596,68 @@ int main()
  8008580:	0800873c 	xorhi	zero,at,540
  8008584:	080086e4 	muli	zero,at,539
  8008588:	080086e4 	muli	zero,at,539
- 800858c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008590:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008594:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008598:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800859c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085a0:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085a4:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
+ 800858c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008590:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008594:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008598:	08008700 	call	800870 <__reset-0x77ff790>
+ 800859c:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085a0:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085a4:	08008700 	call	800870 <__reset-0x77ff790>
  80085a8:	080086d0 	cmplti	zero,at,539
  80085ac:	080086d0 	cmplti	zero,at,539
  80085b0:	080086d0 	cmplti	zero,at,539
  80085b4:	080086d0 	cmplti	zero,at,539
  80085b8:	080086d0 	cmplti	zero,at,539
  80085bc:	080086d0 	cmplti	zero,at,539
- 80085c0:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085c4:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085c8:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085cc:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085d0:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085d4:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085d8:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085dc:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085e0:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085e4:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085e8:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085ec:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085f0:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085f4:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085f8:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 80085fc:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008600:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
+ 80085c0:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085c4:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085c8:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085cc:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085d0:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085d4:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085d8:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085dc:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085e0:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085e4:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085e8:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085ec:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085f0:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085f4:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085f8:	08008700 	call	800870 <__reset-0x77ff790>
+ 80085fc:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008600:	08008700 	call	800870 <__reset-0x77ff790>
  8008604:	08008688 	cmpgei	zero,at,538
- 8008608:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800860c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008610:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008614:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008618:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800861c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008620:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008624:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
+ 8008608:	08008700 	call	800870 <__reset-0x77ff790>
+ 800860c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008610:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008614:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008618:	08008700 	call	800870 <__reset-0x77ff790>
+ 800861c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008620:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008624:	08008700 	call	800870 <__reset-0x77ff790>
  8008628:	080086d0 	cmplti	zero,at,539
  800862c:	080086d0 	cmplti	zero,at,539
  8008630:	080086d0 	cmplti	zero,at,539
  8008634:	080086d0 	cmplti	zero,at,539
  8008638:	080086d0 	cmplti	zero,at,539
  800863c:	080086d0 	cmplti	zero,at,539
- 8008640:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008644:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008648:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800864c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008650:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008654:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008658:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800865c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008660:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008664:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008668:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800866c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008670:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008674:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008678:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 800867c:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
- 8008680:	08008700 	call	800870 <__alt_mem_sdram-0x77ff790>
+ 8008640:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008644:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008648:	08008700 	call	800870 <__reset-0x77ff790>
+ 800864c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008650:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008654:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008658:	08008700 	call	800870 <__reset-0x77ff790>
+ 800865c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008660:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008664:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008668:	08008700 	call	800870 <__reset-0x77ff790>
+ 800866c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008670:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008674:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008678:	08008700 	call	800870 <__reset-0x77ff790>
+ 800867c:	08008700 	call	800870 <__reset-0x77ff790>
+ 8008680:	08008700 	call	800870 <__reset-0x77ff790>
  8008684:	08008688 	cmpgei	zero,at,538
  8008688:	9081800c 	andi	r2,r18,1536
  800868c:	12c01c1e 	bne	r2,r11,8008700 <__ssvfscanf_r+0x1224>
@@ -11235,7 +11235,7 @@ int main()
  8008f74:	08009a38 	rdprs	zero,at,616
  8008f78:	080099b0 	cmpltui	zero,at,614
  8008f7c:	08009884 	addi	zero,at,610
- 8008f80:	08008fc0 	call	8008fc <__alt_mem_sdram-0x77ff704>
+ 8008f80:	08008fc0 	call	8008fc <__reset-0x77ff704>
  8008f84:	080098a4 	muli	zero,at,610
  8008f88:	08009a38 	rdprs	zero,at,616
  8008f8c:	080098b0 	cmpltui	zero,at,610
@@ -21193,7 +21193,7 @@ int main()
  8012884:	1800683a 	jmp	r3
  8012888:	08012904 	addi	zero,at,1188
  801288c:	080128dc 	xori	zero,at,1187
- 8012890:	080128c0 	call	80128c <__alt_mem_sdram-0x77fed74>
+ 8012890:	080128c0 	call	80128c <__reset-0x77fed74>
  8012894:	080128a4 	muli	zero,at,1186
  8012898:	080128cc 	andi	zero,at,1187
  801289c:	080128dc 	xori	zero,at,1187
@@ -22597,7 +22597,7 @@ int main()
  8013e24:	08014454 	ori	zero,at,1297
  8013e28:	0801427c 	xorhi	zero,at,1289
  8013e2c:	08014454 	ori	zero,at,1297
- 8013e30:	08014240 	call	801424 <__alt_mem_sdram-0x77febdc>
+ 8013e30:	08014240 	call	801424 <__reset-0x77febdc>
  8013e34:	08014048 	cmpgei	zero,at,1281
  8013e38:	08013e94 	ori	zero,at,1274
  8013e3c:	080143ac 	andhi	zero,at,1294
@@ -24560,7 +24560,7 @@ int main()
  8015cb0:	08015e10 	cmplti	zero,at,1400
  8015cb4:	08015e10 	cmplti	zero,at,1400
  8015cb8:	08015e10 	cmplti	zero,at,1400
- 8015cbc:	08015d40 	call	8015d4 <__alt_mem_sdram-0x77fea2c>
+ 8015cbc:	08015d40 	call	8015d4 <__reset-0x77fea2c>
  8015cc0:	08015e10 	cmplti	zero,at,1400
  8015cc4:	08015e10 	cmplti	zero,at,1400
  8015cc8:	08015e10 	cmplti	zero,at,1400
@@ -24592,7 +24592,7 @@ int main()
  8015d30:	08015e10 	cmplti	zero,at,1400
  8015d34:	08015e10 	cmplti	zero,at,1400
  8015d38:	08015e10 	cmplti	zero,at,1400
- 8015d3c:	08015d40 	call	8015d4 <__alt_mem_sdram-0x77fea2c>
+ 8015d3c:	08015d40 	call	8015d4 <__reset-0x77fea2c>
  8015d40:	b141800c 	andi	r5,r22,1536
  8015d44:	29c0321e 	bne	r5,r7,8015e10 <__ssvfiscanf_r+0xdd0>
  8015d48:	b0ec703a 	and	r22,r22,r3
@@ -37496,8 +37496,8 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
  801f8b4:	003ffb06 	br	801f8a4 <__alt_data_end+0xf801f8a4>
  801f8b8:	0201ffff 	0x201ffff
  801f8bc:	ffff0000 	call	ffff000 <_gp+0x7fd500c>
- 801f8c0:	00001601 	jmpi	160 <__alt_mem_sdram-0x7fffea0>
- 801f8c4:	00020001 	jmpi	2000 <__alt_mem_sdram-0x7ffe000>
+ 801f8c0:	00001601 	jmpi	160 <__reset-0x7fffea0>
+ 801f8c4:	00020001 	jmpi	2000 <__reset-0x7ffe000>
  801f8c8:	00040003 	ldbu	zero,4096(zero)
  801f8cc:	00060005 	stb	zero,6144(zero)
  801f8d0:	00080007 	ldb	zero,8192(zero)
@@ -37507,12 +37507,12 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
 	...
  801f8e8:	010d0bff 	0x10d0bff
  801f8ec:	01010004 	movi	r4,1024
- 801f8f0:	00000100 	call	10 <__alt_mem_sdram-0x7fffff0>
- 801f8f4:	00000000 	call	0 <__alt_mem_sdram-0x8000000>
+ 801f8f0:	00000100 	call	10 <__reset-0x7fffff0>
+ 801f8f4:	00000000 	call	0 <__reset-0x8000000>
  801f8f8:	01110bff 	0x1110bff
  801f8fc:	01010004 	movi	r4,1024
  801f900:	7f000105 	stb	fp,4(r15)
- 801f904:	007d0000 	call	7d000 <__alt_mem_sdram-0x7f83000>
- 801f908:	00000000 	call	0 <__alt_mem_sdram-0x8000000>
- 801f90c:	01883a00 	call	1883a0 <__alt_mem_sdram-0x7e77c60>
+ 801f904:	007d0000 	call	7d000 <__reset-0x7f83000>
+ 801f908:	00000000 	call	0 <__reset-0x8000000>
+ 801f90c:	01883a00 	call	1883a0 <__reset-0x7e77c60>
  801f910:	08003054 	ori	zero,at,193

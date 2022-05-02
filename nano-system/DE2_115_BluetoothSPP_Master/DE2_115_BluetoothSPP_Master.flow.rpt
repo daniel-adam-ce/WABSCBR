@@ -1,5 +1,5 @@
 Flow report for DE2_115_BluetoothSPP_Master
-Tue Apr 19 19:53:21 2022
+Sun May 01 21:38:01 2022
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -41,22 +41,22 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Apr 19 19:53:21 2022       ;
+; Flow Status                        ; Successful - Sun May 01 21:37:56 2022       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; DE2_115_BluetoothSPP_Master                 ;
 ; Top-level Entity Name              ; DE2_115_BluetoothSPP_Master                 ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 5,396                                       ;
-;     Total combinational functions  ; 4,157                                       ;
-;     Dedicated logic registers      ; 3,280                                       ;
-; Total registers                    ; 3280                                        ;
-; Total pins                         ; 134                                         ;
+; Total logic elements               ; 4,885 / 114,480 ( 4 % )                     ;
+;     Total combinational functions  ; 4,174 / 114,480 ( 4 % )                     ;
+;     Dedicated logic registers      ; 3,107 / 114,480 ( 3 % )                     ;
+; Total registers                    ; 3226                                        ;
+; Total pins                         ; 134 / 529 ( 25 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 66,032                                      ;
-; Embedded Multiplier 9-bit elements ; 6                                           ;
-; Total PLLs                         ; 1                                           ;
+; Total memory bits                  ; 66,032 / 3,981,312 ( 2 % )                  ;
+; Embedded Multiplier 9-bit elements ; 6 / 532 ( 1 % )                             ;
+; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+-----------------------------+
 ; Option            ; Setting                     ;
 +-------------------+-----------------------------+
-; Start date & time ; 04/19/2022 19:52:15         ;
+; Start date & time ; 05/01/2022 21:36:27         ;
 ; Main task         ; Compilation                 ;
 ; Revision Name     ; DE2_115_BluetoothSPP_Master ;
 +-------------------+-----------------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +-------------------------------------+--------------------------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+--------------------------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 10995770589198.165042313416880                         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 123719801958938.165146618714680                        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Qsys/synthesis/../Qsys.cmp                             ; --            ; --          ; --         ;
@@ -94,29 +94,38 @@ agreement for further details.
 +-------------------------------------+--------------------------------------------------------+---------------+-------------+------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                        ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:02     ; 1.0                     ; 5005 MB             ; 00:01:36                           ;
-; Total                ; 00:01:02     ; --                      ; --                  ; 00:01:36                           ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:42     ; 1.0                     ; 5150 MB             ; 00:00:59                           ;
+; Fitter                    ; 00:00:37     ; 1.2                     ; 6419 MB             ; 00:01:15                           ;
+; Assembler                 ; 00:00:03     ; 1.0                     ; 4709 MB             ; 00:00:03                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.4                     ; 5012 MB             ; 00:00:05                           ;
+; Total                     ; 00:01:26     ; --                      ; --                  ; 00:02:22                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                    ;
-+----------------------+------------------+------------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; LAPTOP-R10NHPEK  ; Windows 10 ; 10.0       ; x86_64         ;
-+----------------------+------------------+------------+------------+----------------+
++-----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                         ;
++---------------------------+------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++---------------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; DESKTOP-56C6C11  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; DESKTOP-56C6C11  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; DESKTOP-56C6C11  ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; DESKTOP-56C6C11  ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+------------------+------------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off DE2_115_BluetoothSPP_Master -c DE2_115_BluetoothSPP_Master
+quartus_fit --read_settings_files=off --write_settings_files=off DE2_115_BluetoothSPP_Master -c DE2_115_BluetoothSPP_Master
+quartus_asm --read_settings_files=off --write_settings_files=off DE2_115_BluetoothSPP_Master -c DE2_115_BluetoothSPP_Master
+quartus_sta DE2_115_BluetoothSPP_Master -c DE2_115_BluetoothSPP_Master
 
 
 

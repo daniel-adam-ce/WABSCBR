@@ -986,6 +986,10 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_J10 -to SPI_CSK
+set_location_assignment PIN_H14 -to SPI_MOSI
+set_location_assignment PIN_H13 -to SPI_MISO
+set_location_assignment PIN_J14 -to SPI_CSN
 set_global_assignment -name VERILOG_FILE ../../aes/encryption/TwosFeild.v
 set_global_assignment -name VERILOG_FILE ../../aes/encryption/TopModule.v
 set_global_assignment -name VERILOG_FILE ../../aes/encryption/threesField.v
@@ -1002,8 +1006,4 @@ set_global_assignment -name VERILOG_FILE ../../aes/encryption/columnMix.v
 set_global_assignment -name QIP_FILE Qsys/synthesis/Qsys.qip
 set_global_assignment -name VERILOG_FILE DE2_115_BluetoothSPP_Master.v
 set_global_assignment -name SDC_FILE DE2_115_BluetoothSPP_Master.SDC
-set_location_assignment PIN_J10 -to SPI_CSK
-set_location_assignment PIN_H14 -to SPI_MOSI
-set_location_assignment PIN_H13 -to SPI_MISO
-set_location_assignment PIN_J14 -to SPI_CSN
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

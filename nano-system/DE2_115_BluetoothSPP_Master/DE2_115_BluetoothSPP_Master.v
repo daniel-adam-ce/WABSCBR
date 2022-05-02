@@ -90,6 +90,14 @@ assign  BT_KEY = Control;
 		  .spi_mosi_export                         (SPI_MOSI),                            //                            spi_mosi.export
 		  .spi_sck_export                          (SPI_SCK),                              //  
     );
+	 
+	 wire[127:0] Encryption;
+	 
+	 AESTopModule(
+			.plainText(SPI_MOSI),
+			.key(),
+			.cipherText(Encryption)
+	 );
 
 
 endmodule
